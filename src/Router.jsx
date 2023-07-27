@@ -6,16 +6,16 @@ import {
 
 //Importing routes
 import Homepage from './routes/Homepage';
-
+import './styles/index.css';
 const Router = () => {
 
     //creating the router with all the paths
-    const router = createBrowserRouter = ([
+    const router = createBrowserRouter([
         {
             path: "/",
             element: <Homepage />,
             //errorElement: <Error />
-        }
+        },
     ])
 
     return (

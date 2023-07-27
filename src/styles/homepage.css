@@ -1,0 +1,123 @@
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 1rem 3rem;
+}
+
+.home-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 425px;
+}
+
+.home-heading {
+    font-size: 46px;
+    font-weight: 900;
+    margin-bottom: 2rem;
+}
+
+.home-fancy {
+    color: var(--accent);
+}
+
+.home-desc {
+    margin-bottom: 2rem;
+    z-index: 5;
+}
+
+.home-btn {
+    padding: 20px;
+    z-index: 5;
+    background-color: var(--secondary);
+    color: var(--text);
+    border-radius: 16px;
+    border: none;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.home-btn::before {
+    content: 'Start Tracking';
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 8%;
+    left: 4%;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    background-color: var(--accent);
+    z-index: 1;
+    transition: all .2s ease;
+}
+
+.home-btn:hover::before {
+    top: 0;
+    left: 0;
+}
+
+.home-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://images.unsplash.com/photo-1519165786335-29469c069553?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRpbWUlMjB0cmFja2luZ3xlbnwwfDB8MHx8fDI%3D&auto=format&fit=crop&w=600&q=60);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 155%;
+    z-index: -1;
+}
+
+/*Adding a tint to the image for better text readability*/
+.home-image-container::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .7);
+}
+
+
+/*Making the homepage responsive*/
+
+/*Tablet Mode*/
+@media (max-width: 1024px) {
+    .home-container {
+        justify-content: center;
+    }
+    .home-info-container {
+        align-items: center;
+        text-align: center;
+    }
+    .home-image-container {
+        background-position: 100% -20%;
+        background-size: cover;
+    }
+}
+
+/*Mobile Mode*/
+@media (max-width: 500px) {
+    .home-container {
+        padding: 1rem;
+    }
+    .home-info-container {
+        padding: .5rem;
+        max-width: 100%;
+    }
+    .home-heading {
+        font-size: 32px;
+    }
+}

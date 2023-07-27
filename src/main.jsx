@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 
 //Importing the router
 import Router from './Router';
+
 //Importing the global styles
 import './styles/index.css';
 
