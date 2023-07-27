@@ -59,6 +59,7 @@
     background-color: var(--accent);
     z-index: 1;
     transition: all .2s ease;
+    font-family: var(--font);
 }
 
 .home-btn:hover::before {

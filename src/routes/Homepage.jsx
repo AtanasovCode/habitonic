@@ -1,5 +1,8 @@
 import '../styles/homepage.css';
 
+//Used to link to the ohter pages of the site
+import { Link } from 'react-router-dom';
+
 const Homepage = () => {
     return (
         <div className="home-container">
@@ -13,9 +16,9 @@ const Homepage = () => {
                     eaque sequi quod, quasi ea accusamus
                     ipsam cumque, corrupti cupiditate
                 </div>
-                <button className="home-btn">
+                <Link to="/manage-tasks" className="home-btn">
                     Start Tracking
-                </button>
+                </Link>
             </div>
             <div className="home-image-container"></div>
         </div>

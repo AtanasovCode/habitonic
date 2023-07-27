@@ -4,7 +4,7 @@
   /*Website theme using CSS variables*/
   --text: hsl(295, 69%, 90%);
   --background: hsl(293, 69%, 5%);
-  --primary: hsl(114, 70%, 66%);
+  --primary: hsl(114, 83%, 9%);
   --secondary: hsl(174, 69%, 14%);
   --accent: hsl(114, 70%, 54%);
   --font: "Raleway";
@@ -34,4 +34,5 @@ body {
 
 .global-container {
   min-height: 100vh;
+  background-color: var(--background);
 }

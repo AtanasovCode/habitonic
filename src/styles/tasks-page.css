@@ -1,0 +1,114 @@
+.tasks-page-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.tasks-nav {
+    background-color: var(--primary);
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all .3s ease;
+}
+
+.tasks-nav.active {
+    transform: translateX(0);
+}
+
+.mobile-nav {
+    display: none;
+}
+
+.logo-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.logo {
+    height: 140px;
+}
+
+.filter-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter {
+    width: 100%;
+    padding: .5rem .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    position: relative;
+}
+
+.filter::before {
+    content: '';
+    width: 0;
+    height: 100%;
+    background-color: var(--accent);
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: .2;
+    transition: all .26s linear;
+}
+
+.filter:hover::before {
+    width: 100%;
+    transition: all .26s linear;
+}
+
+.filter.important-active {
+    background-color: rgba(255, 215, 0, .2);
+}
+
+.filter-icon {
+    margin-right: 1rem;
+}
+
+.filter-name {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+.filter.back-btn {
+    position: absolute;
+    bottom: 0;
+    color: var(--text);
+    text-decoration: none;
+}
+
+
+/*Styling the tasks nav for mobile and tablet*/
+@media (max-width: 1024px) {
+    .tasks-nav {
+        transform: translateX(-80%);
+    }
+
+    .mobile-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        cursor: pointer;
+    }
+}

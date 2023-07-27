@@ -3,10 +3,12 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from 'react-router-dom';
+import './styles/index.css';
 
 //Importing routes
 import Homepage from './routes/Homepage';
-import './styles/index.css';
+import TasksPage from './routes/TasksPage';
+
 const Router = () => {
 
     //creating the router with all the paths
@@ -16,6 +18,10 @@ const Router = () => {
             element: <Homepage />,
             //errorElement: <Error />
         },
+        {
+            path: "/manage-tasks",
+            element: <TasksPage />
+        }
     ])
 
     return (
