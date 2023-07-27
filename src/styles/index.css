@@ -1,0 +1,36 @@
+/*Defining the global styles of the website*/
+
+:root {
+  /*Website theme using CSS variables*/
+  --text: hsl(295, 69%, 90%);
+  --background: hsl(293, 69%, 5%);
+  --primary: hsl(114, 70%, 66%);
+  --secondary: hsl(174, 69%, 14%);
+  --accent: hsl(114, 70%, 54%);
+  --font: "Raleway";
+
+  /*
+   improve readability, visual quality, and consistency 
+   across different browsers and devices.
+  */
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font);
+}
