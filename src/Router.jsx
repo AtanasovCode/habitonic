@@ -1,5 +1,7 @@
+import { useState } from 'react';
+
 //importing from react-router
-import { 
+import {
     createBrowserRouter,
     RouterProvider,
 } from 'react-router-dom';
@@ -11,6 +13,9 @@ import TasksPage from './routes/TasksPage';
 
 const Router = () => {
 
+    //array of objects that contains all of the user created tasks
+    const [tasks, setTasks] = useState([]);
+
     //creating the router with all the paths
     const router = createBrowserRouter([
         {
@@ -20,7 +25,10 @@ const Router = () => {
         },
         {
             path: "/manage-tasks",
-            element: <TasksPage />
+            element: <TasksPage
+                tasks={tasks}
+                setTasks={setTasks}
+            />
         }
     ])
 

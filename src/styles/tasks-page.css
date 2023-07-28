@@ -1,7 +1,7 @@
 .tasks-page-container {
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
     min-height: 100vh;
 }
 
@@ -57,6 +57,10 @@
     position: relative;
 }
 
+#active {
+    background-color: rgba(72, 220, 56, .2);
+}
+
 .filter::before {
     content: '';
     width: 0;
@@ -74,8 +78,12 @@
     transition: all .26s linear;
 }
 
-.filter.important-active {
-    background-color: rgba(255, 215, 0, .2);
+#active:hover {
+    cursor: not-allowed;
+}
+
+#active:hover::before {
+    width: 0;
 }
 
 .filter-icon {
@@ -85,6 +93,7 @@
 .filter-name {
     font-size: 16px;
     font-weight: 700;
+    text-transform: capitalize;
 }
 
 
@@ -96,8 +105,44 @@
 }
 
 
+.tasks-container {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-task {
+    position: absolute;
+    bottom: 40px;
+    width: 90%;
+    background-color: var(--primary);
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.input-icon {
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.input-task {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+}
+
 /*Styling the tasks nav for mobile and tablet*/
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
     .tasks-nav {
         transform: translateX(-80%);
     }
@@ -110,5 +155,17 @@
         top: 15px;
         right: 10px;
         cursor: pointer;
+    }
+
+    .tasks-container {
+        width: 95%;
+        margin-left: 50px;
+        transition: all .3s ease;
+    }
+
+    /*shrink the tasks when the mobile nav is open*/
+    .tasks-container.active {
+        width: calc(100% - 250px);
+        margin-left: 250px;
     }
 }
