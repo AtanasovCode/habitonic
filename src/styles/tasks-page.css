@@ -177,6 +177,11 @@
     background-color: rgba(72, 220, 56, .4);
 }
 
+.task.complete {
+    color: darkgray;
+    text-decoration: line-through;
+}
+
 .task-info {
     display: flex;
     align-items: center;
@@ -192,6 +197,22 @@
     border-radius: 50%;
     cursor: pointer;
     transition: all .3s ease;
+    position: relative;
+}
+
+.task-radio.complete::before {
+    content: '✓'; /*instead of downloading a checkmark icon*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    font-weight: 900;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lime;
+    border: none;
 }
 
 .task-radio:hover {

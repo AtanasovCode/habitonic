@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 //importing components
 import Filter from '../components/Filter';
+import Task from '../components/Task';
 
 //importing icons from icons library
 import {
@@ -46,10 +47,27 @@ const TasksPage = ({
     //when function is called it adds the task
     const handleAddTask = () => {
         if (name !== "") {
-            tasks.push({ name: name, complete: false, id: name, important: false, description: "", })
+            const newTask = {
+                name: name,
+                complete: false,
+                id: name,
+                important: false,
+                description: "",
+            };
+
+            // Separate important tasks from non-important tasks
+            const importantTasks = tasks.filter((task) => task.important);
+            const nonImportantTasks = tasks.filter((task) => !task.important);
+
+            // Add the new task below the important tasks, but above the non-important tasks
+            const updatedTasks = [...importantTasks, newTask, ...nonImportantTasks];
+
+            // Update the state with the new array of tasks
+            setTasks(updatedTasks);
+
             setName("");
         }
-    }
+    };
 
     //when the enter key is pressed, function runs and adds the task
     const handleAddEnter = (key) => {
@@ -60,17 +78,38 @@ const TasksPage = ({
 
     //functin is run when the user clicks to make the task important
     const makeImportant = (id) => {
-        // Create a new array with updated tasks, marking the task with the given id as important
+        //create a new array with updated tasks, marking the task with the given id as important
         const updatedTasks = tasks.map((task) =>
             task.id === id ? { ...task, important: !task.important } : task
         );
 
-        // Sort the updatedTasks array to move tasks with important=true to the top
+        //sort the updatedTasks array to move tasks with important=true to the top
         updatedTasks.sort((a, b) => (a.important === b.important ? 0 : a.important ? -1 : 1));
 
-        // Update the state with the new array of tasks
+        //update the state with the new array of tasks
         setTasks(updatedTasks);
     };
+
+    //function to run when the user clicks to mark a task as complete
+    const completeTask = (id) => {
+        //create a new array with updated tasks, marking the task with the given id as complete
+        //if the task has important=true, set it to false
+        const updatedTasks = tasks.map((task) =>
+            task.id === id
+                ? {
+                    ...task,
+                    complete: !task.complete,
+                    important: task.important ? false : task.important,
+                }
+                : task
+        );
+
+        //sort the updatedTasks array to move tasks completed to the bottom
+        updatedTasks.sort((a, b) => (a.complete === b.complete ? 0 : a.complete ? 1 : -1));
+
+        //update the state with the new array of tasks
+        setTasks(updatedTasks);
+    }
 
     return (
         <div className="tasks-page-container">
@@ -144,24 +183,16 @@ const TasksPage = ({
                     {
                         tasks.map((task) => {
                             return (
-                                <div className={task.important ? "task important" : "task"}>
-                                    <div className="task-info">
-                                        <div className="task-radio">
-                                            {/*Empty div is used for the custom radio button*/}
-                                        </div>
-                                        <div className="task-name">
-                                            {task.name}
-                                        </div>
-                                    </div>
-                                    <div className="task-icons">
-                                        <div className="task-icon" onClick={() => { makeImportant(task.id) }}>
-                                            <Star weight={task.important ? "fill" : "light"} color="gold" size={24} />
-                                        </div>
-                                        <div className="task-icon">
-                                            <Info weight="light" color="#fff" size={24} />
-                                        </div>
-                                    </div>
-                                </div>
+                                <Task
+                                    makeImportant={makeImportant}
+                                    completeTask={completeTask}
+                                    important={task.important}
+                                    complete={task.complete}
+                                    name={task.name}
+                                    id={task.id}
+                                    Star={Star}
+                                    Info={Info}
+                                />
                             )
                         })
                     }
