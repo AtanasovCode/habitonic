@@ -113,18 +113,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+}
+
+.add-task-container {
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 250px);
+    display: flex;
+    align-items: center;
     justify-content: center;
+    background-color: var(--background);
+    padding-bottom: 20px;
 }
 
 .add-task {
-    position: absolute;
-    bottom: 40px;
-    width: 90%;
+    width: 85%;
     background-color: var(--primary);
     padding: 15px 25px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    border: 1px solid #dddddd40;
+    z-index: 2;
 }
 
 .input-icon {
@@ -141,8 +152,64 @@
     outline: none;
 }
 
+.tasks {
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 80px;
+}
+
+.task {
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: var(--primary);
+    margin-bottom: 30px;
+}
+
+.task.important {
+    background-color: rgba(72, 220, 56, .4);
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-radio {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 1px solid #ffffff80;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.task-radio:hover {
+    border: 1px solid #fff;
+}
+
+.task-icons {
+    display: flex;
+}
+
+.task-icon {
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+
 /*Styling the tasks nav for mobile and tablet*/
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .tasks-nav {
         transform: translateX(-80%);
     }

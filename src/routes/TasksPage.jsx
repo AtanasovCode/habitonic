@@ -43,16 +43,34 @@ const TasksPage = ({
         setFilter(filter);
     }
 
-    const handleAddTask = (key) => {
-        if (key === "Enter" && name !== "") {
-            tasks.push({ name: name, complete: false, id: name, important: false, description: "",  })
+    //when function is called it adds the task
+    const handleAddTask = () => {
+        if (name !== "") {
+            tasks.push({ name: name, complete: false, id: name, important: false, description: "", })
             setName("");
         }
     }
 
-    useEffect(() => {
-        console.log(tasks);
-    }, [])
+    //when the enter key is pressed, function runs and adds the task
+    const handleAddEnter = (key) => {
+        if (key === "Enter") {
+            handleAddTask();
+        }
+    }
+
+    //functin is run when the user clicks to make the task important
+    const makeImportant = (id) => {
+        // Create a new array with updated tasks, marking the task with the given id as important
+        const updatedTasks = tasks.map((task) =>
+            task.id === id ? { ...task, important: !task.important } : task
+        );
+
+        // Sort the updatedTasks array to move tasks with important=true to the top
+        updatedTasks.sort((a, b) => (a.important === b.important ? 0 : a.important ? -1 : 1));
+
+        // Update the state with the new array of tasks
+        setTasks(updatedTasks);
+    };
 
     return (
         <div className="tasks-page-container">
@@ -122,22 +140,51 @@ const TasksPage = ({
                 </div>
             </div>
             <div className={navOpen ? "tasks-container active" : "tasks-container"}>
-                <div className="add-task">
-                    <div className="input-icon">
-                        <Plus
-                            weight="light"
-                            color="#fff"
-                            size={24}
+                <div className="tasks">
+                    {
+                        tasks.map((task) => {
+                            return (
+                                <div className={task.important ? "task important" : "task"}>
+                                    <div className="task-info">
+                                        <div className="task-radio">
+                                            {/*Empty div is used for the custom radio button*/}
+                                        </div>
+                                        <div className="task-name">
+                                            {task.name}
+                                        </div>
+                                    </div>
+                                    <div className="task-icons">
+                                        <div className="task-icon" onClick={() => { makeImportant(task.id) }}>
+                                            <Star weight={task.important ? "fill" : "light"} color="gold" size={24} />
+                                        </div>
+                                        <div className="task-icon">
+                                            <Info weight="light" color="#fff" size={24} />
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+                <div className="add-task-container">
+                    <div className="add-task">
+                        <div className="input-icon" onClick={() => handleAddTask()}>
+                            <Plus
+                                weight="light"
+                                color="#fff"
+                                size={24}
+                            />
+                        </div>
+                        <input
+                            type="text"
+                            className="input-task"
+                            maxLength={80} //max number of characters is set to 80
+                            placeholder="Add a task..."
+                            value={name}
+                            onChange={(e) => setName(e.currentTarget.value)}
+                            onKeyDown={(e) => handleAddEnter(e.key)}
                         />
                     </div>
-                    <input
-                        type="text"
-                        className="input-task"
-                        placeholder="Add a task..."
-                        value={name}
-                        onChange={(e) => setName(e.currentTarget.value)}
-                        onKeyDown={(e) => handleAddTask(e.key)}
-                    />
                 </div>
             </div>
         </div>
