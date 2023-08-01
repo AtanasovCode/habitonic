@@ -1,0 +1,136 @@
+.task-details-container {
+    --border-color: #ffffff70;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 35px;
+}
+
+.details-heading {
+    font-size: 32px;
+    font-weight: 300;
+    margin: 35px 0;
+}
+
+.current-task-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    min-width: 450px;
+    width: 40%;
+}
+
+.task-change {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.task-change-title {
+    font-size: 26px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.details-star {
+    margin-right: 6px;
+}
+
+.task-change-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: darkgray;
+    margin-top: 10px;
+}
+
+.task-name-input {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 300;
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+    font-family: var(--font);
+    border-radius: 16px;
+}
+
+.task-desc-input {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: #fff;
+    padding: 12px;
+    resize: none;
+    height: 120px;
+    width: 100%;
+    outline: none;
+    font-family: var(--font);
+    border-radius: 16px;
+}
+
+.date-picker {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid var(--border-color);
+    font-size: 16px;
+    font-family: var(--font);
+    padding: 8px;
+    outline: none;
+    cursor: pointer;
+}
+
+.save-btn-container {
+    margin: 40px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.save-btn {
+    flex: 100%;
+    padding: 15px 10px;
+    border: none;
+    color: #000;
+    font-weight: 700;
+    background-color: var(--accent);
+    border-radius: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 20px;
+    position: relative;
+}
+
+.btn-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translatey(-50%);
+}
+
+.details-back-btn {
+    background-color: var(--secondary);
+    color: #fff;
+}
+
+.save-btn:hover {
+    background-color: var(--hover-tint);
+}

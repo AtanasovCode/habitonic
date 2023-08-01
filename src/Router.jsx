@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 //importing from react-router
 import {
@@ -10,11 +10,25 @@ import './styles/index.css';
 //Importing routes
 import Homepage from './routes/Homepage';
 import TasksPage from './routes/TasksPage';
+import TaskDetails from './routes/TaskDetails';
 
 const Router = () => {
 
     //array of objects that contains all of the user created tasks
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(() => {
+        const storedTasks = localStorage.getItem("tasks");
+        return storedTasks ? JSON.parse(storedTasks) : [];
+    });
+
+    // Save tasks to localStorage whenever tasks change
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
+
+    useEffect(() => {
+        localStorage.removeItem("tasks")
+    }, [])
+
 
     //creating the router with all the paths
     const router = createBrowserRouter([
@@ -29,6 +43,13 @@ const Router = () => {
                 tasks={tasks}
                 setTasks={setTasks}
             />
+        },
+        {
+            path: "/manage-tasks/task-info",
+            element: <TaskDetails
+                tasks={tasks}
+                setTasks={setTasks}
+            />,
         }
     ])
 

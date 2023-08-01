@@ -11,10 +11,12 @@ const Homepage = () => {
                     Track, Organize, <span className="home-fancy">Conquer</span> your day
                 </div>
                 <div className="home-desc">
-                    Lorem ipsum dolor, sit amet consectetur
-                    adipisicing elit. Reprehenderit expedita
-                    eaque sequi quod, quasi ea accusamus
-                    ipsam cumque, corrupti cupiditate
+                    Welcome to Taskie - Your Ultimate Task Planner!
+                    Stay organized, never miss a beat! Taskie keeps
+                    your tasks and deadlines in one place, easy to
+                    access and manage. Set reminders, prioritize 
+                    efficiently, and enjoy a user-friendly interface. 
+                    Sign up now and take control of your tasks with Taskie
                 </div>
                 <Link to="/manage-tasks" className="home-btn">
                     Start Tracking

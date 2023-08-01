@@ -12,6 +12,7 @@
     align-items: flex-start;
     justify-content: center;
     max-width: 425px;
+    z-index: 5;
 }
 
 .home-heading {
@@ -76,8 +77,8 @@
     background-image: url(https://images.unsplash.com/photo-1519165786335-29469c069553?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRpbWUlMjB0cmFja2luZ3xlbnwwfDB8MHx8fDI%3D&auto=format&fit=crop&w=600&q=60);
     background-position: left;
     background-repeat: no-repeat;
-    background-size: 155%;
-    z-index: -1;
+    background-size: cover;
+    z-index: 0;
 }
 
 /*Adding a tint to the image for better text readability*/
@@ -88,7 +89,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, .6);
 }
 
 

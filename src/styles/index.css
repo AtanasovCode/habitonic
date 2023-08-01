@@ -2,11 +2,13 @@
 
 :root {
   /*Website theme using CSS variables*/
-  --text: hsl(295, 69%, 90%);
-  --background: hsl(293, 69%, 5%);
-  --primary: hsl(114, 83%, 9%);
-  --secondary: hsl(174, 69%, 14%);
-  --accent: hsl(114, 70%, 54%);
+  --text: rgb(250, 209, 209);
+  --background: rgb(0, 0, 0);
+  --primary: rgb(0, 0, 42);
+  --secondary: rgb(49, 49, 53);
+  --accent: rgb(0, 157, 255);
+  --important-tint: rgba(0, 157, 255, .3);
+  --hover-tint: rgba(0, 157, 255, .3);
   --font: "Raleway";
 
   /*

@@ -1,15 +1,22 @@
 import '../styles/tasks-page.css';
 
+import { Link } from 'react-router-dom';
+
 //reusable component for tasks
 const Task = ({
+    filter,
     makeImportant,
     completeTask,
+    handleMoreInfo,
     important,
     complete,
     name,
     id,
+    trash,
     Star,
     Info,
+    TrashSimple,
+    trashTask,
 }) => {
 
     //gets the class of the task
@@ -34,8 +41,19 @@ const Task = ({
                 <div className="task-icon" onClick={() => !complete && makeImportant(id)}>
                     <Star weight={important ? "fill" : "light"} color="gold" size={24} />
                 </div>
-                <div className="task-icon">
+                <Link
+                    to="/manage-tasks/task-info"
+                    className="task-icon" 
+                    onClick={() => handleMoreInfo(id)}
+                >
                     <Info weight="light" color="#fff" size={24} />
+                </Link>
+                <div className="task-icon" onClick={() => trashTask(id)}>
+                    <TrashSimple
+                        weight={trash ? "fill" : "light"}
+                        color="#fff"
+                        size={24}
+                    />
                 </div>
             </div>
         </div>

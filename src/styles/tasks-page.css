@@ -58,7 +58,7 @@
 }
 
 #active {
-    background-color: rgba(72, 220, 56, .2);
+    background-color: var(--hover-tint);
 }
 
 .filter::before {
@@ -133,8 +133,8 @@
     padding: 15px 25px;
     display: flex;
     align-items: center;
+    border-radius: 16px;
     justify-content: flex-start;
-    border: 1px solid #dddddd40;
     z-index: 2;
 }
 
@@ -150,6 +150,27 @@
     font-size: 16px;
     width: 100%;
     outline: none;
+}
+
+.remove-tasks {
+    width: 30%;
+    min-width: 300px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    cursor: pointer;
+    background-color: var(--primary);
+}
+
+.remove-tasks:hover {
+    background-color: var(--hover-tint);
+}
+
+.remove-tasks-text {
+    color: #fff;
+    margin-left: 8px;
 }
 
 .tasks {
@@ -171,10 +192,12 @@
     padding: 15px;
     background-color: var(--primary);
     margin-bottom: 30px;
+    border-radius: 16px;
+    box-shadow: 3px 3px 4px var(--primary);
 }
 
 .task.important {
-    background-color: rgba(72, 220, 56, .4);
+    background-color: var(--important-tint);
 }
 
 .task.complete {
@@ -226,6 +249,21 @@
 .task-icon {
     margin: 0 8px;
     cursor: pointer;
+}
+
+.empty-tasks-container {
+    width: 100%;
+    padding: 50px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-tasks-heading {
+    font-size: 18px;
+    font-weight: 300;
+    color: darkgray;
+    margin-left: 8px;
 }
 
 

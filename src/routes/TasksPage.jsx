@@ -1,8 +1,13 @@
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo-blue.svg';
 import '../styles/tasks-page.css';
 import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
+
+//a package that generates secure random values
+//used for providing unique IDs for each of the tasks
+//example value generated: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+import { v4 as uuidv4 } from 'uuid';
 
 //importing components
 import Filter from '../components/Filter';
@@ -19,6 +24,8 @@ import {
     List,
     Plus,
     Info,
+    TrashSimple,
+    Placeholder,
 } from '@phosphor-icons/react';
 
 const TasksPage = ({
@@ -50,9 +57,12 @@ const TasksPage = ({
             const newTask = {
                 name: name,
                 complete: false,
-                id: name,
+                id: uuidv4(), //generates random secure value
                 important: false,
                 description: "",
+                dueDate: "",
+                dateCreated: new Date().toLocaleDateString('en-GB'), //generates the current date (mm:dd:yyyy)
+                trash: false,
             };
 
             // Separate important tasks from non-important tasks
@@ -64,7 +74,7 @@ const TasksPage = ({
 
             // Update the state with the new array of tasks
             setTasks(updatedTasks);
-
+    
             setName("");
         }
     };
@@ -110,6 +120,44 @@ const TasksPage = ({
         //update the state with the new array of tasks
         setTasks(updatedTasks);
     }
+
+    //function that runs when the user moves a task to the trash
+    const trashTask = (id) => {
+        const updatedTasks = tasks.map((task) =>
+            task.id === id ? { ...task, trash: !task.trash } : task
+        );
+
+        //update the state with the new array of tasks
+        setTasks(updatedTasks);
+    }
+
+    const deleteTasks = () => {
+        const updatedTasks = tasks.filter((task) => !task.trash);
+
+        setTasks(updatedTasks);
+    }
+
+    //when the user clicks to see more info on a task
+    //save that task id to session storage
+    const handleMoreInfo = (id) => {
+        sessionStorage.setItem("currentID", id);
+    }
+
+    //render the tasks based on the selected filter
+    const filteredTasks = tasks.filter(task => {
+        if (filter === 'all') {
+            return !task.trash;
+        } else if (filter === 'important') {
+            return task.important;
+        } else if (filter === 'active') {
+            return !task.complete && !task.trash;
+        } else if (filter === 'complete') {
+            return task.complete;
+        } else if (filter === "trash") {
+            return task.trash;
+        }
+        return false;
+    });
 
     return (
         <div className="tasks-page-container">
@@ -164,6 +212,13 @@ const TasksPage = ({
                         filterName="complete"
                     />
 
+                    <Filter
+                        filter={filter}
+                        handleFilterChange={handleFilterChange}
+                        FilterIcon={TrashSimple}
+                        filterName="trash"
+                    />
+
                     <Link to="/" className="filter back-btn">
                         <div className="filter-icon">
                             <ArrowLeft
@@ -181,41 +236,72 @@ const TasksPage = ({
             <div className={navOpen ? "tasks-container active" : "tasks-container"}>
                 <div className="tasks">
                     {
-                        tasks.map((task) => {
-                            return (
-                                <Task
-                                    makeImportant={makeImportant}
-                                    completeTask={completeTask}
-                                    important={task.important}
-                                    complete={task.complete}
-                                    name={task.name}
-                                    id={task.id}
-                                    Star={Star}
-                                    Info={Info}
-                                />
-                            )
-                        })
+                        //If the array is empty, display on the screen that there are no tasks to show
+                        filteredTasks.length ?
+                            filteredTasks.map((task) => {
+                                return (
+                                    <Task
+                                        key={task.id}
+                                        filter={filter}
+                                        makeImportant={makeImportant}
+                                        completeTask={completeTask}
+                                        handleMoreInfo={handleMoreInfo}
+                                        important={task.important}
+                                        complete={task.complete}
+                                        name={task.name}
+                                        id={task.id}
+                                        trash={task.trash}
+                                        Star={Star}
+                                        Info={Info}
+                                        TrashSimple={TrashSimple}
+                                        trashTask={trashTask}
+                                    />
+                                )
+                            })
+                            :
+                            <div className="empty-tasks-container">
+                                <Placeholder weight="light" size={24} color="darkgray" />
+                                <div className="empty-tasks-heading">
+                                    No tasks found
+                                </div>
+                            </div>
                     }
                 </div>
                 <div className="add-task-container">
-                    <div className="add-task">
-                        <div className="input-icon" onClick={() => handleAddTask()}>
-                            <Plus
-                                weight="light"
-                                color="#fff"
-                                size={24}
-                            />
-                        </div>
-                        <input
-                            type="text"
-                            className="input-task"
-                            maxLength={80} //max number of characters is set to 80
-                            placeholder="Add a task..."
-                            value={name}
-                            onChange={(e) => setName(e.currentTarget.value)}
-                            onKeyDown={(e) => handleAddEnter(e.key)}
-                        />
-                    </div>
+                    {
+                        //if the filter is set to trash, display a way to delete all trashed tasks
+                        //if the filter is set to anything else, display the input for more tasks
+                        filter !== "trash" ?
+                            <div className="add-task">
+                                <div className="input-icon" onClick={() => handleAddTask()}>
+                                    <Plus
+                                        weight="light"
+                                        color="#fff"
+                                        size={24}
+                                    />
+                                </div>
+                                <input
+                                    type="text"
+                                    className="input-task"
+                                    maxLength={80} //max number of characters is set to 80
+                                    placeholder="Add a task..."
+                                    value={name}
+                                    onChange={(e) => setName(e.currentTarget.value)}
+                                    onKeyDown={(e) => handleAddEnter(e.key)}
+                                />
+                            </div>
+                            :
+                            <div className="remove-tasks" onClick={() => deleteTasks()}>
+                                <TrashSimple
+                                    weight="light"
+                                    color="#fff"
+                                    size={24} s
+                                />
+                                <span className="remove-tasks-text">
+                                    Remove Tasks
+                                </span>
+                            </div>
+                    }
                 </div>
             </div>
         </div>
