@@ -1,8 +1,33 @@
-# React + Vite
+# Taskie - A Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![](/src/assets/logo.svg)
 
-Currently, two official plugins are available:
+# Website Functionality
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+On this web application, users can:
+
+- Create new tasks
+- Mark tasks as important
+- Mark tasks as complete
+- View additional task info
+- Edit tasks
+- Add descriptions and due dates to tasks
+- Filter through tasks based on their status
+- Delete tasks
+
+
+# Built With:
+
+- [Reactjs](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- HTML
+- CSS
+
+# Packages Used:
+
+- [react-router-dom](https://reactrouter.com/en/main)
+- [Phosphor Icons](https://phosphoricons.com/)
+- [uuid](https://www.npmjs.com/package/uuid)
+
+# Attribution
+
