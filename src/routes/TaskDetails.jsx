@@ -99,7 +99,7 @@ const TaskDetails = ({
                                             <Star
                                                 size={36}
                                                 weight={task.important ? "fill" : "light"}
-                                                color="gold"
+                                                color="#fff"
                                                 className="details-star"
                                             />
                                             {task.important ? "Marked as important" : "Not marked as important"}
@@ -115,7 +115,7 @@ const TaskDetails = ({
                                     </div>
                                     <div className="task-change">
                                         <div className="task-change-title">
-                                            Due-Date
+                                            Due Date
                                         </div>
                                         <div className="task-set-date">
                                             <input

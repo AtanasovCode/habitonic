@@ -7,9 +7,31 @@
   --primary: rgb(0, 0, 42);
   --secondary: rgb(49, 49, 53);
   --accent: rgb(0, 157, 255);
-  --important-tint: rgba(0, 157, 255, .3);
   --hover-tint: rgba(0, 157, 255, .3);
+  --box-shadow: rgb(1, 1, 87);
   --font: "Raleway";
+
+  /*Colors used in the tasks page*/
+  --navigation-color: rgb(0, 0, 42);
+  --task-color: rgb(0, 0, 42);
+  --important-tint: rgba(0, 157, 255, .36);
+  --task-complete: rgb(0, 0, 25, .5);
+  --filter-hover-color: rgba(0, 157, 255, .3);
+  --filter-hover-speed: .3s;
+
+  /*Colors using in the edit task page*/
+  --edit-task-background: rgba(0, 0, 0, .5);
+  --edit-task-border-color: rgba(255, 255, 255, 0.439);
+  --edit-task-save-btn: rgb(0, 157, 255);
+  --edit-task-back-btn: rgb(49, 49, 53);
+
+  /*Border radius used on all containers*/
+  --border-radius: 16px;
+
+  /*Variables for the background images*/
+  --homepage-image-url: url(https://images.unsplash.com/photo-1519165786335-29469c069553?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRpbWUlMjB0cmFja2luZ3xlbnwwfDB8MHx8fDI%3D&auto=format&fit=crop&w=600&q=60);
+  --tasks-page-image-url: url(https://img.freepik.com/free-photo/children-s-fantasy-tale-with-planets-space_23-2150165803.jpg?t=st=1690967815~exp=1690971415~hmac=95701b7911f54fc7a433e84390b376da7d8e5044a1eba002729d002edbd0ad0d&w=996);
+  --edit-page-image-url: url(https://img.freepik.com/free-vector/gradient-galaxy-background_23-2148983655.jpg?w=996&t=st=1690968601~exp=1690969201~hmac=7758c4dded2868483e7c3c293b3b47c4593caa954c46d4fab115df90912b8f78);
 
   /*
    improve readability, visual quality, and consistency 

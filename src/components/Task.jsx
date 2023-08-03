@@ -38,21 +38,32 @@ const Task = ({
             </div>
             <div className="task-icons">
                 {/*if the task is complete, you cannot make the task important*/}
-                <div className="task-icon" onClick={() => !complete && makeImportant(id)}>
-                    <Star weight={important ? "fill" : "light"} color="gold" size={24} />
+                <div className="task-icon-container" onClick={() => !complete && makeImportant(id)}>
+                    <Star
+                        weight={important ? "fill" : "light"}
+                        color="#fff"
+                        size={24}
+                        className="task-icon"
+                    />
                 </div>
                 <Link
                     to="/manage-tasks/task-info"
-                    className="task-icon" 
+                    className="task-icon"
                     onClick={() => handleMoreInfo(id)}
                 >
-                    <Info weight="light" color="#fff" size={24} />
+                    <Info
+                        weight="light"
+                        color="#fff"
+                        size={24}
+                        class="task-icon"
+                    />
                 </Link>
-                <div className="task-icon" onClick={() => trashTask(id)}>
+                <div className="task-icon-container" onClick={() => trashTask(id)}>
                     <TrashSimple
                         weight={trash ? "fill" : "light"}
                         color="#fff"
                         size={24}
+                        class="task-icon"
                     />
                 </div>
             </div>

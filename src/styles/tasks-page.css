@@ -6,7 +6,7 @@
 }
 
 .tasks-nav {
-    background-color: var(--primary);
+    background-color: var(--navigation-color);
     height: 100%;
     width: 250px;
     position: fixed;
@@ -17,10 +17,36 @@
     align-items: center;
     justify-content: flex-start;
     transition: all .3s ease;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
 }
 
 .tasks-nav.active {
     transform: translateX(0);
+    z-index: 5;
+    transition: all .3s ease;
+}
+
+.active-tint {
+    background-color: transparent;
+    z-index: -1;
+    transition: all .3s ease;
+}
+
+/*Used when the navigational bar is open*/
+.active-tint.active {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 4;
+    transition: all .3s ease;
+}
+
+.mobile-nav-open {
+    display: none;
 }
 
 .mobile-nav {
@@ -58,24 +84,24 @@
 }
 
 #active {
-    background-color: var(--hover-tint);
+    background-color: var(--filter-hover-color);
 }
 
+/*Used for the hover effect*/
 .filter::before {
     content: '';
     width: 0;
     height: 100%;
-    background-color: var(--accent);
+    background-color: var(--filter-hover-color);
     position: absolute;
     top: 0;
     right: 0;
-    opacity: .2;
-    transition: all .26s linear;
+    transition: all var(--filter-hover-speed) linear;
 }
 
 .filter:hover::before {
     width: 100%;
-    transition: all .26s linear;
+    transition: all var(--filter-hover-speed) linear;
 }
 
 #active:hover {
@@ -114,22 +140,43 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    /* 
+    the old background image
+    background-image: url(https://images.pexels.com/photos/3435249/pexels-photo-3435249.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); 
+    */
+    background-image: var(--tasks-page-image-url);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 2;
+}
+
+/*Used as a black tint to improve contrast*/
+.tasks-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 1;
 }
 
 .add-task-container {
+    z-index: 3;
     position: fixed;
     bottom: 0;
     width: calc(100% - 250px);
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--background);
     padding-bottom: 20px;
 }
 
 .add-task {
     width: 85%;
-    background-color: var(--primary);
+    background-color: var(--task-color);
     padding: 15px 25px;
     display: flex;
     align-items: center;
@@ -145,7 +192,7 @@
 
 .input-task {
     background-color: transparent;
-    color: #fff;
+    color: var(--text);
     border: none;
     font-size: 16px;
     width: 100%;
@@ -169,11 +216,12 @@
 }
 
 .remove-tasks-text {
-    color: #fff;
+    color: var(--text);
     margin-left: 8px;
 }
 
 .tasks {
+    z-index: 3;
     padding-top: 25px;
     display: flex;
     flex-direction: column;
@@ -190,10 +238,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 15px;
-    background-color: var(--primary);
+    background-color: var(--task-color);
     margin-bottom: 30px;
-    border-radius: 16px;
-    box-shadow: 3px 3px 4px var(--primary);
+    border-radius: var(--border-radius);
+    box-shadow: 2px 2px 2px var(--box-shadow);
 }
 
 .task.important {
@@ -201,8 +249,9 @@
 }
 
 .task.complete {
-    color: darkgray;
+    color: var(--accent);
     text-decoration: line-through;
+    background-color: var(--task-complete);
 }
 
 .task-info {
@@ -213,10 +262,11 @@
 
 .task-radio {
     margin-right: 15px;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
     background-color: transparent;
-    border: 1px solid #ffffff80;
+    border: 1px solid #ffffff90;
     border-radius: 50%;
     cursor: pointer;
     transition: all .3s ease;
@@ -224,7 +274,8 @@
 }
 
 .task-radio.complete::before {
-    content: '✓'; /*instead of downloading a checkmark icon*/
+    /*instead of downloading a checkmark icon*/
+    content: '✓';
     position: absolute;
     width: 100%;
     height: 100%;
@@ -234,7 +285,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lime;
+    background-color: var(--accent);
     border: none;
 }
 
@@ -246,7 +297,7 @@
     display: flex;
 }
 
-.task-icon {
+.task-icon-container {
     margin: 0 8px;
     cursor: pointer;
 }
@@ -268,9 +319,20 @@
 
 
 /*Styling the tasks nav for mobile and tablet*/
-@media (max-width: 1024px) {
+@media (max-width: 850px) {
     .tasks-nav {
-        transform: translateX(-80%);
+        transform: translateX(-100%);
+        transition: all .3s ease;
+    }
+
+    .mobile-nav-open {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        z-index: 3;
     }
 
     .mobile-nav {
@@ -283,15 +345,57 @@
         cursor: pointer;
     }
 
-    .tasks-container {
-        width: 95%;
-        margin-left: 50px;
-        transition: all .3s ease;
+    .add-task-container {
+        width: 100%;
     }
 
-    /*shrink the tasks when the mobile nav is open*/
-    .tasks-container.active {
-        width: calc(100% - 250px);
-        margin-left: 250px;
+    .tasks-container {
+        width: 100%;
+        margin-left: 0;
+        padding-top: 45px;
     }
+
+    .task-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 550px) {
+    .task {
+        width: 95%;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .add-task {
+        width: 95%;
+    }
+
+    .task-name {
+        font-size: 15px;
+        text-align: center;
+        margin: 0 25px;
+    }
+
+    .task-radio {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+    }
+
+    .task-icons {
+        margin-top: 20px;
+    }
+
+    .task-icon-container {
+        margin: 0 12px;
+    }
+
+    .task-icon {
+        width: 26px;
+        height: 26px;
+    }
+
 }

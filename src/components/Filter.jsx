@@ -16,7 +16,7 @@ const Filter = ({
         >
             <div className="filter-icon">
                 <FilterIcon
-                    color="hsl(114, 70%, 54%)"
+                    color={filter === filterName ? "#fff" : "#ccc"}
                     weight="light"
                     size={32}
                 />

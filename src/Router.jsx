@@ -16,8 +16,7 @@ const Router = () => {
 
     //array of objects that contains all of the user created tasks
     const [tasks, setTasks] = useState(() => {
-        const storedTasks = localStorage.getItem("tasks");
-        return storedTasks ? JSON.parse(storedTasks) : [];
+        return JSON.parse(localStorage.getItem("tasks")) || [];
     });
 
     // Save tasks to localStorage whenever tasks change
@@ -26,8 +25,8 @@ const Router = () => {
     }, [tasks]);
 
     useEffect(() => {
-        localStorage.removeItem("tasks")
-    }, [])
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
 
 
     //creating the router with all the paths

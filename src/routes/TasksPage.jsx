@@ -1,4 +1,4 @@
-import logo from '../assets/logo-blue.svg';
+import logo from '../assets/logo.svg';
 import '../styles/tasks-page.css';
 import { useEffect, useState } from 'react';
 
@@ -36,6 +36,7 @@ const TasksPage = ({
 
     //used to control opening/closing of nav for mobile view
     const [navOpen, setNavOpen] = useState(false);
+    const [tint, setTint] = useState(false);
     //used to see which filter is currently selected, default is 'all'
     const [filter, setFilter] = useState("all");
     //the name of the task
@@ -44,6 +45,7 @@ const TasksPage = ({
     //open/close mobile nav
     const handleNavOpen = () => {
         setNavOpen(!navOpen);
+        setTint(!tint);
     }
 
     //sets the filter
@@ -74,7 +76,7 @@ const TasksPage = ({
 
             // Update the state with the new array of tasks
             setTasks(updatedTasks);
-    
+
             setName("");
         }
     };
@@ -148,11 +150,11 @@ const TasksPage = ({
         if (filter === 'all') {
             return !task.trash;
         } else if (filter === 'important') {
-            return task.important;
+            return task.important && !task.trash;
         } else if (filter === 'active') {
             return !task.complete && !task.trash;
         } else if (filter === 'complete') {
-            return task.complete;
+            return task.complete && !task.trash;
         } else if (filter === "trash") {
             return task.trash;
         }
@@ -161,24 +163,23 @@ const TasksPage = ({
 
     return (
         <div className="tasks-page-container">
+            <div className={tint ? "active-tint active" : "active-tint"}>
+                {/*empty div used to set tint when the mobile nav is active*/}
+            </div>
+            <div className="mobile-nav-open" onClick={() => handleNavOpen()}>
+                <List
+                    weight="light"
+                    color="#fff"
+                    size={32}
+                />
+            </div>
             <div className={navOpen ? "tasks-nav active" : "tasks-nav"}>
                 <div className="mobile-nav" onClick={() => handleNavOpen()}>
-                    {
-                        //display close or open icon
-                        //based on if the nav is open or not
-                        navOpen ?
-                            <X
-                                weight="light"
-                                color="#fff"
-                                size={32}
-                            />
-                            :
-                            <List
-                                weight="light"
-                                color="#fff"
-                                size={32}
-                            />
-                    }
+                    <X
+                        weight="light"
+                        color="#fff"
+                        size={32}
+                    />
                 </div>
                 <div className="logo-container">
                     <img src={logo} alt="logo" className="logo" />
@@ -222,7 +223,7 @@ const TasksPage = ({
                     <Link to="/" className="filter back-btn">
                         <div className="filter-icon">
                             <ArrowLeft
-                                color="hsl(114, 70%, 54%)"
+                                color="rgb(148, 0, 211)"
                                 weight="light"
                                 size={32}
                             />
