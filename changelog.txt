@@ -1,0 +1,4 @@
+v7 changes:
+
+- made the website responsive
+- made detailed CSS variables for changing most aspects of the page
