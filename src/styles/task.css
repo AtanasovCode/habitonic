@@ -67,3 +67,34 @@
     margin: 0 8px;
     cursor: pointer;
 }
+
+@media (max-width: 550px) {
+    .task {
+        width: 95%;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .task-name {
+        font-size: 15px;
+        text-align: center;
+        margin: 0 25px;
+    }
+
+    .task-radio {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+    }
+
+    .task-icons {
+        margin-top: 20px;
+    }
+
+    .task-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+}
