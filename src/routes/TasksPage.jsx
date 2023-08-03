@@ -51,6 +51,7 @@ const TasksPage = ({
     //sets the filter
     const handleFilterChange = (filter) => {
         setFilter(filter);
+        if(navOpen) handleNavOpen();
     }
 
     //when function is called it adds the task

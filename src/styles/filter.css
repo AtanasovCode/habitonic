@@ -1,0 +1,48 @@
+.filter {
+    width: 100%;
+    padding: .5rem .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    position: relative;
+}
+
+#active {
+    background-color: var(--filter-hover-color);
+}
+
+/*Used for the hover effect*/
+.filter::before {
+    content: '';
+    width: 0;
+    height: 100%;
+    background-color: var(--filter-hover-color);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: all var(--filter-hover-speed) linear;
+}
+
+.filter:hover::before {
+    width: 100%;
+    transition: all var(--filter-hover-speed) linear;
+}
+
+#active:hover {
+    cursor: not-allowed;
+}
+
+#active:hover::before {
+    width: 0;
+}
+
+.filter-icon {
+    margin-right: 1rem;
+}
+
+.filter-name {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: capitalize;
+}

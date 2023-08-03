@@ -1,3 +1,4 @@
+import '../styles/filter.css';
 import '../styles/tasks-page.css';
 
 //using this as a reusable component instead of writing out the return code multiple times
