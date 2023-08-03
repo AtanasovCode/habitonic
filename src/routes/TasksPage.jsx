@@ -296,7 +296,7 @@ const TasksPage = ({
                                 <TrashSimple
                                     weight="light"
                                     color="#fff"
-                                    size={24} s
+                                    size={24}
                                 />
                                 <span className="remove-tasks-text">
                                     Remove Tasks

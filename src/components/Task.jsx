@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 //reusable component for tasks
 const Task = ({
-    filter,
     makeImportant,
     completeTask,
     handleMoreInfo,
@@ -55,7 +54,7 @@ const Task = ({
                         weight="light"
                         color="#fff"
                         size={24}
-                        class="task-icon"
+                        className="task-icon"
                     />
                 </Link>
                 <div className="task-icon-container" onClick={() => trashTask(id)}>
@@ -63,7 +62,7 @@ const Task = ({
                         weight={trash ? "fill" : "light"}
                         color="#fff"
                         size={24}
-                        class="task-icon"
+                        className="task-icon"
                     />
                 </div>
             </div>

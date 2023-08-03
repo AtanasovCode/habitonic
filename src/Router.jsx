@@ -33,8 +33,7 @@ const Router = () => {
     const router = createBrowserRouter([
         {
             path: "/",
-            element: <Homepage />,
-            //errorElement: <Error />
+            element: <Homepage />
         },
         {
             path: "/manage-tasks",
@@ -48,7 +47,7 @@ const Router = () => {
             element: <TaskDetails
                 tasks={tasks}
                 setTasks={setTasks}
-            />,
+            />
         }
     ])
 
