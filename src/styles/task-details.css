@@ -41,7 +41,7 @@
     justify-content: center;
     background-color: var(--edit-task-background);
     color: #fff;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     min-width: 450px;
     max-width: 750px;
     width: 65%;
@@ -88,7 +88,7 @@
     resize: none;
     overflow: hidden;
     font-family: var(--font);
-    border-radius: 16px;
+    border-radius: var(--border-radius);
 }
 
 .task-desc-input {
@@ -101,7 +101,7 @@
     width: 100%;
     outline: none;
     font-family: var(--font);
-    border-radius: 16px;
+    border-radius: var(--border-radius);
 }
 
 .date-picker {
@@ -130,7 +130,7 @@
     color: #000;
     font-weight: 700;
     background-color: var(--edit-task-save-btn);
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     text-align: center;
     text-decoration: none;
     cursor: pointer;

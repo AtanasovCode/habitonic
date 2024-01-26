@@ -1,8 +1,10 @@
 import '../styles/task-details.css';
 import { useEffect, useState } from 'react';
 
+//Link used to link back to tasks page
 import { Link } from 'react-router-dom';
 
+//importing icons
 import {
     Star,
     FloppyDisk,
@@ -133,7 +135,7 @@ const TaskDetails = ({
                                         <Link
                                             className="save-btn"
                                             onClick={() => updateTask()}
-                                            to="../manage-tasks"
+                                            to="../tasks"
                                         >
                                             <FloppyDisk
                                                 weight="light"
@@ -145,7 +147,7 @@ const TaskDetails = ({
                                         </Link>
                                         <Link
                                             className="save-btn details-back-btn"
-                                            to="../manage-tasks"
+                                            to="../tasks"
                                         >
                                             <ArrowLeft
                                                 weight="light"

@@ -25,6 +25,12 @@
   --edit-task-save-btn: rgb(0, 157, 255);
   --edit-task-back-btn: rgb(49, 49, 53);
 
+  /*Colors used in the How It Works Page*/
+  --info-page-background: #00002a;
+  --info-page-footer-background: rgb(0, 0, 0);
+  --info-page-footer-color: #ffffff;
+
+
   /*Border radius used on all containers*/
   --border-radius: 16px;
 

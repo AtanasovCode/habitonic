@@ -1,3 +1,4 @@
+//importing from react
 import { useState, useEffect } from 'react';
 
 //importing from react-router
@@ -5,12 +6,15 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from 'react-router-dom';
+
+//importing stylesheet
 import './styles/index.css';
 
 //Importing routes
 import Homepage from './routes/Homepage';
 import TasksPage from './routes/TasksPage';
 import TaskDetails from './routes/TaskDetails';
+import InfoPage from './routes/InfoPage';
 
 const Router = () => {
 
@@ -24,10 +28,6 @@ const Router = () => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
 
-    useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [tasks]);
-
 
     //creating the router with all the paths
     const router = createBrowserRouter([
@@ -36,18 +36,22 @@ const Router = () => {
             element: <Homepage />
         },
         {
-            path: "/manage-tasks",
+            path: "/tasks",
             element: <TasksPage
                 tasks={tasks}
                 setTasks={setTasks}
             />
         },
         {
-            path: "/manage-tasks/task-info",
+            path: "/tasks/info",
             element: <TaskDetails
                 tasks={tasks}
                 setTasks={setTasks}
             />
+        },
+        {
+            path: "/how-it-works",
+            element: <InfoPage />
         }
     ])
 

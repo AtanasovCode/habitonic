@@ -47,7 +47,7 @@ const Task = ({
                     />
                 </div>
                 <Link
-                    to="/manage-tasks/task-info"
+                    to="/tasks/info"
                     className="task-icon"
                     onClick={() => handleMoreInfo(id)}
                 >

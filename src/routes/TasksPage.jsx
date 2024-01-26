@@ -1,7 +1,11 @@
+//importing the logo
 import logo from '../assets/logo.svg';
-import '../styles/tasks-page.css';
-import { useEffect, useState } from 'react';
 
+import '../styles/tasks-page.css';
+
+import { useState } from 'react';
+
+//importing link for linking to the task details page
 import { Link } from 'react-router-dom';
 
 //a package that generates secure random values
@@ -9,7 +13,7 @@ import { Link } from 'react-router-dom';
 //example value generated: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
 import { v4 as uuidv4 } from 'uuid';
 
-//importing components
+//importing reusable components
 import Filter from '../components/Filter';
 import Task from '../components/Task';
 
@@ -51,10 +55,11 @@ const TasksPage = ({
     //sets the filter
     const handleFilterChange = (filter) => {
         setFilter(filter);
-        if(navOpen) handleNavOpen();
+
+        if (navOpen) handleNavOpen();
     }
 
-    //when function is called it adds the task
+    //when function is called it adds the task to the tasks array
     const handleAddTask = () => {
         if (name !== "") {
             const newTask = {
@@ -64,7 +69,7 @@ const TasksPage = ({
                 important: false,
                 description: "",
                 dueDate: "",
-                dateCreated: new Date().toLocaleDateString('en-GB'), //generates the current date (mm:dd:yyyy)
+                dateCreated: new Date().toLocaleDateString('en-GB'), //generates the current date
                 trash: false,
             };
 
@@ -89,7 +94,7 @@ const TasksPage = ({
         }
     }
 
-    //functin is run when the user clicks to make the task important
+    //functin runs when the user clicks to make the task important
     const makeImportant = (id) => {
         //create a new array with updated tasks, marking the task with the given id as important
         const updatedTasks = tasks.map((task) =>
@@ -288,12 +293,18 @@ const TasksPage = ({
                                     maxLength={80} //max number of characters is set to 80
                                     placeholder="Add a task..."
                                     value={name}
-                                    onChange={(e) => setName(e.currentTarget.value)}
-                                    onKeyDown={(e) => handleAddEnter(e.key)}
+                                    onChange={(e) => setName(e.currentTarget.value)} //update the state name
+                                    onKeyDown={(e) => handleAddEnter(e.key)} //runs when the a key is pressed
                                 />
                             </div>
                             :
                             <div className="remove-tasks" onClick={() => deleteTasks()}>
+                                {
+                                    /*
+                                    When this div is clicked, it runs a function that deletes all 
+                                    of the tasks that have been marked as trash
+                                    */
+                                }
                                 <TrashSimple
                                     weight="light"
                                     color="#fff"
