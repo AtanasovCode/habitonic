@@ -2,14 +2,15 @@
 
 :root {
   /*Website theme using CSS variables*/
-  --text: rgb(250, 209, 209);
-  --background: rgb(0, 0, 0);
-  --primary: rgb(0, 0, 42);
-  --secondary: rgb(49, 49, 53);
-  --accent: rgb(0, 157, 255);
+  --text: #f3f1ec;
+  --background: #0f0d08;
+  --primary: #d5c9a1;
+  --secondary: #75642a;
+  --accent: #c8a73c;
+
   --hover-tint: rgba(0, 157, 255, .3);
   --box-shadow: rgb(1, 1, 87);
-  --font: "Lato";
+  --font: "Nunito Sans";
 
   /*Colors used in the tasks page*/
   --navigation-color: rgb(0, 0, 42);

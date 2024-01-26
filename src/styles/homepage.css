@@ -1,43 +1,46 @@
 .home-container {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     min-height: 100vh;
-    padding: 1rem 3rem;
+    background-color: var(--background);
 }
 
 .home-info-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    max-width: 425px;
+    width: 45%;
     z-index: 5;
+    text-align: center;
 }
 
 .home-heading {
-    font-size: 46px;
-    font-weight: 900;
+    font-size: 3.9rem;
+    font-weight: 1000;
     margin-bottom: 2rem;
 }
 
 .home-fancy {
     color: var(--accent);
+    margin-right: 16px;
 }
 
 .home-desc {
-    margin-bottom: 15px;
     z-index: 5;
+    font-size: 1.2rem;
 }
 
 .home-btn {
-    padding: 20px;
+    margin-top: 2.5rem;
+    padding: 1.5rem;
     z-index: 5;
     background-color: var(--secondary);
     color: var(--text);
     border-radius: var(--border-radius);
     border: none;
-    font-size: 17px;
+    font-size: 1.3rem;
     font-weight: 700;
     text-transform: uppercase;
     position: relative;
@@ -69,38 +72,18 @@
 }
 
 .learn-more-link {
-    font-size: 15px;
+    font-size: 1rem;
     color: var(--text);
+    background-color: var(--secondary);
     text-decoration: none;
-    border-bottom: 1px solid var(--accent);
     cursor: pointer;
-    margin-bottom: 15px;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    position: absolute;
+    top: 5%;
+    right: 5%;
 }
 
-/*background image*/
-.home-image-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: var(--homepage-image-url);
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 0;
-}
-
-/*Adding a tint to the image for better text readability*/
-.home-image-container::before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, .6);
-}
 
 
 /*Making the homepage responsive*/
@@ -133,4 +116,12 @@
     .home-heading {
         font-size: 32px;
     }
+}
+
+
+.homepage-logo {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    height: 2.4rem;
 }

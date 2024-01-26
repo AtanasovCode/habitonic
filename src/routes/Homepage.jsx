@@ -1,4 +1,5 @@
 import '../styles/homepage.css';
+import logo from '../assets/logo.svg';
 
 //Used to link to the other routes of the site
 import { Link } from 'react-router-dom';
@@ -6,17 +7,15 @@ import { Link } from 'react-router-dom';
 const Homepage = () => {
     return (
         <div className="home-container">
+            <img src={logo} alt="logo" className="homepage-logo" />
             <div className="home-info-container">
                 <div className="home-heading">
-                    Track, Organize, <span className="home-fancy">Conquer</span> your day
+                    <span className="home-fancy">Habitonic</span>-
+                    Create the perfect formula for your day
                 </div>
                 <div className="home-desc">
-                    Welcome to Taskie - Your Ultimate Task Planner!
-                    Stay organized, never miss a beat! Taskie keeps
-                    your tasks and deadlines in one place, easy to
-                    access and manage. Set reminders, prioritize 
-                    efficiently, and enjoy a user-friendly interface. 
-                    Sign up now and take control of your tasks with Taskie
+                    Stay organized, never forget anything and develop
+                    healthy and productive habits to improve your life!
                 </div>
                 <Link to="/how-it-works" className="learn-more-link">
                     Learn More
