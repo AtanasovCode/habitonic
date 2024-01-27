@@ -36,15 +36,6 @@ const InfoPage = () => {
                             <Fancy>Improve</Fancy> Life!
                         </TitleWrapper>
                     </Title>
-                    <div className="info-page-subtitle">
-                        Stay organized, never miss a beat!
-                        Taskie keeps your tasks and deadlines
-                        in one place, easy to access and manage.
-                        Set reminders, prioritize efficiently,
-                        and enjoy a user-friendly interface.
-                        Sign up now and take control of
-                        your tasks with Taskie
-                    </div>
                 </Heading>
 
                 <Scroll>
@@ -60,9 +51,9 @@ const InfoPage = () => {
             </Hero>
 
             <FeaturesContainer>
-                <div className="info-features-title title">
+                <FeatureTitle>
                     Features
-                </div>
+                </FeatureTitle>
                 {/*Reusable component used*/}
                 <Feature
                     Icon={CalendarCheck}
@@ -91,16 +82,14 @@ const InfoPage = () => {
                 />
             </FeaturesContainer>
 
-            <PromptContainer>
-                <Prompt>
-                    <PromptText>
-                        Start Tracking Now!
-                    </PromptText>
-                    <PromptButton to="/tasks">
-                        Add Tasks
-                    </PromptButton>
-                </Prompt>
-            </PromptContainer>
+            <Prompt>
+                <PromptText>
+                    Start Tracking Now!
+                </PromptText>
+                <PromptButton to="/tasks">
+                    Add Tasks
+                </PromptButton>
+            </Prompt>
         </Container>
     );
 }
@@ -116,7 +105,7 @@ const Hero = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 70vh;
 `;
 
 const Scroll = styled.div`
@@ -141,26 +130,11 @@ const ScrollIcon = styled.div`
     margin-right: .5rem;
 `;
 
-const TrackLink = styled(Link)`
-    padding: .8rem 1.3rem;
-    font-size: 1rem;
-    background-color: ${props => props.theme.accent};
-    border-radius: ${props => props.theme.borderRadius};
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    color: ${props => props.theme.background};
-    margin: 0 1rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-
-
 const Heading = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `;
 
 const Title = styled.div`
@@ -168,6 +142,18 @@ const Title = styled.div`
     font-size: 5rem;
     text-align: center;
     margin-bottom: 2rem;
+
+    @media (max-width: 1024px) {
+        font-size: 4rem;
+    }
+
+    @media (max-width: 675px) {
+        font-size: 3rem;
+    }
+
+    @media (max-width: 400px) {
+        font-size: 2rem;
+    }
 `;
 
 const Fancy = styled.span`
@@ -176,6 +162,7 @@ const Fancy = styled.span`
 
 const TitleWrapper = styled.div``;
 
+
 const FeaturesContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -183,11 +170,10 @@ const FeaturesContainer = styled.div`
     justify-content: center;
 `;
 
-const PromptContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 5rem 0;
+const FeatureTitle = styled.div`
+    font-size: 2rem;
+    font-weight: 1000;
+    margin-bottom: 3rem;
 `;
 
 const Prompt = styled.div`
@@ -195,14 +181,25 @@ const Prompt = styled.div`
     align-items: center;
     justify-content: center;
     color: ${props => props.theme.text};
-    padding: 3rem;
-    border-radius: ${props => props.theme.borderRadius};
+    width: 100%;
+    height: 30vh;
+    margin: 2rem 0;
+
+    @media (max-width: 675px) {
+        flex-direction: column;
+    }
 `;
 
 const PromptText = styled.div`
     font-size: 2rem;
     font-weight: 1000;
     margin-right: 1.2rem;
+
+    @media (max-width: 675px) {
+        margin-bottom: 1.5rem;
+        margin-right: 0;
+        font-size: 1.6rem;
+    }
 `;
 
 const PromptButton = styled(Link)`
