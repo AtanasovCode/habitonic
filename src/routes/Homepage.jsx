@@ -51,12 +51,41 @@ const HomeInfoContainer = styled.div`
     width: 45%;
     z-index: 5;
     text-align: center;
+    margin-top: 5rem;
+
+    @media (max-width: 1300px) {
+        width: 55%;
+    }
+    
+    @media (max-width: 1024px) {
+        width: 70%;
+    }
+
+    @media (max-width: 675px) {
+        width: 95%;
+    }
 `;
 
 const HomeHeading = styled.h1`
     font-size: 3.9rem;
     font-weight: 1000;
     margin-bottom: 2rem;
+
+    @media (max-width: 1300px) {
+        font-size: 3.4rem;
+    }
+
+    @media (max-width: 1024px) {
+        font-size: 3rem;
+    }
+
+    @media (max-width: 675px) {
+        font-size: 2.5rem;
+    }
+
+    @media (max-width: 440px) {
+        font-size: 2rem;
+    }
 `;
 
 const HomeFancy = styled.span`
@@ -119,39 +148,10 @@ const LearnMoreLink = styled(Link)`
     position: absolute;
     top: 5%;
     right: 5%;
-`;
 
-// Making the homepage responsive
-const responsiveStyles = `
-    @media (max-width: 850px) {
-        ${HomeContainer} {
-            justify-content: center;
-        }
-        ${HomeInfoContainer} {
-            align-items: center;
-            text-align: center;
-        }
-        .home-image-container {
-            background-position: center;
-            background-size: cover;
-        }
-        .home-image-container::before  {
-            background-color: rgba(0, 0, 0, .7);
-        }
-    }
-
-    // Mobile Mode
-    @media (max-width: 500px) {
-        ${HomeContainer} {
-            padding: 1rem;
-        }
-        ${HomeInfoContainer} {
-            padding: .5rem;
-            max-width: 100%;
-        }
-        ${HomeHeading} {
-            font-size: 32px;
-        }
+    @media (max-width: 675px) {
+        padding: .6rem;
+        font-size: .8rem;
     }
 `;
 
@@ -159,5 +159,9 @@ const HomepageLogo = styled.img`
     position: absolute;
     top: 5%;
     left: 5%;
-    height: 2.4rem;
+    height: 2.6rem;
+
+    @media (max-width: 675px) {
+        height: 2.2rem;
+    }
 `;
