@@ -128,6 +128,10 @@ const Scroll = styled.div`
     justify-content: center;
     font-size: 1.1rem;
     font-weight: 700;
+
+    @media (max-width: 675px) {
+        display: none;
+    }
 `;
 
 const ScrollIcon = styled.div`
@@ -135,27 +139,6 @@ const ScrollIcon = styled.div`
     align-items: flex-end;
     justify-content: center;
     margin-right: .5rem;
-`;
-
-const Nav = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 3rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`;
-
-const Logo = styled.img`
-    height: 2.5rem;
-`;
-
-const NavLinks = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
 `;
 
 const TrackLink = styled(Link)`
@@ -174,10 +157,6 @@ const TrackLink = styled(Link)`
     justify-content: center;
 `;
 
-const LearnMoreLink = styled(TrackLink)`
-    background-color: ${props => props.theme.secondary};
-    color: ${props => props.theme.text};
-`;
 
 const Heading = styled.div`
     display: flex;

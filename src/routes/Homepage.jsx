@@ -9,30 +9,36 @@ import InfoPage from './InfoPage';
 
 const Homepage = () => {
     return (
-        <HomeContainer>
-            <HomepageLogo src={logo} alt="logo" />
-            <HomeInfoContainer>
-                <HomeHeading>
-                    <HomeFancy>Habitonic</HomeFancy>-
-                    Create the perfect formula for your day
-                </HomeHeading>
-                <HomeDesc>
-                    Stay organized, never forget anything and develop
-                    healthy and productive habits to improve your life!
-                </HomeDesc>
-                {/*Linking to the tasks page*/}
-                <HomeBtn to="/tasks">
-                    Start Tracking
-                </HomeBtn>
-            </HomeInfoContainer>
+        <Container>
+            <Nav>
+                <HomepageLogo src={logo} alt="logo" />
+            </Nav>
+
+            <Hero>
+                <HomeInfoContainer>
+                    <HomeHeading>
+                        <HomeFancy>Habitonic</HomeFancy>-
+                        Create the perfect formula for your day
+                    </HomeHeading>
+                    <HomeDesc>
+                        Stay organized, never forget anything and develop
+                        healthy and productive habits to improve your life!
+                    </HomeDesc>
+                    {/*Linking to the tasks page*/}
+                    <HomeBtn to="/tasks">
+                        Start Tracking
+                    </HomeBtn>
+                </HomeInfoContainer>
+            </Hero>
+
             <InfoPage />
-        </HomeContainer>
+        </Container>
     );
 }
 
 export default Homepage;
 
-const HomeContainer = styled.div`
+const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,18 +47,41 @@ const HomeContainer = styled.div`
     background-color: var(--background);
 `;
 
+const Nav = styled.div`
+    width: 100%;
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid #ffffff50;
+
+    @media (max-width: 675px) {
+        justify-content: center;
+    }
+`;
+
+const HomepageLogo = styled.img`
+    height: 2.6rem;
+`;
+
+const Hero = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+`;
+
 const HomeInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 45%;
+    width: 50%;
     z-index: 5;
     text-align: center;
-    margin-top: 13%;
 
-    @media (max-width: 1300px) {
-        width: 55%;
+    @media (max-width: 1250px) {
+        width: 60%;
     }
     
     @media (max-width: 1024px) {
@@ -132,16 +161,5 @@ const HomeBtn = styled(Link)`
     &:hover::before {
         top: 0;
         left: 0;
-    }
-`;
-
-const HomepageLogo = styled.img`
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    height: 2.6rem;
-
-    @media (max-width: 675px) {
-        height: 2.2rem;
     }
 `;
