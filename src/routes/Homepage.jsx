@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 import logo from '../assets/logo.svg';
 
+import InfoPage from './InfoPage';
+
 
 const Homepage = () => {
     return (
@@ -18,17 +20,12 @@ const Homepage = () => {
                     Stay organized, never forget anything and develop
                     healthy and productive habits to improve your life!
                 </HomeDesc>
-                <LearnMoreLink to="/how-it-works">
-                    Learn More
-                </LearnMoreLink>
                 {/*Linking to the tasks page*/}
                 <HomeBtn to="/tasks">
                     Start Tracking
                 </HomeBtn>
             </HomeInfoContainer>
-            <div className="home-image-container">
-                {/* Container used for the background image */}
-            </div>
+            <InfoPage />
         </HomeContainer>
     );
 }
@@ -37,6 +34,7 @@ export default Homepage;
 
 const HomeContainer = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
@@ -51,7 +49,7 @@ const HomeInfoContainer = styled.div`
     width: 45%;
     z-index: 5;
     text-align: center;
-    margin-top: 5rem;
+    margin-top: 13%;
 
     @media (max-width: 1300px) {
         width: 55%;
@@ -134,24 +132,6 @@ const HomeBtn = styled(Link)`
     &:hover::before {
         top: 0;
         left: 0;
-    }
-`;
-
-const LearnMoreLink = styled(Link)`
-    font-size: 1rem;
-    color: var(--text);
-    background-color: var(--secondary);
-    text-decoration: none;
-    cursor: pointer;
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    position: absolute;
-    top: 5%;
-    right: 5%;
-
-    @media (max-width: 675px) {
-        padding: .6rem;
-        font-size: .8rem;
     }
 `;
 

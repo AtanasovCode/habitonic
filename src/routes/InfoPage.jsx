@@ -27,28 +27,6 @@ const InfoPage = () => {
     return (
         <Container>
             <Hero>
-                <Nav>
-                    <Logo src={logo} alt="logo" />
-                    <NavLinks>
-                        <TrackLink
-                            to="/tasks"
-                        >
-                            Start Tracking
-                        </TrackLink>
-                        <LearnMoreLink
-                            to="/"
-                        >
-                            <ArrowLeft
-                                weight="light"
-                                size={20}
-                                color="#ddd"
-                                className="info-link-icon"
-                            />
-                            Go Home
-                        </LearnMoreLink>
-                    </NavLinks>
-                </Nav>
-
                 <Heading>
                     <Title>
                         <TitleWrapper>
@@ -77,7 +55,7 @@ const InfoPage = () => {
                             weight="light"
                         />
                     </ScrollIcon>
-                    Learn More
+                    Scroll
                 </Scroll>
             </Hero>
 
@@ -144,7 +122,7 @@ const Hero = styled.div`
 const Scroll = styled.div`
     position: absolute;
     bottom: 2%;
-    right: 5%;
+    right: 2%;
     display: flex;
     align-items: center;
     justify-content: center;
