@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-//to deletes
-import '../styles/tasks-page.css';
-
 //a package that generates secure random values
 //used for providing unique IDs for each of the tasks
 //example value generated: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
