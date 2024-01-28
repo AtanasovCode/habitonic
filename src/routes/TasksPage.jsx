@@ -1,12 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-//importing link for linking to the task details page
-import { Link } from 'react-router-dom';
-
-//importing the logo
-import logo from '../assets/logo.svg';
-
 //to deletes
 import '../styles/tasks-page.css';
 
@@ -16,8 +10,8 @@ import '../styles/tasks-page.css';
 import { v4 as uuidv4 } from 'uuid';
 
 //importing reusable components
-import Filter from '../components/Filter';
 import Task from '../components/Task';
+import SideBar from '../components/SideBar';
 
 //importing icons from icons library
 import {
@@ -182,58 +176,10 @@ const TasksPage = ({
 
     return (
         <Container>
-            <Sidebar>
-                <Logo src={logo} alt="logo" />
-                <div className="filter-container">
-                    <Filter
-                        filter={filter}
-                        handleFilterChange={handleFilterChange}
-                        FilterIcon={ClipboardText}
-                        filterName="all"
-                    />
-
-                    <Filter
-                        filter={filter}
-                        handleFilterChange={handleFilterChange}
-                        FilterIcon={Star}
-                        filterName="important"
-                    />
-
-                    <Filter
-                        filter={filter}
-                        handleFilterChange={handleFilterChange}
-                        FilterIcon={ClockCountdown}
-                        filterName="active"
-                    />
-
-                    <Filter
-                        filter={filter}
-                        handleFilterChange={handleFilterChange}
-                        FilterIcon={ListChecks}
-                        filterName="complete"
-                    />
-
-                    <Filter
-                        filter={filter}
-                        handleFilterChange={handleFilterChange}
-                        FilterIcon={Trash}
-                        filterName="trash"
-                    />
-
-                    <Link to="/" className="filter back-btn">
-                        <div className="filter-icon">
-                            <ArrowLeft
-                                color="rgb(148, 0, 211)"
-                                weight="light"
-                                size={32}
-                            />
-                        </div>
-                        <div className="filter-name">
-                            Go Back
-                        </div>
-                    </Link>
-                </div>
-            </Sidebar>
+            <SideBar 
+                filter={filter}
+                handleFilterChange={handleFilterChange}
+            />
             <TasksContainer>
                 <TaskHeading>
                     <TaskHeadingIcon>
@@ -329,30 +275,6 @@ const Container = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     min-height: 100vh;
-`;
-
-const Sidebar = styled.div`
-    background-color: ${props => props.theme.background};
-    color: ${props => props.theme.text};
-    min-height: 100vh;
-    width: 300px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-top-right-radius: ${props => props.theme.borderRadius};
-    border-bottom-right-radius: ${props => props.theme.borderRadius};
-    transition: all .3s ease;
-`;
-
-const Logo = styled.img`
-    width: 80%;
-    position: absolute;
-    top: 5%;
 `;
 
 const TasksContainer = styled.div`
