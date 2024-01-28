@@ -1,22 +1,14 @@
-//importing stylesheet
-import '../styles/info-page.css';
-
 //importing from react-router
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 //importing reusable component
 import Feature from '../components/Feature';
-import ContactForm from '../components/ContactForm';
-
-//importing the logo
-import logo from '../assets/logo.svg';
 
 //importing icons 
 import {
     Star,
     CalendarCheck,
-    ArrowLeft,
     ArrowDown,
     HourglassHigh,
     Faders,

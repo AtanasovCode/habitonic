@@ -1,12 +1,14 @@
-//importing the logo
-import logo from '../assets/logo.svg';
-
-import '../styles/tasks-page.css';
-
 import { useState } from 'react';
+import styled from 'styled-components';
 
 //importing link for linking to the task details page
 import { Link } from 'react-router-dom';
+
+//importing the logo
+import logo from '../assets/logo.svg';
+
+//to deletes
+import '../styles/tasks-page.css';
 
 //a package that generates secure random values
 //used for providing unique IDs for each of the tasks
@@ -168,28 +170,9 @@ const TasksPage = ({
     });
 
     return (
-        <div className="tasks-page-container">
-            <div className={tint ? "active-tint active" : "active-tint"}>
-                {/*empty div used to set tint when the mobile nav is active*/}
-            </div>
-            <div className="mobile-nav-open" onClick={() => handleNavOpen()}>
-                <List
-                    weight="light"
-                    color="#fff"
-                    size={32}
-                />
-            </div>
-            <div className={navOpen ? "tasks-nav active" : "tasks-nav"}>
-                <div className="mobile-nav" onClick={() => handleNavOpen()}>
-                    <X
-                        weight="light"
-                        color="#fff"
-                        size={32}
-                    />
-                </div>
-                <div className="logo-container">
-                    <img src={logo} alt="logo" className="logo" />
-                </div>
+        <Container>
+            <Sidebar>
+                <Logo src={logo} alt="logo" />
                 <div className="filter-container">
                     <Filter
                         filter={filter}
@@ -239,8 +222,8 @@ const TasksPage = ({
                         </div>
                     </Link>
                 </div>
-            </div>
-            <div className={navOpen ? "tasks-container active" : "tasks-container"}>
+            </Sidebar>
+            <TasksContainer>
                 <div className="tasks">
                     {
                         //If the array is empty, display on the screen that there are no tasks to show
@@ -279,26 +262,25 @@ const TasksPage = ({
                         //if the filter is set to trash, display a way to delete all trashed tasks
                         //if the filter is set to anything else, display the input for more tasks
                         filter !== "trash" ?
-                            <div className="add-task">
-                                <div className="input-icon" onClick={() => handleAddTask()}>
+                            <AddTask>
+                                <InputIcon onClick={() => handleAddTask()}>
                                     <Plus
                                         weight="light"
                                         color="#fff"
-                                        size={24}
+                                        size={22}
                                     />
-                                </div>
-                                <input
+                                </InputIcon>
+                                <InputTask
                                     type="text"
-                                    className="input-task"
                                     maxLength={80} //max number of characters is set to 80
-                                    placeholder="Add a task..."
+                                    placeholder="Add a task"
                                     value={name}
                                     onChange={(e) => setName(e.currentTarget.value)} //update the state name
                                     onKeyDown={(e) => handleAddEnter(e.key)} //runs when the a key is pressed
                                 />
-                            </div>
+                            </AddTask>
                             :
-                            <div className="remove-tasks" onClick={() => deleteTasks()}>
+                            <RemoveTasks onClick={() => deleteTasks()}>
                                 {
                                     /*
                                     When this div is clicked, it runs a function that deletes all 
@@ -307,18 +289,108 @@ const TasksPage = ({
                                 }
                                 <TrashSimple
                                     weight="light"
-                                    color="#fff"
-                                    size={24}
+                                    color="#FFF"
+                                    size={26}
                                 />
-                                <span className="remove-tasks-text">
+                                <RemoveTasksText>
                                     Remove Tasks
-                                </span>
-                            </div>
+                                </RemoveTasksText>
+                            </RemoveTasks>
                     }
                 </div>
-            </div>
-        </div>
+            </TasksContainer>
+        </Container>
     );
 }
 
 export default TasksPage;
+
+const Container = styled.div`
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 100vh;
+`;
+
+const Sidebar = styled.div`
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.text};
+    min-height: 100vh;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: ${props => props.theme.borderRadius};
+    border-bottom-right-radius: ${props => props.theme.borderRadius};
+    transition: all .3s ease;
+`;
+
+const Logo = styled.img`
+    width: 80%;
+    position: absolute;
+    top: 5%;
+`;
+
+const TasksContainer = styled.div`
+    min-height: 100vh;
+    width: 80%;
+    margin-left: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #141414;
+`;
+
+const AddTask = styled.div`
+    z-index: 3;
+    position: fixed;
+    bottom: 2%;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${props => props.theme.background};
+    padding: 1rem;
+    border-radius: 8px;
+`;
+
+const InputIcon = styled.div`
+    margin-right: 1rem;
+    cursor: pointer;
+`;
+
+const InputTask = styled.input`
+    background-color: transparent;
+    color: ${props => props.theme.text};
+    border: none;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+`;
+
+const RemoveTasks = styled.div`
+    width: 40%;
+    border-radius: ${props => props.theme.borderRadius};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    cursor: pointer;
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.text};
+
+    &:hover {
+        background-color: #353535;
+    }
+`;
+
+const RemoveTasksText = styled.div`
+    margin-left: 1rem;
+`;

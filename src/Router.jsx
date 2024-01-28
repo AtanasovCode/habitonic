@@ -21,7 +21,7 @@ const Router = () => {
 
     const theme = {
         text: "#f2f2f2",
-        background: "#0f0d08",
+        background: "#1f1e1e",
         primary: "#e62ae6",
         secondary: "#75642a",
         accent: "#c8a73c",
