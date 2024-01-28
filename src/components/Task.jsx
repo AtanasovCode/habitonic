@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import '../styles/task.css';
 import '../styles/tasks-page.css';
 
@@ -19,15 +20,12 @@ const Task = ({
     trashTask,
 }) => {
 
-    //gets the class of the task
-    const getClassName = () => {
-        if (important) return "task important";
-        if (complete) return "task complete"
-        return "task";
-    }
-
     return (
-        <div className={getClassName()} key={id}>
+        <Container 
+            $important={important}
+            $complete={complete}
+            key={id}
+        >
             <div className="task-info">
                 <div className={complete ? "task-radio complete" : "task-radio"} onClick={() => completeTask(id)}>
                     {/*Empty div is used for the custom radio button*/}
@@ -67,8 +65,30 @@ const Task = ({
                     />
                 </div>
             </div>
-        </div>
+        </Container>
     );
 }
 
 export default Task;
+
+const Container = styled.div`
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: ${props => props.theme.taskBackground};
+    color: ${props => props.theme.text};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .4rem;
+
+    ${props => props.$important && `
+        background-color: ${props => props.theme.taskImportant};
+        font-weight: 700;
+    `}
+
+${props => props.$complete && `
+        text-decoration: line-through;
+        color: #a2a2a2;
+        background-color: ${props => props.theme.taskComplete};
+    `}
+`;

@@ -21,10 +21,10 @@ import Task from '../components/Task';
 
 //importing icons from icons library
 import {
-    CheckSquareOffset,
+    ClipboardText,
     Star,
     ClockCountdown,
-    Checks,
+    ListChecks,
     ArrowLeft,
     X,
     List,
@@ -32,6 +32,7 @@ import {
     Info,
     TrashSimple,
     Placeholder,
+    Trash,
 } from '@phosphor-icons/react';
 
 const TasksPage = ({
@@ -169,6 +170,16 @@ const TasksPage = ({
         return false;
     });
 
+    const getFilterIcon = () => {
+        switch (filter) {
+            case "all": return <ClipboardText size={32} color="#FFF" weight="light" />;
+            case "important": return <Star size={32} color="#FFF" weight="light" />;
+            case "trash": return <Trash size={32} color="#FFF" weight="light" />;
+            case "complete": return <ListChecks size={32} color="#FFF" weight="light" />;
+            case "active": return <ClockCountdown size={32} color="#FFF" weight="light" />;
+        }
+    }
+
     return (
         <Container>
             <Sidebar>
@@ -177,7 +188,7 @@ const TasksPage = ({
                     <Filter
                         filter={filter}
                         handleFilterChange={handleFilterChange}
-                        FilterIcon={CheckSquareOffset}
+                        FilterIcon={ClipboardText}
                         filterName="all"
                     />
 
@@ -198,14 +209,14 @@ const TasksPage = ({
                     <Filter
                         filter={filter}
                         handleFilterChange={handleFilterChange}
-                        FilterIcon={Checks}
+                        FilterIcon={ListChecks}
                         filterName="complete"
                     />
 
                     <Filter
                         filter={filter}
                         handleFilterChange={handleFilterChange}
-                        FilterIcon={TrashSimple}
+                        FilterIcon={Trash}
                         filterName="trash"
                     />
 
@@ -224,7 +235,15 @@ const TasksPage = ({
                 </div>
             </Sidebar>
             <TasksContainer>
-                <div className="tasks">
+                <TaskHeading>
+                    <TaskHeadingIcon>
+                        {getFilterIcon()}
+                    </TaskHeadingIcon>
+                    <TaskTitle>
+                        {filter}
+                    </TaskTitle>
+                </TaskHeading>
+                <Tasks>
                     {
                         //If the array is empty, display on the screen that there are no tasks to show
                         filteredTasks.length ?
@@ -256,8 +275,8 @@ const TasksPage = ({
                                 </div>
                             </div>
                     }
-                </div>
-                <div className="add-task-container">
+                </Tasks>
+                <AddTaskContainer>
                     {
                         //if the filter is set to trash, display a way to delete all trashed tasks
                         //if the filter is set to anything else, display the input for more tasks
@@ -297,7 +316,7 @@ const TasksPage = ({
                                 </RemoveTasksText>
                             </RemoveTasks>
                     }
-                </div>
+                </AddTaskContainer>
             </TasksContainer>
         </Container>
     );
@@ -344,21 +363,57 @@ const TasksContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    background-color: #141414;
+    padding: 2rem 3rem;
+`;
+
+const TaskHeading = styled.div`
+    width: 100%;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+`;
+
+const TaskHeadingIcon = styled.div`
+    margin-right: 1rem;
+`;
+
+const TaskTitle = styled.div`
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+`;
+
+const Tasks = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+`;
+
+const AddTaskContainer = styled.div`
+    width: 80%;
+    display: flex;
+    align-items: center;
     justify-content: center;
     background-color: #141414;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 6;
+    padding: 1rem 0;
 `;
 
 const AddTask = styled.div`
-    z-index: 3;
-    position: fixed;
-    bottom: 2%;
-    width: 75%;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: ${props => props.theme.background};
     padding: 1rem;
-    border-radius: 8px;
 `;
 
 const InputIcon = styled.div`
