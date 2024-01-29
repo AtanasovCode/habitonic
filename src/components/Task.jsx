@@ -145,6 +145,7 @@ const Icons = styled.div`
 
 const TaskIcon = styled.div`
     margin: .4rem;
+    cursor: pointer;
 `;
 
 const IconLink = styled(Link)`

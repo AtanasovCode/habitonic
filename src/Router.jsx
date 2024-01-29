@@ -28,7 +28,7 @@ const Router = () => {
 
         taskBackground: "#322b2b",
         taskImportant: "#554d0e",
-        taskComplete: "#3c3c3c",
+        taskComplete: "#2f2f2f",
 
         borderRadius: "16px",
     }

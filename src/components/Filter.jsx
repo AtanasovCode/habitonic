@@ -1,5 +1,4 @@
-import '../styles/filter.css';
-import '../styles/tasks-page.css';
+import styled from "styled-components";
 
 //using this as a reusable component instead of writing out the return code multiple times
 //this component can be reused everywhere as long as it is imported and the needed props are passed to it
@@ -10,23 +9,51 @@ const Filter = ({
     filterName,
 }) => {
     return (
-        <div
-            className="filter"
-            id={filter === filterName ? "active" : "inactive"}
+        <Container
+            $active={filter === filterName ? true : false}
             onClick={() => handleFilterChange(filterName)}
         >
-            <div className="filter-icon">
+            <Icon>
                 <FilterIcon
-                    color={filter === filterName ? "#fff" : "#ccc"}
-                    weight="light"
-                    size={32}
+                    color={filter === filterName ? "#fff" : "#aaa"}
+                    weight={filter === filterName ? "fill" : "light"}
+                    size={26}
                 />
-            </div>
-            <div className="filter-name">
+            </Icon>
+            <Name>
                 {filterName}
-            </div>
-        </div>
+            </Name>
+        </Container>
     );
 }
 
 export default Filter;
+
+const Container = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all .4s ease;
+    margin-bottom: .4rem;
+
+    ${props => props.$active && `
+        background-color: ${props.theme.secondary};
+    `}
+
+    &:hover {
+        background-color: ${props => props.theme.secondary};
+    }
+`;
+
+const Icon = styled.div`
+    margin-right: 1rem;
+`;
+
+const Name = styled.div`
+    text-transform: capitalize;
+    font-size: .9rem;
+`;
