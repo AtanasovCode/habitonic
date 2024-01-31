@@ -101,30 +101,28 @@ const TaskDetails = ({
                                         {task.important ? "Marked as important" : "Not marked as important"}
                                     </Title>
                                 </Task>
-                                <div className="task-change">
-                                    <div className="task-change-title">
-                                        Date Created
-                                    </div>
-                                    <div className="task-date-created">
-                                        {task.dateCreated}
-                                    </div>
-                                </div>
-                                <div className="task-change">
-                                    <div className="task-change-title">
-                                        Due Date
-                                    </div>
-                                    <div className="task-set-date">
-                                        <input
-                                            type="date"
-                                            className="date-picker"
-                                            value={dueDate}
-                                            onChange={(e) => setDueDate(e.currentTarget.value)}
-                                        />
-                                    </div>
-                                    <div className="task-change-subtitle">
-                                        Set a due-date for your task
-                                    </div>
-                                </div>
+                                <DateContainer>
+                                    <DateWrapper>
+                                        <DateTitle>
+                                            Date Created
+                                        </DateTitle>
+                                        <StartDate>
+                                            {task.dateCreated}
+                                        </StartDate>
+                                    </DateWrapper>
+                                    <DateWrapper>
+                                        <DateTitle>
+                                            Due Date
+                                        </DateTitle>
+                                        <DateInputContainer>
+                                            <DateInput
+                                                type="date"
+                                                value={dueDate}
+                                                onChange={(e) => setDueDate(e.currentTarget.value)}
+                                            />
+                                        </DateInputContainer>
+                                    </DateWrapper>
+                                </DateContainer>
                                 <div className="save-btn-container">
                                     <Link
                                         className="save-btn"
@@ -237,3 +235,38 @@ const Description = styled.textarea`
 const StarContainer = styled.div`
     margin-right: 1rem;
 `;
+
+const DateContainer = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
+`;
+
+const DateWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+`;
+
+const DateTitle = styled.div`
+    margin-bottom: .5rem;
+    font-size: .9rem;
+`;
+
+const StartDate = styled.div``;
+
+const DateInputContainer = styled.div``;
+
+const DateInput = styled.input`
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid var(--edit-task-border-color);
+    font-size: 16px;
+    font-family: var(--font);
+    padding: 8px;
+    outline: none;
+    cursor: pointer;
+`;
+

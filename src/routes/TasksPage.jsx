@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Task from '../components/Task';
 import SideBar from '../components/SideBar';
 import AddTask from '../components/AddTask';
+import RecentDates from '../components/RecentDates';
 
 //importing icons from icons library
 import {
@@ -174,18 +175,21 @@ const TasksPage = ({
 
     return (
         <Container>
-            <SideBar 
+            <SideBar
                 filter={filter}
                 handleFilterChange={handleFilterChange}
             />
             <TasksContainer>
                 <TaskHeading>
-                    <TaskHeadingIcon>
-                        {getFilterIcon()}
-                    </TaskHeadingIcon>
-                    <TaskTitle>
-                        {filter}
-                    </TaskTitle>
+                    <TaskHeadingWrapper>
+                        <TaskHeadingIcon>
+                            {getFilterIcon()}
+                        </TaskHeadingIcon>
+                        <TaskTitle>
+                            {filter}
+                        </TaskTitle>
+                    </TaskHeadingWrapper>
+                    <RecentDates />
                 </TaskHeading>
                 <Tasks>
                     {
@@ -213,10 +217,10 @@ const TasksPage = ({
                             })
                             :
                             <NoTasksContainer>
-                                <Placeholder 
-                                    weight="light" 
-                                    size={24} 
-                                    color="darkgray" 
+                                <Placeholder
+                                    weight="light"
+                                    size={24}
+                                    color="darkgray"
                                 />
                                 <NoTasksText>
                                     No tasks found
@@ -224,7 +228,7 @@ const TasksPage = ({
                             </NoTasksContainer>
                     }
                 </Tasks>
-                <AddTask 
+                <AddTask
                     filter={filter}
                     handleAddTask={handleAddTask}
                     handleAddEnter={handleAddEnter}
@@ -262,6 +266,12 @@ const TasksContainer = styled.div`
 const TaskHeading = styled.div`
     width: 100%;
     margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const TaskHeadingWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
