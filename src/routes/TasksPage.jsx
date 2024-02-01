@@ -57,7 +57,17 @@ const TasksPage = ({
 
     //when function is called it adds the task to the tasks array
     const handleAddTask = () => {
+
         if (name !== "") {
+
+            const currentDate = new Date().toLocaleDateString('en-GB');
+            const dates = Array.from({ length: 10 }, (_, index) => {
+                const date = new Date();
+                date.setDate(date.getDate() - index);
+                const formattedDate = date.toLocaleDateString('en-GB');
+                return { date: formattedDate, complete: false };
+            });
+
             const newTask = {
                 name: name,
                 complete: false,
@@ -67,6 +77,7 @@ const TasksPage = ({
                 dueDate: "",
                 dateCreated: new Date().toLocaleDateString('en-GB'), //generates the current date
                 trash: false,
+                dates: dates,
             };
 
             // Separate important tasks from non-important tasks
@@ -103,6 +114,30 @@ const TasksPage = ({
         //update the state with the new array of tasks
         setTasks(updatedTasks);
     };
+
+    const markComplete = (id, dateComplete) => {
+        console.log(`Id: ${id} // dateComplete: ${dateComplete}`);
+        setTasks(prevTasks => {
+            return prevTasks.map(task => {
+                if (task.id === id) {
+                    const updatedDates = task.dates.map(dateItem => {
+                        if (dateItem.date === dateComplete) {
+                            // Toggle the 'complete' property for the specific date
+                            return { ...dateItem, complete: !dateItem.complete };
+                        }
+                        return dateItem;
+                    });
+
+                    // Ensure deep immutability by creating a new object for the task
+                    return { ...task, dates: updatedDates };
+                }
+                return task;
+            });
+        });
+    };
+
+
+
 
     //function to run when the user clicks to mark a task as complete
     const completeTask = (id) => {
@@ -212,6 +247,8 @@ const TasksPage = ({
                                         Info={Info}
                                         TrashSimple={TrashSimple}
                                         trashTask={trashTask}
+                                        dates={task.dates}
+                                        markComplete={markComplete}
                                     />
                                 )
                             })

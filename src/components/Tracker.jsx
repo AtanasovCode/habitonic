@@ -3,47 +3,22 @@ import styled from "styled-components";
 
 import { X, Check } from "@phosphor-icons/react";
 
-const Tracker = () => {
-    const [habitStatus, setHabitStatus] = useState(Array(10).fill(false));
+const Tracker = ({
+    dates,
+    markComplete,
+    id,
+}) => {
 
-    const toggleHabitStatus = (index) => {
-        const updatedStatus = [...habitStatus];
-        updatedStatus[index] = !updatedStatus[index];
-        setHabitStatus(updatedStatus);
-    };
-
-    const getLastTenFormattedDates = () => {
-        const today = new Date();
-        const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        const dates = [];
-
-        for (let i = 0; i < 10; i++) {
-            const date = new Date(today);
-            date.setDate(today.getDate() - i);
-            const formattedDate = `${weekdays[date.getDay()]} ${date.getDate()}`;
-            dates.push({
-                day: formattedDate.slice(0, 3),
-                date: formattedDate.slice(4),
-            });
-        }
-
-        return dates;
-    };
-
-    useEffect(() => {
-        // Update lastTenDates state
-        getLastTenFormattedDates();
-    }, []); // Run the effect only once on component mount
 
     return (
         <Container>
-            {habitStatus.map((completed, index) => (
-                completed ?
-                    <IconContainer key={index} onClick={() => toggleHabitStatus(index)}>
+            {dates.map((item, index) => (
+                item.complete ?
+                    <IconContainer key={index} onClick={() => markComplete(id, item.date)}>
                         <Check weight="bold" color="lime" size={22} />
                     </IconContainer>
                     :
-                    <IconContainer key={index} onClick={() => toggleHabitStatus(index)}>
+                    <IconContainer key={index} onClick={() => markComplete(id, item.date)}>
                         <X weight="light" color="#AAA" size={20} />
                     </IconContainer>
             ))}

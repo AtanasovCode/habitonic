@@ -51,6 +51,7 @@ const Router = () => {
     // Save tasks to localStorage whenever tasks change
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
+        console.log(tasks);
     }, [tasks]);
 
 

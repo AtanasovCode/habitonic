@@ -9,16 +9,13 @@ import { DotsThreeVertical } from '@phosphor-icons/react';
 //reusable component for tasks
 const Task = ({
     makeImportant,
-    completeTask,
-    handleMoreInfo,
+    dates,
     important,
     complete,
     name,
     id,
+    markComplete,
     trash,
-    Star,
-    Info,
-    TrashSimple,
     trashTask,
 }) => {
 
@@ -49,7 +46,7 @@ const Task = ({
                 <MoreInfo onClick={() => toggleIcons()}>
                     <DotsThreeVertical
                         weight="bold"
-                        color="#FFF"
+                        color="#AAA"
                         size={23}
                     />
                 </MoreInfo>
@@ -57,7 +54,7 @@ const Task = ({
                     {name}
                 </TaskName>
             </InfoContainer>
-            <Tracker />
+            <Tracker id={id} dates={dates} markComplete={markComplete} />
         </Container>
     );
 }
