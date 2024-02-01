@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
+import TaskIcons from './TaskIcons';
 
+import { DotsThreeVertical } from '@phosphor-icons/react';
 
 //reusable component for tasks
 const Task = ({
@@ -19,48 +21,41 @@ const Task = ({
     trashTask,
 }) => {
 
+    const [showIcons, setShowIcons] = useState(false);
+
+    const toggleIcons = () => {
+        setShowIcons(!showIcons);
+    }
+
     return (
         <Container
             $important={important}
             $complete={complete}
             key={id}
         >
-            <InfoContainer>
-                <TaskRadio 
-                    $complete={complete}
-                    onClick={() => completeTask(id)}
+            {
+                showIcons && 
+                <TaskIcons
+                    important={important}
+                    complete={complete}
+                    id={id}
+                    trashTask={trashTask}
+                    makeImportant={makeImportant}
+                    trash={trash}
                 />
+            }
+            <MoreInfo onClick={() => toggleIcons()}>
+                <DotsThreeVertical
+                    weight="bold"
+                    color="#FFF"
+                    size={23}
+                />
+            </MoreInfo>
+            <InfoContainer>
                 <TaskName>
                     {name}
                 </TaskName>
             </InfoContainer>
-            <Icons>
-                {/*if the task is complete, you cannot make the task important*/}
-                <TaskIcon onClick={() => !complete && makeImportant(id)}>
-                    <Star
-                        weight={important ? "fill" : "light"}
-                        color="#fff"
-                        size={20}
-                    />
-                </TaskIcon>
-                <IconLink
-                    to="/tasks/info"
-                    onClick={() => handleMoreInfo(id)}
-                >
-                    <Info
-                        weight="light"
-                        color="#fff"
-                        size={20}
-                    />
-                </IconLink>
-                <TaskIcon onClick={() => trashTask(id)}>
-                    <TrashSimple
-                        weight={trash ? "fill" : "light"}
-                        color="#fff"
-                        size={20}
-                    />
-                </TaskIcon>
-            </Icons>
         </Container>
     );
 }
@@ -77,6 +72,7 @@ const Container = styled.div`
     justify-content: space-between;
     margin-bottom: .4rem;
     transition: all .3s ease;
+    position: relative;
 
     ${props => props.$important && `
         background-color: ${props.theme.taskImportant};
@@ -93,60 +89,23 @@ ${props => props.$complete && `
 const InfoContainer = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    flex: 1;
 `;
 
-const TaskRadio = styled.div`
-    margin-right: 15px;
-    width: 1.3rem;
-    height: 1.3rem;
-    min-width: 24px;
-    background-color: transparent;
-    border: 1px solid #ffffff90;
-    border-radius: 50%;
+const MoreInfo = styled.div`
+    margin-right: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: all .3s ease;
-    position: relative;
-    transition: all .3s ease;
-
-    &:hover {
-        border: 1px solid #FFF;
-    }
-
-    &::before {
-        content: '✓';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        font-weight: 900;
-        color: #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: ${props => props.theme.primary};
-        border: none;
-        transition: all .3s ease;
-
-        opacity: ${props => props.$complete ? "1" : "0"};
-    }
 `;
 
 const TaskName = styled.div`
     font-size: 1rem;
-`;
-
-const Icons = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-
-const TaskIcon = styled.div`
-    margin: .4rem;
-    cursor: pointer;
-`;
-
-const IconLink = styled(Link)`
-    margin: .4rem;
+    width: 25%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;  /* Prevent line breaks */
+    word-wrap: break-word;  /* Break words to prevent white space */
 `;

@@ -59,11 +59,20 @@ const DateWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 16px;
+    margin: 0 .7rem;
+    font-size: .9rem;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &:first-child {
+        margin-left: 0;
+    }
 `;
 
 const Day = styled.div`
-    color: #5757fd;
+    color: ${props => props.theme.accent};
 `;
 
 const Number = styled.div``;

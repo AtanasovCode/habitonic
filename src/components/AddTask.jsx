@@ -29,7 +29,7 @@ const AddTask = ({
                         </InputIcon>
                         <InputTask
                             type="text"
-                            maxLength={80} //max number of characters is set to 80
+                            maxLength={60} //max number of characters is set to 80
                             placeholder="Add a task"
                             value={name}
                             onChange={(e) => setName(e.currentTarget.value)} //update the state name
