@@ -261,6 +261,7 @@ const TasksContainer = styled.div`
     justify-content: flex-start;
     background-color: #141414;
     padding: 2rem 3rem;
+    padding-bottom: 6rem;
 `;
 
 const TaskHeading = styled.div`

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import TaskIcons from './TaskIcons';
+import Tracker from './Tracker';
 
 import { DotsThreeVertical } from '@phosphor-icons/react';
 
@@ -34,7 +35,7 @@ const Task = ({
             key={id}
         >
             {
-                showIcons && 
+                showIcons &&
                 <TaskIcons
                     important={important}
                     complete={complete}
@@ -44,18 +45,19 @@ const Task = ({
                     trash={trash}
                 />
             }
-            <MoreInfo onClick={() => toggleIcons()}>
-                <DotsThreeVertical
-                    weight="bold"
-                    color="#FFF"
-                    size={23}
-                />
-            </MoreInfo>
             <InfoContainer>
+                <MoreInfo onClick={() => toggleIcons()}>
+                    <DotsThreeVertical
+                        weight="bold"
+                        color="#FFF"
+                        size={23}
+                    />
+                </MoreInfo>
                 <TaskName>
                     {name}
                 </TaskName>
             </InfoContainer>
+            <Tracker />
         </Container>
     );
 }
@@ -64,13 +66,13 @@ export default Task;
 
 const Container = styled.div`
     width: 100%;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 1.5rem;
     background-color: ${props => props.theme.taskBackground};
     color: ${props => props.theme.text};
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: .4rem;
+    margin-bottom: .5rem;
     transition: all .3s ease;
     position: relative;
 
@@ -103,7 +105,7 @@ const MoreInfo = styled.div`
 
 const TaskName = styled.div`
     font-size: 1rem;
-    width: 25%;
+    width: 50%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;  /* Prevent line breaks */

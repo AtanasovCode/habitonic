@@ -27,14 +27,12 @@ const RecentDates = () => {
 
     return (
         <Container>
-            <DateContainer>
-                {lastTenDates.map((item, index) => (
-                    <DateWrapper key={index}>
-                        <Day>{item.day}</Day>
-                        <Number>{item.date}</Number>
-                    </DateWrapper>
-                ))}
-            </DateContainer>
+            {lastTenDates.map((item, index) => (
+                <DateWrapper key={index}>
+                    <Day>{item.day}</Day>
+                    <Number>{item.date}</Number>
+                </DateWrapper>
+            ))}
         </Container>
     );
 };
@@ -45,30 +43,17 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
 `;
 
-const DateContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
 
 const DateWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 .7rem;
     font-size: .9rem;
-
-    &:last-child {
-        margin-right: 0;
-    }
-
-    &:first-child {
-        margin-left: 0;
-    }
+    width: 3.3rem;
 `;
 
 const Day = styled.div`
