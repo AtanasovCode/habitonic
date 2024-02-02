@@ -12,7 +12,7 @@ const Tracker = ({
 
     return (
         <Container>
-            {dates.map((item, index) => (
+            {dates.slice(0, 10).map((item, index) => (
                 item.complete ?
                     <IconContainer key={index} onClick={() => markComplete(id, item.date)}>
                         <Check weight="bold" color="lime" size={22} />
@@ -23,6 +23,7 @@ const Tracker = ({
                     </IconContainer>
             ))}
         </Container>
+
     );
 };
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 //a package that generates secure random values
@@ -54,6 +54,7 @@ const TasksPage = ({
 
         if (navOpen) handleNavOpen();
     }
+
 
     //when function is called it adds the task to the tasks array
     const handleAddTask = () => {
@@ -116,7 +117,6 @@ const TasksPage = ({
     };
 
     const markComplete = (id, dateComplete) => {
-        console.log(`Id: ${id} // dateComplete: ${dateComplete}`);
         setTasks(prevTasks => {
             return prevTasks.map(task => {
                 if (task.id === id) {
