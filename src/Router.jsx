@@ -16,6 +16,7 @@ import Homepage from './routes/Homepage';
 import TasksPage from './routes/TasksPage';
 import TaskDetails from './routes/TaskDetails';
 import InfoPage from './routes/InfoPage';
+import ErrorPage from './components/ErrorPage';
 
 const Router = () => {
 
@@ -66,7 +67,8 @@ const Router = () => {
             element: <TasksPage
                 tasks={tasks}
                 setTasks={setTasks}
-            />
+            />,
+            errorElement: <ErrorPage />
         },
         {
             path: "/tasks/info",

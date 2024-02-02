@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { format } from 'date-fns';
 import styled from 'styled-components';
 
 //a package that generates secure random values
@@ -54,6 +55,11 @@ const TasksPage = ({
 
         if (navOpen) handleNavOpen();
     }
+
+    useEffect(() => {
+        console.log(format(new Date(), "dd/MM/yy"));
+    }, [])
+
 
 
     //when function is called it adds the task to the tasks array
