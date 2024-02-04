@@ -9,6 +9,7 @@ import {
     Trash,
     ClockCountdown,
     ArrowLeft,
+    X,
 } from '@phosphor-icons/react';
 
 import Filter from "./Filter";
@@ -20,9 +21,18 @@ import logo from '../assets/logo.svg';
 const SideBar = ({
     filter,
     handleFilterChange,
+    toggleNavBar,
+    activeNavBar,
 }) => {
     return (
-        <Container>
+        <Container $active={activeNavBar}>
+            <CloseContainer onClick={() => toggleNavBar()}>
+                <X 
+                    size={26}
+                    color="#DDD"
+                    weight="regular"
+                />
+            </CloseContainer>
             <Logo src={logo} alt="logo" />
             <Filters>
                 <Filter
@@ -95,9 +105,19 @@ const Container = styled.div`
     transition: all .3s ease;
 
     @media (max-width: 1024px) {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: -100%;
+        width: 50%;
+        
+        ${props => props.$active && `
+            left: 0;
+            z-index: 100;
+        `}
+    }
+
+    @media (max-width: 675px) {
+        width: 100%;
     }
 `;
 
@@ -113,6 +133,15 @@ const Logo = styled.img`
     width: 80%;
     position: absolute;
     top: 5%;
+
+    @media (max-width: 1024px) {
+        top: 10%;
+        width: 50%;
+    }
+
+    @media (max-width: 675px) {
+        width: 50%;
+    }
 `;
 
 const BackLink = styled(Link)`
@@ -128,4 +157,11 @@ const BackLink = styled(Link)`
 
 const BackText = styled.div`
     margin-left: .5rem;
+`;
+
+const CloseContainer = styled.div`
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    cursor: pointer;
 `;

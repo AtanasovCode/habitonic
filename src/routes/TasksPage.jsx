@@ -23,6 +23,7 @@ import {
     TrashSimple,
     Placeholder,
     Trash,
+    List,
 } from '@phosphor-icons/react';
 
 const TasksPage = ({
@@ -31,6 +32,7 @@ const TasksPage = ({
 }) => {
 
     const [tint, setTint] = useState(false);
+    const [activeNavBar, setActiveNavBar] = useState(false);
     //used to see which filter is currently selected, default is 'all'
     const [filter, setFilter] = useState("all");
     //the name of the task
@@ -43,9 +45,11 @@ const TasksPage = ({
 
     }
 
-    useEffect(() => {
+    const toggleNavBar = () => {
+        setActiveNavBar(!activeNavBar);
+    }
 
-        console.log(tasks);
+    useEffect(() => {
 
         setTasks(prevTasks => {
             return prevTasks.map((task) => {
@@ -53,10 +57,7 @@ const TasksPage = ({
                 const current = format(new Date(), "dd/MM/yyyy");
 
                 if (latest) {
-                    console.log(`latest date: ${latest} current date: ${current}`)
                     const daysDifference = differenceInDays(format(current, "dd/MM/yyyy"), format(latest, "dd/MM/yyyy"));
-
-                    console.log(`Days difference: ${daysDifference}`);
 
                     if (daysDifference > 0) {
 
@@ -107,7 +108,6 @@ const TasksPage = ({
 
             setName("");
 
-            console.log(tasks);
         }
     };
 
@@ -218,11 +218,11 @@ const TasksPage = ({
 
     const getFilterIcon = () => {
         switch (filter) {
-            case "all": return <ClipboardText size={32} color="#FFF" weight="light" />;
-            case "important": return <Star size={32} color="#FFF" weight="light" />;
-            case "trash": return <Trash size={32} color="#FFF" weight="light" />;
-            case "complete": return <ListChecks size={32} color="#FFF" weight="light" />;
-            case "active": return <ClockCountdown size={32} color="#FFF" weight="light" />;
+            case "all": return <ClipboardText size="auto" color="#FFF" weight="light" />;
+            case "important": return <Star size="auto" color="#FFF" weight="light" />;
+            case "trash": return <Trash size="auto" color="#FFF" weight="light" />;
+            case "complete": return <ListChecks size="auto" color="#FFF" weight="light" />;
+            case "active": return <ClockCountdown size="auto" color="#FFF" weight="light" />;
         }
     }
 
@@ -231,10 +231,19 @@ const TasksPage = ({
             <SideBar
                 filter={filter}
                 handleFilterChange={handleFilterChange}
+                toggleNavBar={toggleNavBar}
+                activeNavBar={activeNavBar}
             />
             <TasksContainer>
                 <TaskHeading>
                     <TaskHeadingWrapper>
+                        <MenuContainer onClick={() => toggleNavBar()}>
+                            <List
+                                size={26}
+                                color="#DDD"
+                                weight="regular"
+                            />
+                        </MenuContainer>
                         <TaskHeadingIcon>
                             {getFilterIcon()}
                         </TaskHeadingIcon>
@@ -352,12 +361,22 @@ const TaskHeadingWrapper = styled.div`
 
 const TaskHeadingIcon = styled.div`
     margin-right: 1rem;
+    width: 32px;
+
+    @media (max-width: 675px) {
+        margin-right: .5rem;
+        width: 26px;
+    }
 `;
 
 const TaskTitle = styled.div`
     font-size: 2rem;
     font-weight: 700;
     text-transform: capitalize;
+
+    @media (max-width: 675px) {
+        font-size: 1.3rem;
+    }
 `;
 
 const Tasks = styled.div`
@@ -378,4 +397,16 @@ const NoTasksContainer = styled.div`
 
 const NoTasksText = styled.div`
     margin-left: .5rem;
+`;
+
+
+const MenuContainer = styled.div`
+    display: none;
+
+    @media (max-width: 1024px) {
+        display: inline-block;
+        cursor: pointer;
+        z-index: 10;
+        margin-right: .5rem;
+    }
 `;
