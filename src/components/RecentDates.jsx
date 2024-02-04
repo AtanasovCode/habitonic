@@ -61,7 +61,7 @@ const DateWrapper = styled.div`
     width: 3.3rem;
 
     @media (max-width: 1200px) {
-        width: 2.8rem;
+        width: 2.5rem;
         display: ${(props) => (props.$index >= 8 ? "none" : "flex")};   
     }
 
