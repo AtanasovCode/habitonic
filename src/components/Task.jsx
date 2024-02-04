@@ -93,7 +93,6 @@ const InfoContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    background-color: red;
     width: 40%;
     min-width: 200px;
 

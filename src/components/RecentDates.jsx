@@ -44,6 +44,11 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1rem 1.5rem;
+
+  @media (max-width: 675px) {
+    padding: 1rem .5rem;
+  }
+
 `;
 
 
@@ -57,28 +62,27 @@ const DateWrapper = styled.div`
 
     @media (max-width: 1200px) {
         width: 2.8rem;
+        display: ${(props) => (props.$index >= 8 ? "none" : "flex")};   
     }
 
     @media (max-width: 800px) {
         width: 2.5rem;
-        display: ${(props) => (props.$index >= 5 ? "none" : "flex")};   
+        display: ${(props) => (props.$index >= 6 ? "none" : "flex")};   
     }
 
-    @media (max-width: 675px) {
-        border: 1px solid #fff;
+    @media (max-width: 550px) {
+        width: 2rem;
+        display: ${(props) => (props.$index >= 4 ? "none" : "flex")};   
     }
 `;
 
 const Day = styled.div`
     color: ${props => props.theme.accent};
 
-    @media (max-width: 675px) {
-        font-size: .7rem;
+    @media (max-width: 550px) {
+        font-size: .8rem;
     }
 `;
 
 const Number = styled.div`
-   @media (max-width: 675px) {
-        font-size: .7rem;
-    }
 `;

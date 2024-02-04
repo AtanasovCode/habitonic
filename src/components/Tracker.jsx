@@ -58,14 +58,16 @@ const IconContainer = styled.div`
 
     @media (max-width: 1200px) {
         width: 2.5rem;
+        display: ${(props) => (props.$index >= 8 ? "none" : "flex")};   
     }
 
     @media (max-width: 800px) {
-        display: ${props => props.$index >= 5 ? "none" : "flex"};
+        display: ${props => props.$index >= 6 ? "none" : "flex"};
     }
 
-    @media (max-width: 675px) {
-        border: 1px solid #fff;
+    @media (max-width: 550px) {
+        width: 2rem;
+        display: ${props => props.$index >= 4 ? "none" : "flex"};
     }
 `;
 
@@ -74,7 +76,7 @@ const IconWrapper = styled.div`
     height: 22px;
 
     @media (max-width: 675px) {
-        width: 16px;
-        height: 16px;
+        width: 20px;
+        height: 20px;
     }
 `;
