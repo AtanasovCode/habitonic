@@ -71,7 +71,11 @@ const Container = styled.div`
     bottom: 0;
     right: 0;
     z-index: 6;
-    padding: 1rem 0;
+    padding: 1rem 0 1rem 300px;
+
+    @media (max-width: 1024px) {
+        padding: 1rem 0;
+    }
 `;
 
 const Add = styled.div`
