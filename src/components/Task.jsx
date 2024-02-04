@@ -63,7 +63,7 @@ export default Task;
 
 const Container = styled.div`
     width: 100%;
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem;
     background-color: ${props => props.theme.taskBackground};
     color: ${props => props.theme.text};
     display: flex;
@@ -83,13 +83,24 @@ ${props => props.$complete && `
         color: #a2a2a2;
         background-color: ${props.theme.taskComplete};
     `}
+
+    @media (max-width: 675px) {
+        padding: 1.5rem .5rem;
+    }
 `;
 
 const InfoContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    flex: 1;
+    background-color: red;
+    width: 40%;
+    min-width: 200px;
+
+    @media (max-width: 800px) {
+        min-width: 150px;
+        width: 30%;
+    }
 `;
 
 const MoreInfo = styled.div`
@@ -102,7 +113,7 @@ const MoreInfo = styled.div`
 
 const TaskName = styled.div`
     font-size: 1rem;
-    width: 50%;
+    width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;  /* Prevent line breaks */

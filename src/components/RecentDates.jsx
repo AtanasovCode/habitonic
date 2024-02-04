@@ -28,7 +28,7 @@ const RecentDates = () => {
     return (
         <Container>
             {lastTenDates.map((item, index) => (
-                <DateWrapper key={index}>
+                <DateWrapper key={index} $index={index}>
                     <Day>{item.day}</Day>
                     <Number>{item.date}</Number>
                 </DateWrapper>
@@ -54,10 +54,31 @@ const DateWrapper = styled.div`
     justify-content: center;
     font-size: .9rem;
     width: 3.3rem;
+
+    @media (max-width: 1200px) {
+        width: 2.8rem;
+    }
+
+    @media (max-width: 800px) {
+        width: 2.5rem;
+        display: ${(props) => (props.$index >= 5 ? "none" : "flex")};   
+    }
+
+    @media (max-width: 675px) {
+        border: 1px solid #fff;
+    }
 `;
 
 const Day = styled.div`
     color: ${props => props.theme.accent};
+
+    @media (max-width: 675px) {
+        font-size: .7rem;
+    }
 `;
 
-const Number = styled.div``;
+const Number = styled.div`
+   @media (max-width: 675px) {
+        font-size: .7rem;
+    }
+`;

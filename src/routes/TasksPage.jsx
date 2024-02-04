@@ -307,7 +307,7 @@ const Container = styled.div`
 
 const TasksContainer = styled.div`
     min-height: 100vh;
-    width: 80%;
+    width: 100%;
     margin-left: 300px;
     position: relative;
     display: flex;
@@ -317,6 +317,22 @@ const TasksContainer = styled.div`
     background-color: #141414;
     padding: 2rem 3rem;
     padding-bottom: 6rem;
+    position: relative;
+
+    @media (max-width: 1200px) {
+        padding: 2rem 1rem;
+        padding-bottom: 6rem;
+    }
+
+    @media (max-width: 1024px) {
+        margin-left: 0;
+        padding: 2rem 2.5rem;
+        padding-bottom: 6rem;
+    }
+
+    @media (max-width: 675px) {
+        padding: 2.5rem 0;
+    }
 `;
 
 const TaskHeading = styled.div`

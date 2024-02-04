@@ -93,6 +93,12 @@ const Container = styled.div`
     border-top-right-radius: ${props => props.theme.borderRadius};
     border-bottom-right-radius: ${props => props.theme.borderRadius};
     transition: all .3s ease;
+
+    @media (max-width: 1024px) {
+        position: absolute;
+        top: 0;
+        left: -100%;
+    }
 `;
 
 const Filters = styled.div`

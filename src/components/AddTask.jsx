@@ -61,12 +61,13 @@ const AddTask = ({
 export default AddTask;
 
 const Container = styled.div`
-    width: 80%;
+    width: 100%;
+    margin-left: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #141414;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     right: 0;
     z-index: 6;
@@ -74,12 +75,26 @@ const Container = styled.div`
 `;
 
 const Add = styled.div`
-    width: 90%;
+    width: 100%;
+    margin: 0 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: ${props => props.theme.background};
     padding: 1rem;
+
+    @media (max-width: 1200px) {
+        margin: 0 1rem;
+    }
+
+
+    @media (max-width: 1024px) {
+        margin: 0 2.5rem;
+    }
+
+    @media (max-width: 675px) {
+        margin: 0;
+    }
 `;
 
 const InputIcon = styled.div`
