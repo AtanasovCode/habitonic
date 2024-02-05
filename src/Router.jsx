@@ -79,7 +79,9 @@ const Router = () => {
         },
         {
             path: "/dashboard",
-            element: <Dashboard />
+            element: <Dashboard 
+                tasks={tasks}
+            />
         },
     ])
 
