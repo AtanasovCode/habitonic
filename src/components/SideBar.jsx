@@ -10,6 +10,8 @@ import {
     ClockCountdown,
     ArrowLeft,
     X,
+    Gauge,
+    House,
 } from '@phosphor-icons/react';
 
 import Filter from "./Filter";
@@ -27,7 +29,7 @@ const SideBar = ({
     return (
         <Container $active={activeNavBar}>
             <CloseContainer onClick={() => toggleNavBar()}>
-                <X 
+                <X
                     size={26}
                     color="#DDD"
                     weight="regular"
@@ -69,18 +71,29 @@ const SideBar = ({
                     FilterIcon={Trash}
                     filterName="trash"
                 />
-
+            </Filters>
+            <Links>
+                <DashboardLink to="/dashboard">
+                    <DashboardIcon>
+                        <Gauge
+                            size={23}
+                            color="#FFF"
+                            weight="regular"
+                        />
+                    </DashboardIcon>
+                    Dashboard
+                </DashboardLink>
                 <BackLink to="/">
-                    <ArrowLeft
+                    <House
                         color="#FFF"
-                        weight="light"
+                        weight="regular"
                         size={23}
                     />
                     <BackText>
-                        Go Back
+                        Home
                     </BackText>
                 </BackLink>
-            </Filters>
+            </Links>
         </Container>
     );
 }
@@ -144,24 +157,53 @@ const Logo = styled.img`
     }
 `;
 
-const BackLink = styled(Link)`
+const Links = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: 1%;
+    left: 0;
+`;
+
+const BackLink = styled(Link)`
     text-decoration: none;
     color: ${props => props.theme.text};
     padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 `;
 
 const BackText = styled.div`
-    margin-left: .5rem;
+    margin-left: 1rem;
+`;
+
+const DashboardLink = styled(Link)`
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+    color: ${props => props.theme.text};
+`;
+
+const DashboardIcon = styled.div`
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const CloseContainer = styled.div`
-    position: absolute;
-    top: 2%;
-    left: 2%;
-    cursor: pointer;
+    display: none;
+    
+    @media (max-width: 1024px) {
+        display: inline-block;
+        position: absolute;
+        top: 2%;
+        left: 2%;
+        cursor: pointer;
+    }
 `;

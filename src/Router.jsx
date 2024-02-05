@@ -16,6 +16,7 @@ import Homepage from './routes/Homepage';
 import TasksPage from './routes/TasksPage';
 import TaskDetails from './routes/TaskDetails';
 import InfoPage from './routes/InfoPage';
+import Dashboard from './routes/Dashboard';
 import ErrorPage from './components/ErrorPage';
 
 const Router = () => {
@@ -77,9 +78,9 @@ const Router = () => {
             />
         },
         {
-            path: "/how-it-works",
-            element: <InfoPage />
-        }
+            path: "/dashboard",
+            element: <Dashboard />
+        },
     ])
 
     return (
