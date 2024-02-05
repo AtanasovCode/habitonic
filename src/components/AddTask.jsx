@@ -30,7 +30,7 @@ const AddTask = ({
                         <InputTask
                             type="text"
                             maxLength={60} //max number of characters is set to 80
-                            placeholder="Add a task"
+                            placeholder="Add new habit"
                             value={name}
                             onChange={(e) => setName(e.currentTarget.value)} //update the state name
                             onKeyDown={(e) => handleAddEnter(e.key)} //runs when the a key is pressed

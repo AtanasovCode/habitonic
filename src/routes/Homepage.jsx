@@ -44,7 +44,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: var(--background);
+    background-color: ${props => props.theme.homepageBG};
 `;
 
 const Nav = styled.div`
@@ -116,7 +116,7 @@ const HomeHeading = styled.h1`
 `;
 
 const HomeFancy = styled.span`
-    color: var(--accent);
+    color: ${props => props.theme.accent};
     margin-right: 16px;
 `;
 
@@ -129,7 +129,7 @@ const HomeBtn = styled(Link)`
     margin-top: 2.5rem;
     padding: 1.5rem;
     z-index: 5;
-    background-color: var(--secondary);
+    background-color: ${props => props.theme.primary};
     color: var(--text);
     border-radius: var(--border-radius);
     border: none;
@@ -152,7 +152,7 @@ const HomeBtn = styled(Link)`
         width: 100%;
         height: 100%;
         border-radius: var(--border-radius);
-        background-color: var(--accent);
+        background-color: ${props => props.theme.accent};
         z-index: 1;
         transition: all .2s ease;
         font-family: var(--font);

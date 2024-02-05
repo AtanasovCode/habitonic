@@ -15,10 +15,10 @@ const Tracker = ({
                     <IconContainer key={index} $index={index} onClick={() => {
                         markComplete(id, item.date);
                     }}>
-                        <IconWrapper>
+                        <IconWrapper type="check">
                             <Check 
                                 weight="bold" 
-                                color="lime" 
+                                color="#21aedd"
                                 size="100%" 
                             />
                         </IconWrapper>
@@ -27,10 +27,10 @@ const Tracker = ({
                     <IconContainer key={index} $index={index} onClick={() => {
                         markComplete(id, item.date);
                     }}>
-                        <IconWrapper>
+                        <IconWrapper type="x">
                             <X 
                                 weight="light" 
-                                color="#AAA" 
+                                color="#AAAAAA" 
                                 size="100%" 
                             />
                         </IconWrapper>
@@ -72,8 +72,10 @@ const IconContainer = styled.div`
 `;
 
 const IconWrapper = styled.div`
-    width: 22px;
-    height: 22px;
+    width: ${props => props.type === "check" ? "26px" : "22px"};
+    height: ${props => props.type === "check" ? "26px" : "22px"};
+
+    
 
     @media (max-width: 675px) {
         width: 20px;
