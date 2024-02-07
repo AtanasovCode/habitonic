@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { format, differenceInDays, parse } from 'date-fns';
+import { format, differenceInDays, parse, subDays } from 'date-fns';
 import styled from 'styled-components';
 
 //a package that generates secure random values
@@ -60,16 +60,9 @@ const TasksPage = ({
 
                     if (daysDifference > 0) {
 
-                        const dates = Array.from({ length: 10 }, (_, index) => {
-                            const date = new Date();
-                            date.setDate(date.getDate() - index);
-                            const formattedDate = format(date, "dd/MM/yyyy");
-                            return { date: formattedDate, complete: false };
-                        });
-
                         // Calculate the missing dates for the last 5 days
                         const missingDates = Array.from({ length: daysDifference }, (_, index) => {
-                            const date = new Date();
+                            const date = subDays(new Date(), index);
                             return { date: format(date, "dd/MM/yy"), complete: false };
                         });
 
@@ -141,24 +134,25 @@ const TasksPage = ({
 
     //marks a task as complete on that specific date
     const markComplete = (id, dateComplete) => {
-        setTasks(prevTasks => {
-            return prevTasks.map(task => {
-                if (task.id === id) {
-                    const updatedDates = task.dates.map(dateItem => {
-                        if (dateItem.date === dateComplete) {
-                            // Toggle the 'complete' property for the specific date
-                            return { ...dateItem, complete: !dateItem.complete };
-                        }
-                        return dateItem;
-                    });
-
-                    // Ensure deep immutability by creating a new object for the task
-                    return { ...task, dates: updatedDates };
+        const updatedTasks = tasks.map((task) =>
+            task.id === id
+                ? {
+                    ...task,
+                    dates: task.dates.map((item) =>
+                        item.date === dateComplete
+                            ? {
+                                ...item,
+                                complete: !item.complete,
+                            }
+                            : item
+                    ),
                 }
-                return task;
-            });
-        });
+                : task
+        );
+
+        setTasks(updatedTasks);
     };
+
 
 
 
