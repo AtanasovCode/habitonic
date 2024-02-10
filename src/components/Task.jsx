@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import '../styles/task.css';
-import '../styles/tasks-page.css';
 
 import { Link } from 'react-router-dom';
 
