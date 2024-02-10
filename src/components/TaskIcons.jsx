@@ -27,16 +27,7 @@ const TaskIcons = ({
                     size={20}
                 />
             </TaskIcon>
-            <IconLink
-                to="/tasks/info"
-                onClick={() => handleMoreInfo(id)}
-            >
-                <Info
-                    weight="light"
-                    color="#fff"
-                    size={20}
-                />
-            </IconLink>
+
             <TaskIcon onClick={() => trashTask(id)}>
                 <TrashSimple
                     weight={trash ? "fill" : "light"}

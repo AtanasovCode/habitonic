@@ -15,8 +15,6 @@ import './styles/index.css';
 import Homepage from './routes/Homepage';
 import TasksPage from './routes/TasksPage';
 import TaskDetails from './routes/TaskDetails';
-import InfoPage from './routes/InfoPage';
-import Dashboard from './routes/Dashboard';
 import ErrorPage from './components/ErrorPage';
 
 const Router = () => {
@@ -76,12 +74,6 @@ const Router = () => {
             element: <TaskDetails
                 tasks={tasks}
                 setTasks={setTasks}
-            />
-        },
-        {
-            path: "/dashboard",
-            element: <Dashboard 
-                tasks={tasks}
             />
         },
     ])

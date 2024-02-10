@@ -145,7 +145,14 @@ const Title = styled.div`
 `;
 
 const Fancy = styled.span`
-    color: ${props => props.theme.accent};
+    background: linear-gradient(
+    to right,
+    ${props => props.theme.primary},
+        ${props => props.theme.accent}
+    );
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
 `;
 
 const TitleWrapper = styled.div``;

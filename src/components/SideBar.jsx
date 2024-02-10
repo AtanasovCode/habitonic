@@ -73,16 +73,6 @@ const SideBar = ({
                 />
             </Filters>
             <Links>
-                <DashboardLink to="/dashboard">
-                    <DashboardIcon>
-                        <Gauge
-                            size={23}
-                            color="#FFF"
-                            weight="regular"
-                        />
-                    </DashboardIcon>
-                    Dashboard
-                </DashboardLink>
                 <BackLink to="/">
                     <House
                         color="#FFF"
