@@ -9,6 +9,9 @@ import {
     Trash,
     ClockCountdown,
     ArrowLeft,
+    X,
+    Gauge,
+    House,
 } from '@phosphor-icons/react';
 
 import Filter from "./Filter";
@@ -20,9 +23,18 @@ import logo from '../assets/logo.svg';
 const SideBar = ({
     filter,
     handleFilterChange,
+    toggleNavBar,
+    activeNavBar,
 }) => {
     return (
-        <Container>
+        <Container $active={activeNavBar}>
+            <CloseContainer onClick={() => toggleNavBar()}>
+                <X
+                    size={26}
+                    color="#DDD"
+                    weight="regular"
+                />
+            </CloseContainer>
             <Logo src={logo} alt="logo" />
             <Filters>
                 <Filter
@@ -59,18 +71,19 @@ const SideBar = ({
                     FilterIcon={Trash}
                     filterName="trash"
                 />
-
+            </Filters>
+            <Links>
                 <BackLink to="/">
-                    <ArrowLeft
+                    <House
                         color="#FFF"
-                        weight="light"
+                        weight="regular"
                         size={23}
                     />
                     <BackText>
-                        Go Back
+                        Home
                     </BackText>
                 </BackLink>
-            </Filters>
+            </Links>
         </Container>
     );
 }
@@ -93,6 +106,22 @@ const Container = styled.div`
     border-top-right-radius: ${props => props.theme.borderRadius};
     border-bottom-right-radius: ${props => props.theme.borderRadius};
     transition: all .3s ease;
+
+    @media (max-width: 1024px) {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        
+        ${props => props.$active && `
+            left: 0;
+            z-index: 100;
+        `}
+    }
+
+    @media (max-width: 675px) {
+        width: 100%;
+    }
 `;
 
 const Filters = styled.div`
@@ -107,19 +136,64 @@ const Logo = styled.img`
     width: 80%;
     position: absolute;
     top: 5%;
+
+    @media (max-width: 1024px) {
+        top: 10%;
+        width: 50%;
+    }
+
+    @media (max-width: 675px) {
+        width: 50%;
+    }
+`;
+
+const Links = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    bottom: 1%;
+    left: 0;
 `;
 
 const BackLink = styled(Link)`
-    position: absolute;
-    bottom: 0;
     text-decoration: none;
     color: ${props => props.theme.text};
     padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 `;
 
 const BackText = styled.div`
-    margin-left: .5rem;
+    margin-left: 1rem;
+`;
+
+const DashboardLink = styled(Link)`
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+    color: ${props => props.theme.text};
+`;
+
+const DashboardIcon = styled.div`
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const CloseContainer = styled.div`
+    display: none;
+    
+    @media (max-width: 1024px) {
+        display: inline-block;
+        position: absolute;
+        top: 2%;
+        left: 2%;
+        cursor: pointer;
+    }
 `;

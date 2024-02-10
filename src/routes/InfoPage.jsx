@@ -12,6 +12,7 @@ import {
     ArrowDown,
     HourglassHigh,
     Faders,
+    ProjectorScreenChart,
 } from '@phosphor-icons/react';
 
 const InfoPage = () => {
@@ -48,29 +49,24 @@ const InfoPage = () => {
                 </FeatureTitle>
                 {/*Reusable component used*/}
                 <Feature
-                    Icon={CalendarCheck}
-                    title="Create and track new tasks"
-                    description="Very easily create and track as many tasks as you need. 
-                    Simply start typing the name of the task and add it to the list with 
-                    the plus icon or simply by pressing the Enter key"
-                />
-                <Feature
                     Icon={HourglassHigh}
-                    title="Set Due Dates and add descriptions"
-                    description="Edit all kinds of aspects of your task, add due dates, descriptions
-                    and make sure you never miss a task ever again!"
+                    title="Habit Creation and Tracking"
+                    description="Start and track your new habits with ease. 
+                    Set personalized goals, track your progress daily, and never forget to stay on course"
                 />
                 <Feature
                     Icon={Star}
-                    title="Mark tasks as important, elevate them above the rest"
-                    description="Click the star icon to mark any task as important
-                    and it will rocket to the top of the list and get a special type of styling"
+                    title="Habit Sorting and Organization"
+                    description="Easily organize your habits by importance, 
+                    activity status, and more. Stay focused on what matters most 
+                    and keep your habits neatly sorted for a seamless experience"
                 />
                 <Feature
-                    Icon={Faders}
-                    title="Filter through all your tasks"
-                    description="Never miss out on a important task or an active one, by using the 5 different filters
-                    you can quickly find the tasks that you are looking for. Saving valuable time and energy wherever needed"
+                    Icon={ProjectorScreenChart}
+                    title="Personalized Habit Analytics"
+                    description="Get personalized analytics based on your habits 
+                    and goals. See how you're progressing and receive tailored 
+                    suggestions to enhance your habit-building journey."
                 />
             </FeaturesContainer>
 
@@ -149,7 +145,14 @@ const Title = styled.div`
 `;
 
 const Fancy = styled.span`
-    color: ${props => props.theme.accent};
+    background: linear-gradient(
+    to right,
+    ${props => props.theme.primary},
+        ${props => props.theme.accent}
+    );
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
 `;
 
 const TitleWrapper = styled.div``;

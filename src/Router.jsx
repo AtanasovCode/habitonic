@@ -15,19 +15,20 @@ import './styles/index.css';
 import Homepage from './routes/Homepage';
 import TasksPage from './routes/TasksPage';
 import TaskDetails from './routes/TaskDetails';
-import InfoPage from './routes/InfoPage';
+import ErrorPage from './components/ErrorPage';
 
 const Router = () => {
 
     const theme = {
-        text: "#f2f2f2",
-        background: "#322b2b",
-        primary: "#e62ae6",
-        secondary: "#75642a",
-        accent: "#c8a73c",
+        text: "#faf3f3",
+        background: "#333a36",
+        homepageBG: "#1d2320",
+        primary: "#0a76b8",
+        secondary: "#29326d",
+        accent: "#21aedd",
 
         taskBackground: "#322b2b",
-        taskImportant: "#554d0e",
+        taskImportant: "#585f8690",
         taskComplete: "#2f2f2f",
 
         borderRadius: "16px",
@@ -35,10 +36,10 @@ const Router = () => {
 
     const testTheme = {
         text: "#dddcf5",
-        background: "#0a091f",
+        background: "#320068",
         primary: "#9091e0",
-        secondary: "#638b27",
-        accent: "#0600c2",
+        secondary: "#a34eff",
+        accent: "#1e4467",
 
         borderRadius: "16px",
     }
@@ -65,7 +66,8 @@ const Router = () => {
             element: <TasksPage
                 tasks={tasks}
                 setTasks={setTasks}
-            />
+            />,
+            errorElement: <ErrorPage />
         },
         {
             path: "/tasks/info",
@@ -74,10 +76,6 @@ const Router = () => {
                 setTasks={setTasks}
             />
         },
-        {
-            path: "/how-it-works",
-            element: <InfoPage />
-        }
     ])
 
     return (

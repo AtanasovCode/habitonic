@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { format, differenceInDays, parse, subDays } from 'date-fns';
 import styled from 'styled-components';
 
 //a package that generates secure random values
@@ -10,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Task from '../components/Task';
 import SideBar from '../components/SideBar';
 import AddTask from '../components/AddTask';
+import RecentDates from '../components/RecentDates';
 
 //importing icons from icons library
 import {
@@ -17,68 +19,95 @@ import {
     Star,
     ClockCountdown,
     ListChecks,
-    ArrowLeft,
-    X,
-    List,
-    Plus,
     Info,
     TrashSimple,
     Placeholder,
     Trash,
+    List,
 } from '@phosphor-icons/react';
 
 const TasksPage = ({
-    //importing the props passed down from the Router component
     tasks,
     setTasks,
 }) => {
 
-    //used to control opening/closing of nav for mobile view
-    const [navOpen, setNavOpen] = useState(false);
     const [tint, setTint] = useState(false);
+    const [activeNavBar, setActiveNavBar] = useState(false);
     //used to see which filter is currently selected, default is 'all'
     const [filter, setFilter] = useState("all");
     //the name of the task
     const [name, setName] = useState("");
 
-    //open/close mobile nav
-    const handleNavOpen = () => {
-        setNavOpen(!navOpen);
-        setTint(!tint);
-    }
 
     //sets the filter
     const handleFilterChange = (filter) => {
         setFilter(filter);
 
-        if (navOpen) handleNavOpen();
     }
+
+    const toggleNavBar = () => {
+        setActiveNavBar(!activeNavBar);
+    }
+
+    useEffect(() => {
+
+        setTasks(prevTasks => {
+            return prevTasks.map((task) => {
+                const latest = task.dates ? task.dates[0]?.date : undefined;
+                const current = format(new Date(), "dd/MM/yyyy");
+
+                if (latest) {
+                    const daysDifference = differenceInDays(format(current, "dd/MM/yyyy"), format(latest, "dd/MM/yyyy"));
+
+                    if (daysDifference > 0) {
+
+                        // Calculate the missing dates for the last 5 days
+                        const missingDates = Array.from({ length: daysDifference }, (_, index) => {
+                            const date = subDays(new Date(), index);
+                            return { date: format(date, "dd/MM/yy"), complete: false };
+                        });
+
+                        task.dates = [...missingDates, ...(task.dates)];
+
+                    }
+                }
+
+                return task;
+            });
+        });
+
+    }, []);
+
+
+
 
     //when function is called it adds the task to the tasks array
     const handleAddTask = () => {
-        if (name !== "") {
+        if (name) {
+            const dates = Array.from({ length: 10 }, (_, index) => {
+                const date = new Date();
+                date.setDate(date.getDate() - index);
+                const formattedDate = format(date, "dd/MM/yyyy");
+                return { date: formattedDate, complete: false };
+            });
+
             const newTask = {
                 name: name,
                 complete: false,
-                id: uuidv4(), //generates random secure value
+                id: uuidv4(),
                 important: false,
                 description: "",
                 dueDate: "",
-                dateCreated: new Date().toLocaleDateString('en-GB'), //generates the current date
+                dateCreated: format(new Date(), "dd/MM/yyyy"),
                 trash: false,
+                dates: dates,
             };
 
-            // Separate important tasks from non-important tasks
-            const importantTasks = tasks.filter((task) => task.important);
-            const nonImportantTasks = tasks.filter((task) => !task.important);
-
-            // Add the new task below the important tasks, but above the non-important tasks
-            const updatedTasks = [...importantTasks, newTask, ...nonImportantTasks];
-
-            // Update the state with the new array of tasks
+            const updatedTasks = [...tasks, newTask];
             setTasks(updatedTasks);
 
             setName("");
+
         }
     };
 
@@ -102,6 +131,31 @@ const TasksPage = ({
         //update the state with the new array of tasks
         setTasks(updatedTasks);
     };
+
+    //marks a task as complete on that specific date
+    const markComplete = (id, dateComplete) => {
+        const updatedTasks = tasks.map((task) =>
+            task.id === id
+                ? {
+                    ...task,
+                    dates: task.dates.map((item) =>
+                        item.date === dateComplete
+                            ? {
+                                ...item,
+                                complete: !item.complete,
+                            }
+                            : item
+                    ),
+                }
+                : task
+        );
+
+        setTasks(updatedTasks);
+    };
+
+
+
+
 
     //function to run when the user clicks to mark a task as complete
     const completeTask = (id) => {
@@ -164,28 +218,40 @@ const TasksPage = ({
 
     const getFilterIcon = () => {
         switch (filter) {
-            case "all": return <ClipboardText size={32} color="#FFF" weight="light" />;
-            case "important": return <Star size={32} color="#FFF" weight="light" />;
-            case "trash": return <Trash size={32} color="#FFF" weight="light" />;
-            case "complete": return <ListChecks size={32} color="#FFF" weight="light" />;
-            case "active": return <ClockCountdown size={32} color="#FFF" weight="light" />;
+            case "all": return <ClipboardText size="auto" color="#FFF" weight="light" />;
+            case "important": return <Star size="auto" color="#FFF" weight="light" />;
+            case "trash": return <Trash size="auto" color="#FFF" weight="light" />;
+            case "complete": return <ListChecks size="auto" color="#FFF" weight="light" />;
+            case "active": return <ClockCountdown size="auto" color="#FFF" weight="light" />;
         }
     }
 
     return (
         <Container>
-            <SideBar 
+            <SideBar
                 filter={filter}
                 handleFilterChange={handleFilterChange}
+                toggleNavBar={toggleNavBar}
+                activeNavBar={activeNavBar}
             />
             <TasksContainer>
                 <TaskHeading>
-                    <TaskHeadingIcon>
-                        {getFilterIcon()}
-                    </TaskHeadingIcon>
-                    <TaskTitle>
-                        {filter}
-                    </TaskTitle>
+                    <TaskHeadingWrapper>
+                        <MenuContainer onClick={() => toggleNavBar()}>
+                            <List
+                                size={26}
+                                color="#DDD"
+                                weight="regular"
+                            />
+                        </MenuContainer>
+                        <TaskHeadingIcon>
+                            {getFilterIcon()}
+                        </TaskHeadingIcon>
+                        <TaskTitle>
+                            {filter}
+                        </TaskTitle>
+                    </TaskHeadingWrapper>
+                    <RecentDates />
                 </TaskHeading>
                 <Tasks>
                     {
@@ -208,15 +274,17 @@ const TasksPage = ({
                                         Info={Info}
                                         TrashSimple={TrashSimple}
                                         trashTask={trashTask}
+                                        dates={task.dates}
+                                        markComplete={markComplete}
                                     />
                                 )
                             })
                             :
                             <NoTasksContainer>
-                                <Placeholder 
-                                    weight="light" 
-                                    size={24} 
-                                    color="darkgray" 
+                                <Placeholder
+                                    weight="light"
+                                    size={24}
+                                    color="darkgray"
                                 />
                                 <NoTasksText>
                                     No tasks found
@@ -224,7 +292,7 @@ const TasksPage = ({
                             </NoTasksContainer>
                     }
                 </Tasks>
-                <AddTask 
+                <AddTask
                     filter={filter}
                     handleAddTask={handleAddTask}
                     handleAddEnter={handleAddEnter}
@@ -248,7 +316,7 @@ const Container = styled.div`
 
 const TasksContainer = styled.div`
     min-height: 100vh;
-    width: 80%;
+    width: 100%;
     margin-left: 300px;
     position: relative;
     display: flex;
@@ -257,6 +325,24 @@ const TasksContainer = styled.div`
     justify-content: flex-start;
     background-color: #141414;
     padding: 2rem 3rem;
+    padding-bottom: 6rem;
+    position: relative;
+
+    @media (max-width: 1200px) {
+        padding: 2rem 1rem;
+        padding-bottom: 6rem;
+    }
+
+    @media (max-width: 1024px) {
+        margin-left: 0;
+        padding: 2rem 2.5rem;
+        padding-bottom: 6rem;
+    }
+
+    @media (max-width: 675px) {
+        padding: 2.5rem 0;
+        padding-bottom: 6rem;
+    }
 `;
 
 const TaskHeading = styled.div`
@@ -264,17 +350,33 @@ const TaskHeading = styled.div`
     margin-bottom: 2rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+`;
+
+const TaskHeadingWrapper = styled.div`
+    display: flex;
+    align-items: center;
     justify-content: flex-start;
 `;
 
 const TaskHeadingIcon = styled.div`
     margin-right: 1rem;
+    width: 32px;
+
+    @media (max-width: 675px) {
+        margin-right: .5rem;
+        width: 26px;
+    }
 `;
 
 const TaskTitle = styled.div`
     font-size: 2rem;
     font-weight: 700;
     text-transform: capitalize;
+
+    @media (max-width: 675px) {
+        font-size: 1.3rem;
+    }
 `;
 
 const Tasks = styled.div`
@@ -295,4 +397,16 @@ const NoTasksContainer = styled.div`
 
 const NoTasksText = styled.div`
     margin-left: .5rem;
+`;
+
+
+const MenuContainer = styled.div`
+    display: none;
+
+    @media (max-width: 1024px) {
+        display: inline-block;
+        cursor: pointer;
+        z-index: 10;
+        margin-right: .5rem;
+    }
 `;

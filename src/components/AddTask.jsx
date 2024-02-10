@@ -29,8 +29,8 @@ const AddTask = ({
                         </InputIcon>
                         <InputTask
                             type="text"
-                            maxLength={80} //max number of characters is set to 80
-                            placeholder="Add a task"
+                            maxLength={60} //max number of characters is set to 80
+                            placeholder="Add new habit"
                             value={name}
                             onChange={(e) => setName(e.currentTarget.value)} //update the state name
                             onKeyDown={(e) => handleAddEnter(e.key)} //runs when the a key is pressed
@@ -61,7 +61,8 @@ const AddTask = ({
 export default AddTask;
 
 const Container = styled.div`
-    width: 80%;
+    width: 100%;
+    margin-left: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,16 +71,34 @@ const Container = styled.div`
     bottom: 0;
     right: 0;
     z-index: 6;
-    padding: 1rem 0;
+    padding: 1rem 0 1rem 300px;
+
+    @media (max-width: 1024px) {
+        padding: 1rem 0;
+    }
 `;
 
 const Add = styled.div`
-    width: 90%;
+    width: 100%;
+    margin: 0 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: ${props => props.theme.background};
     padding: 1rem;
+
+    @media (max-width: 1200px) {
+        margin: 0 1rem;
+    }
+
+
+    @media (max-width: 1024px) {
+        margin: 0 2.5rem;
+    }
+
+    @media (max-width: 675px) {
+        margin: 0;
+    }
 `;
 
 const InputIcon = styled.div`
