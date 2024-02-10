@@ -14,7 +14,6 @@ import './styles/index.css';
 //Importing routes
 import Homepage from './routes/Homepage';
 import TasksPage from './routes/TasksPage';
-import TaskDetails from './routes/TaskDetails';
 import ErrorPage from './components/ErrorPage';
 
 const Router = () => {
@@ -68,13 +67,6 @@ const Router = () => {
                 setTasks={setTasks}
             />,
             errorElement: <ErrorPage />
-        },
-        {
-            path: "/tasks/info",
-            element: <TaskDetails
-                tasks={tasks}
-                setTasks={setTasks}
-            />
         },
     ])
 
