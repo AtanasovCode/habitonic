@@ -8,24 +8,28 @@ const Tracker = ({
     markComplete,
     id,
 }) => {
-
-
     return (
         <Container>
             {dates.slice(0, 10).map((item, index) => (
                 item.complete ?
-                    <IconContainer key={index} onClick={() => markComplete(id, item.date)}>
+                    <IconContainer key={index} onClick={() => {
+                        console.log(`Marking task ${id} as complete on date ${item.date}`);
+                        markComplete(id, item.date);
+                    }}>
                         <Check weight="bold" color="lime" size={22} />
                     </IconContainer>
                     :
-                    <IconContainer key={index} onClick={() => markComplete(id, item.date)}>
+                    <IconContainer key={index} onClick={() => {
+                        console.log(`Marking task ${id} as complete on date ${item.date}`);
+                        markComplete(id, item.date);
+                    }}>
                         <X weight="light" color="#AAA" size={20} />
                     </IconContainer>
             ))}
         </Container>
-
     );
 };
+
 
 export default Tracker;
 

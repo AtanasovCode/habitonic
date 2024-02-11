@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { format } from 'date-fns';
+import { format, differenceInDays, parse } from 'date-fns';
 import styled from 'styled-components';
 
 //a package that generates secure random values
@@ -19,10 +19,6 @@ import {
     Star,
     ClockCountdown,
     ListChecks,
-    ArrowLeft,
-    X,
-    List,
-    Plus,
     Info,
     TrashSimple,
     Placeholder,
@@ -30,74 +26,95 @@ import {
 } from '@phosphor-icons/react';
 
 const TasksPage = ({
-    //importing the props passed down from the Router component
     tasks,
     setTasks,
 }) => {
 
-    //used to control opening/closing of nav for mobile view
-    const [navOpen, setNavOpen] = useState(false);
     const [tint, setTint] = useState(false);
     //used to see which filter is currently selected, default is 'all'
     const [filter, setFilter] = useState("all");
     //the name of the task
     const [name, setName] = useState("");
 
-    //open/close mobile nav
-    const handleNavOpen = () => {
-        setNavOpen(!navOpen);
-        setTint(!tint);
-    }
 
     //sets the filter
     const handleFilterChange = (filter) => {
         setFilter(filter);
 
-        if (navOpen) handleNavOpen();
     }
 
     useEffect(() => {
-        console.log(format(new Date(), "dd/MM/yy"));
-    }, [])
+
+        console.log(tasks);
+
+        setTasks(prevTasks => {
+            return prevTasks.map((task) => {
+                const latest = task.dates ? task.dates[0]?.date : undefined;
+                const current = format(new Date(), "dd/MM/yyyy");
+
+                if (latest) {
+                    console.log(`latest date: ${latest} current date: ${current}`)
+                    const daysDifference = differenceInDays(format(current, "dd/MM/yyyy"), format(latest, "dd/MM/yyyy"));
+
+                    console.log(`Days difference: ${daysDifference}`);
+
+                    if (daysDifference > 0) {
+
+                        const dates = Array.from({ length: 10 }, (_, index) => {
+                            const date = new Date();
+                            date.setDate(date.getDate() - index);
+                            const formattedDate = format(date, "dd/MM/yyyy");
+                            return { date: formattedDate, complete: false };
+                        });
+
+                        // Calculate the missing dates for the last 5 days
+                        const missingDates = Array.from({ length: daysDifference }, (_, index) => {
+                            const date = new Date();
+                            return { date: format(date, "dd/MM/yy"), complete: false };
+                        });
+
+                        task.dates = [...missingDates, ...(task.dates)];
+
+                    }
+                }
+
+                return task;
+            });
+        });
+
+    }, []);
+
 
 
 
     //when function is called it adds the task to the tasks array
     const handleAddTask = () => {
-
-        if (name !== "") {
-
-            const currentDate = new Date().toLocaleDateString('en-GB');
+        if (name) {
             const dates = Array.from({ length: 10 }, (_, index) => {
                 const date = new Date();
                 date.setDate(date.getDate() - index);
-                const formattedDate = date.toLocaleDateString('en-GB');
+                const formattedDate = format(date, "dd/MM/yyyy");
                 return { date: formattedDate, complete: false };
             });
 
             const newTask = {
                 name: name,
                 complete: false,
-                id: uuidv4(), //generates random secure value
+                id: uuidv4(),
                 important: false,
                 description: "",
                 dueDate: "",
-                dateCreated: new Date().toLocaleDateString('en-GB'), //generates the current date
+                dateCreated: format(new Date(), "dd/MM/yyyy"),
                 trash: false,
                 dates: dates,
             };
 
-            // Separate important tasks from non-important tasks
-            const importantTasks = tasks.filter((task) => task.important);
-            const nonImportantTasks = tasks.filter((task) => !task.important);
-
-            // Add the new task below the important tasks, but above the non-important tasks
-            const updatedTasks = [...importantTasks, newTask, ...nonImportantTasks];
-
-            // Update the state with the new array of tasks
+            const updatedTasks = [...tasks, newTask];
             setTasks(updatedTasks);
 
             setName("");
+
+            console.log(tasks);
         }
     };
 
@@ -122,6 +139,7 @@ const TasksPage = ({
         setTasks(updatedTasks);
     };
 
+    //marks a task as complete on that specific date
     const markComplete = (id, dateComplete) => {
         setTasks(prevTasks => {
             return prevTasks.map(task => {
