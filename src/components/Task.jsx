@@ -40,6 +40,7 @@ const Task = ({
                     trashTask={trashTask}
                     makeImportant={makeImportant}
                     trash={trash}
+                    toggleIcons={toggleIcons}
                 />
             }
             <InfoContainer>

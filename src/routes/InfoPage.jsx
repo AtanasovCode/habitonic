@@ -169,6 +169,10 @@ const FeatureTitle = styled.div`
     font-size: 2rem;
     font-weight: 1000;
     margin-bottom: 3rem;
+
+    @media (max-width: 675px) {
+        margin-bottom: 0;
+    }
 `;
 
 const Prompt = styled.div`

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 
-import { 
+import {
     TrashSimple,
     Star,
     Info,
@@ -16,11 +16,16 @@ const TaskIcons = ({
     id,
     trashTask,
     trash,
+    toggleIcons,
 }) => {
+
     return (
         <Icons>
             {/*if the task is complete, you cannot make the task important*/}
-            <TaskIcon onClick={() => !complete && makeImportant(id)}>
+            <TaskIcon onClick={() => {
+                !complete && makeImportant(id);
+                toggleIcons();
+            }}>
                 <Star
                     weight={important ? "fill" : "light"}
                     color="#fff"

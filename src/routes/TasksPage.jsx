@@ -42,6 +42,7 @@ const TasksPage = ({
     //sets the filter
     const handleFilterChange = (filter) => {
         setFilter(filter);
+        setActiveNavBar(false);
 
     }
 
@@ -201,28 +202,29 @@ const TasksPage = ({
     }
 
     //render the tasks based on the selected filter
-    const filteredTasks = tasks.filter(task => {
+    const filteredTasks = tasks.filter(habit => {
+        const currentDate = format(new Date(), "dd/MM/yyyy");
+
         if (filter === 'all') {
-            return !task.trash;
+            return !habit.trash;
         } else if (filter === 'important') {
-            return task.important && !task.trash;
-        } else if (filter === 'active') {
-            return !task.complete && !task.trash;
-        } else if (filter === 'complete') {
-            return task.complete && !task.trash;
+            return habit.important && !habit.trash;
+        } else if (filter === 'active' || filter === 'complete') {
+            const todayEntry = habit.dates.find(entry => entry.date);
+            return todayEntry && (filter === 'active' ? !todayEntry.complete : todayEntry.complete) && !habit.trash;
         } else if (filter === "trash") {
-            return task.trash;
+            return habit.trash;
         }
         return false;
     });
 
     const getFilterIcon = () => {
         switch (filter) {
-            case "all": return <ClipboardText size="auto" color="#FFF" weight="light" />;
-            case "important": return <Star size="auto" color="#FFF" weight="light" />;
-            case "trash": return <Trash size="auto" color="#FFF" weight="light" />;
-            case "complete": return <ListChecks size="auto" color="#FFF" weight="light" />;
-            case "active": return <ClockCountdown size="auto" color="#FFF" weight="light" />;
+            case "all": return <ClipboardText size="100%" color="#FFF" weight="fill" />;
+            case "important": return <Star size="100%" color="#FFF" weight="fill" />;
+            case "trash": return <Trash size="100%" color="#FFF" weight="fill" />;
+            case "complete": return <ListChecks size="100%" color="#FFF" weight="fill" />;
+            case "active": return <ClockCountdown size="100%" color="#FFF" weight="fill" />;
         }
     }
 
@@ -287,7 +289,7 @@ const TasksPage = ({
                                     color="darkgray"
                                 />
                                 <NoTasksText>
-                                    No tasks found
+                                    No habits found
                                 </NoTasksText>
                             </NoTasksContainer>
                     }

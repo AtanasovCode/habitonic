@@ -8,7 +8,6 @@ import {
     ListChecks,
     Trash,
     ClockCountdown,
-    ArrowLeft,
     X,
     Gauge,
     House,
@@ -154,6 +153,10 @@ const Links = styled.div`
     position: absolute;
     bottom: 1%;
     left: 0;
+
+    @media (max-width: 675px) {
+        bottom: 6%;
+    }
 `;
 
 const BackLink = styled(Link)`
