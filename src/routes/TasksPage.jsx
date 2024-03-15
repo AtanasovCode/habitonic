@@ -52,6 +52,8 @@ const TasksPage = ({
 
     useEffect(() => {
 
+        console.log(tasks);
+
         setTasks(prevTasks => {
             return prevTasks.map((task) => {
                 const latest = task.dates ? task.dates[0]?.date : undefined;
