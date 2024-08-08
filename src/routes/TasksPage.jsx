@@ -51,33 +51,31 @@ const TasksPage = ({
     }
 
     useEffect(() => {
-
         setTasks(prevTasks => {
             return prevTasks.map((task) => {
                 const latest = task.dates ? task.dates[0]?.date : undefined;
-                const current = format(new Date(), "dd/MM/yyyy");
-
                 if (latest) {
-                    const daysDifference = differenceInDays(format(current, "dd/MM/yyyy"), format(latest, "dd/MM/yyyy"));
+                    const latestDate = new Date(latest);
+                    if (!isNaN(latestDate)) {
+                        const current = new Date();
+                        const daysDifference = differenceInDays(current, latestDate);
 
-                    if (daysDifference > 0) {
+                        if (daysDifference > 0) {
+                            // Calculate the missing dates for the last 5 days
+                            const missingDates = Array.from({ length: daysDifference }, (_, index) => {
+                                const date = subDays(current, index);
+                                return { date: format(date, "dd/MM/yyyy"), complete: false };
+                            });
 
-                        // Calculate the missing dates for the last 5 days
-                        const missingDates = Array.from({ length: daysDifference }, (_, index) => {
-                            const date = subDays(new Date(), index);
-                            return { date: format(date, "dd/MM/yy"), complete: false };
-                        });
-
-                        task.dates = [...missingDates, ...(task.dates)];
-
+                            task.dates = [...missingDates, ...(task.dates)];
+                        }
                     }
                 }
-
                 return task;
             });
         });
-
     }, []);
+
 
 
 
@@ -108,9 +106,9 @@ const TasksPage = ({
             setTasks(updatedTasks);
 
             setName("");
-
         }
     };
+
 
     //when the enter key is pressed, function runs and adds the task
     const handleAddEnter = (key) => {
