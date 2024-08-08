@@ -86,6 +86,7 @@ const Add = styled.div`
     justify-content: center;
     background-color: ${props => props.theme.background};
     padding: 1rem;
+    border-radius: 16px;
 
     @media (max-width: 1200px) {
         margin: 0 1rem;

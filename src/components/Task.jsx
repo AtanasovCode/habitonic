@@ -73,6 +73,7 @@ const Container = styled.div`
     margin-bottom: .5rem;
     transition: all .3s ease;
     position: relative;
+    border-radius: 16px;
 
     ${props => props.$important && `
         background-color: ${props.theme.taskImportant};

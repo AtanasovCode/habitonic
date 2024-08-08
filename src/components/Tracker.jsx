@@ -16,10 +16,10 @@ const Tracker = ({
                         markComplete(id, item.date);
                     }}>
                         <IconWrapper type="check">
-                            <Check 
-                                weight="bold" 
+                            <Check
+                                weight="bold"
                                 color="#21aedd"
-                                size="100%" 
+                                size="100%"
                             />
                         </IconWrapper>
                     </IconContainer>
@@ -28,10 +28,10 @@ const Tracker = ({
                         markComplete(id, item.date);
                     }}>
                         <IconWrapper type="x">
-                            <X 
-                                weight="light" 
-                                color="#AAAAAA" 
-                                size="100%" 
+                            <X
+                                weight="light"
+                                color="#AAAAAA"
+                                size="100%"
                             />
                         </IconWrapper>
                     </IconContainer>
@@ -57,32 +57,23 @@ const IconContainer = styled.div`
     cursor: pointer;
 
     @media (max-width: 1200px) {
-        width: 3rem;
-    }
-
-    @media (max-width: 1024px) {
         width: 2.5rem;
-        display: ${props => props.$index >= 9 ? "none" : "flex"};
+        display: ${(props) => (props.$index >= 8 ? "none" : "flex")};   
     }
 
-    @media (max-width: 768px) {
-        display: ${props => props.$index >= 8 ? "none" : "flex"};
+    @media (max-width: 800px) {
+        display: ${props => props.$index >= 6 ? "none" : "flex"};
     }
 
     @media (max-width: 550px) {
-        width: 1.5rem;
-        display: ${props => props.$index >= 6 ? "none" : "flex"};
-        margin-left: .6rem;
-    }
-
-    @media (max-width: 400px) {
-        display: ${(props) => (props.$index >= 5 ? "none" : "flex")};   
+        width: 2rem;
+        display: ${props => props.$index >= 4 ? "none" : "flex"};
     }
 `;
 
 const IconWrapper = styled.div`
-    width: ${props => props.type === "check" ? "24px" : "22px"};
-    height: ${props => props.type === "check" ? "24px" : "22px"};
+    width: ${props => props.type === "check" ? "26px" : "22px"};
+    height: ${props => props.type === "check" ? "26px" : "22px"};
 
     
 
