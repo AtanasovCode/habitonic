@@ -62,16 +62,11 @@ export default AddTask;
 
 const Container = styled.div`
     width: 100%;
-    margin-left: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #141414;
-    position: fixed;
-    bottom: 0;
-    right: 0;
+    background-color: ${props => props.theme.darkBackground};
     z-index: 6;
-    padding: 1rem 0 1rem 300px;
 
     @media (max-width: 1024px) {
         padding: 1rem 0;
@@ -80,13 +75,12 @@ const Container = styled.div`
 
 const Add = styled.div`
     width: 100%;
-    margin: 0 3rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: ${props => props.theme.background};
-    padding: 1rem;
-    border-radius: 16px;
+    border-radius: ${props => props.theme.borderRadius};
 
     @media (max-width: 1200px) {
         margin: 0 1rem;

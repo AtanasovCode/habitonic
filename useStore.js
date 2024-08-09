@@ -1,8 +1,11 @@
 import { create } from 'zustand'
 
 export const useStore = create((set) => ({
-  bears: 0,
-  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 }),
-  updateBears: (newBears) => set({ bears: newBears }),
+  //task dates to display based on screen width
+  extraLarge: 12,
+  large: 10,
+  medium: 8,
+  small: 6,
+  extraSmall: 4,
+  tiny: 2,
 }))

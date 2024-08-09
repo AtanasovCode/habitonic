@@ -315,17 +315,15 @@ const Container = styled.div`
 `;
 
 const TasksContainer = styled.div`
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
-    margin-left: 300px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     background-color: #141414;
     padding: 2rem 3rem;
-    padding-bottom: 6rem;
     position: relative;
 
     @media (max-width: 1200px) {
@@ -346,8 +344,8 @@ const TasksContainer = styled.div`
 `;
 
 const TaskHeading = styled.div`
+    flex: 8%;
     width: 100%;
-    margin-bottom: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -380,11 +378,13 @@ const TaskTitle = styled.div`
 `;
 
 const Tasks = styled.div`
+    flex: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
+    overflow-y: auto;
 `;
 
 const NoTasksContainer = styled.div`

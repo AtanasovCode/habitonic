@@ -92,25 +92,22 @@ export default SideBar;
 const Container = styled.div`
     background-color: ${props => props.theme.background};
     color: ${props => props.theme.text};
-    min-height: 100vh;
-    width: 300px;
-    position: fixed;
-    top: 0;
-    left: 0;
     z-index: 10;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     border-top-right-radius: ${props => props.theme.borderRadius};
     border-bottom-right-radius: ${props => props.theme.borderRadius};
     transition: all .3s ease;
+    padding: 2rem 0;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
         position: fixed;
         top: 0;
         left: -100%;
-        width: 50%;
+        width: 40%;
         
         ${props => props.$active && `
             left: 0;
@@ -118,7 +115,7 @@ const Container = styled.div`
         `}
     }
 
-    @media (max-width: 675px) {
+    @media (max-width: 550px) {
         width: 100%;
     }
 `;
@@ -132,17 +129,15 @@ const Filters = styled.div`
 `;
 
 const Logo = styled.img`
-    width: 80%;
-    position: absolute;
-    top: 5%;
+    width: 60%;
+    margin-bottom: 5rem;
 
     @media (max-width: 1024px) {
-        top: 10%;
         width: 50%;
     }
 
-    @media (max-width: 675px) {
-        width: 50%;
+    @media (max-width: 550px) {
+        width: 45%;
     }
 `;
 
@@ -154,8 +149,8 @@ const Links = styled.div`
     bottom: 1%;
     left: 0;
 
-    @media (max-width: 675px) {
-        bottom: 6%;
+    @media (max-width: 550px) {
+        bottom: 5%;
     }
 `;
 
@@ -192,11 +187,11 @@ const DashboardIcon = styled.div`
 const CloseContainer = styled.div`
     display: none;
     
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
         display: inline-block;
         position: absolute;
-        top: 2%;
-        left: 2%;
+        top: 4%;
+        left: 4%;
         cursor: pointer;
     }
 `;

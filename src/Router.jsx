@@ -26,6 +26,7 @@ const Router = () => {
         secondary: "#29326d",
         accent: "#21aedd",
 
+        darkBackground: "#141414",
         taskBackground: "#322b2b",
         taskImportant: "#585f8690",
         taskComplete: "#2f2f2f",
