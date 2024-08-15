@@ -96,6 +96,7 @@ const Container = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
     align-items: center;
     justify-content: flex-start;
     border-top-right-radius: ${props => props.theme.borderRadius};

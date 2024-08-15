@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import logo from '../assets/logo.svg';
+import heroImage from '../assets/group-icons.svg';
 
 import InfoPage from './InfoPage';
 
@@ -69,6 +70,13 @@ const Hero = styled.div`
     align-items: center;
     justify-content: center;
     min-height: 90vh;
+`;
+
+const HeroImage = styled.img`
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
 `;
 
 const HomeInfoContainer = styled.div`
