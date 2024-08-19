@@ -64,7 +64,7 @@ export default Task;
 
 const Container = styled.div`
     width: 100%;
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: ${props => props.theme.background};
     color: ${props => props.theme.text};
     display: flex;

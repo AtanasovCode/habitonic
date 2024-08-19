@@ -17,8 +17,8 @@ const Tracker = ({
                     }}>
                         <IconWrapper type="check">
                             <Check
-                                weight="bold"
-                                color="#21aedd"
+                                weight="regular"
+                                color="#fff"
                                 size="100%"
                             />
                         </IconWrapper>
@@ -29,8 +29,8 @@ const Tracker = ({
                     }}>
                         <IconWrapper type="x">
                             <X
-                                weight="light"
-                                color="#AAAAAA"
+                                weight="regular"
+                                color="#ddd"
                                 size="100%"
                             />
                         </IconWrapper>
@@ -72,8 +72,8 @@ const IconContainer = styled.div`
 `;
 
 const IconWrapper = styled.div`
-    width: ${props => props.type === "check" ? "26px" : "22px"};
-    height: ${props => props.type === "check" ? "26px" : "22px"};
+    width: ${props => props.type === "check" ? "22px" : "18px"};
+    height: ${props => props.type === "check" ? "22px" : "18px"};
 
     
 

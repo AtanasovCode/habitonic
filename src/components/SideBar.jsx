@@ -99,10 +99,11 @@ const Container = styled.div`
     position: relative;
     align-items: center;
     justify-content: flex-start;
-    border-top-right-radius: ${props => props.theme.borderRadius};
-    border-bottom-right-radius: ${props => props.theme.borderRadius};
+    border-top-right-radius: 32px;
+    border-bottom-right-radius: 32px;
     transition: all .3s ease;
     padding: 2rem 0;
+    width: 15%;
 
     @media (max-width: 768px) {
         position: fixed;
@@ -130,7 +131,7 @@ const Filters = styled.div`
 `;
 
 const Logo = styled.img`
-    width: 60%;
+    width: 70%;
     margin-bottom: 5rem;
 
     @media (max-width: 1024px) {

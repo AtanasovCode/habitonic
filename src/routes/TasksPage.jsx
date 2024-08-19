@@ -322,7 +322,7 @@ const TasksContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-color: #141414;
+    background-color: ${props => props.theme.darkBackground};
     padding: 2rem 3rem;
     position: relative;
 

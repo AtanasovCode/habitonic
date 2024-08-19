@@ -15,9 +15,9 @@ const Filter = ({
         >
             <Icon>
                 <FilterIcon
-                    color={filter === filterName ? "#fff" : "#aaa"}
+                    color={filter === filterName ? "#fff" : "#fff"}
                     weight={filter === filterName ? "fill" : "light"}
-                    size={26}
+                    size={22}
                 />
             </Icon>
             <Name>
@@ -35,18 +35,17 @@ const Container = styled.div`
     align-items: center;
     justify-content: flex-start;
     padding: .5rem 1rem;
+    margin-left: .5rem;
     cursor: pointer;
     user-select: none;
-    transition: all .4s ease;
+    transition: all .3s ease;
     margin-bottom: .4rem;
 
     ${props => props.$active && `
-        background-color: ${props.theme.secondary};
+        background-color: ${props.theme.darkBackground};
+        border-top-left-radius: 32px;
+        border-bottom-left-radius: 32px;
     `}
-
-    &:hover {
-        background-color: ${props => props.theme.secondary};
-    }
 `;
 
 const Icon = styled.div`
@@ -56,4 +55,5 @@ const Icon = styled.div`
 const Name = styled.div`
     text-transform: capitalize;
     font-size: .9rem;
+    color: ${props => props.theme.text};
 `;

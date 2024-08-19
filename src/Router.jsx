@@ -20,14 +20,15 @@ const Router = () => {
 
     const theme = {
         text: "#faf3f3",
-        background: "#333a36",
+        background: "#251A74",
+        //background: "#333a36",
         homepageBG: "#1d2320",
         primary: "#0a76b8",
-        secondary: "#29326d",
+        secondary: "#251A74",
         accent: "#21aedd",
 
-        darkBackground: "#141414",
-        taskBackground: "#322b2b",
+        darkBackground: "#0D0106",
+        taskBackground: "#050404",
         taskImportant: "#585f8690",
         taskComplete: "#2f2f2f",
 
@@ -35,8 +36,8 @@ const Router = () => {
     }
 
     const testTheme = {
-        text: "#dddcf5",
-        background: "#320068",
+        text: "#faf3f3",
+        background: "#251A74",
         primary: "#9091e0",
         secondary: "#a34eff",
         accent: "#1e4467",
