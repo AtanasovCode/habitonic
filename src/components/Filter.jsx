@@ -30,7 +30,6 @@ const Filter = ({
 export default Filter;
 
 const Container = styled.div`
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -45,6 +44,11 @@ const Container = styled.div`
         background-color: ${props.theme.darkBackground};
         border-top-left-radius: 32px;
         border-bottom-left-radius: 32px;
+
+        @media (max-width: 768px) {
+            border-radius: 32px;
+            margin-right: .5rem;
+        }
     `}
 `;
 
@@ -55,5 +59,6 @@ const Icon = styled.div`
 const Name = styled.div`
     text-transform: capitalize;
     font-size: .9rem;
+    font-weight: 500;
     color: ${props => props.theme.text};
 `;

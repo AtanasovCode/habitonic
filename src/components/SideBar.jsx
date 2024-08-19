@@ -27,14 +27,16 @@ const SideBar = ({
 }) => {
     return (
         <Container $active={activeNavBar}>
-            <CloseContainer onClick={() => toggleNavBar()}>
-                <X
-                    size={26}
-                    color="#DDD"
-                    weight="regular"
-                />
-            </CloseContainer>
-            <Logo src={logo} alt="logo" />
+            <LogoContainer>
+                <Logo src={logo} alt="logo" />
+                <CloseContainer onClick={() => toggleNavBar()}>
+                    <X
+                        size={26}
+                        color="#DDD"
+                        weight="regular"
+                    />
+                </CloseContainer>
+            </LogoContainer>
             <Filters>
                 <Filter
                     filter={filter}
@@ -103,9 +105,13 @@ const Container = styled.div`
     border-bottom-right-radius: 32px;
     transition: all .3s ease;
     padding: 2rem 0;
-    width: 15%;
+    width: 20%;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1300px) {
+        width: 25%;
+    }
+
+    @media (max-width: 1024px) {
         position: fixed;
         top: 0;
         left: -100%;
@@ -115,6 +121,10 @@ const Container = styled.div`
             left: 0;
             z-index: 100;
         `}
+    }
+
+    @media (max-width: 768px) {
+        width: 50%;
     }
 
     @media (max-width: 550px) {
@@ -130,9 +140,16 @@ const Filters = styled.div`
     justify-content: center;
 `;
 
+const LogoContainer = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+`;
+
 const Logo = styled.img`
     width: 70%;
-    margin-bottom: 5rem;
 
     @media (max-width: 1024px) {
         width: 50%;
@@ -189,10 +206,11 @@ const DashboardIcon = styled.div`
 const CloseContainer = styled.div`
     display: none;
     
-    @media (max-width: 768px) {
-        display: inline-block;
+    @media (max-width: 1024px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
-        top: 4%;
         left: 4%;
         cursor: pointer;
     }

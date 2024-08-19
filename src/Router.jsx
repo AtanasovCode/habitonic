@@ -32,7 +32,7 @@ const Router = () => {
         taskImportant: "#585f8690",
         taskComplete: "#2f2f2f",
 
-        borderRadius: "16px",
+        borderRadius: "20px",
     }
 
     const testTheme = {

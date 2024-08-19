@@ -30,7 +30,7 @@ const Tracker = ({
                         <IconWrapper type="x">
                             <X
                                 weight="regular"
-                                color="#ddd"
+                                color="#eee"
                                 size="100%"
                             />
                         </IconWrapper>
