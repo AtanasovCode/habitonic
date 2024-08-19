@@ -96,16 +96,18 @@ const InfoContainer = styled.div`
     align-items: center;
     justify-content: flex-start;
     width: 40%;
-    min-width: 200px;
 
-    @media (max-width: 800px) {
-        min-width: 150px;
-        width: 30%;
+    @media (max-width: 768px) {
+        width: 45%;
+    }
+
+    @media (max-width: 550px) {
+        width: 50%;
     }
 `;
 
 const MoreInfo = styled.div`
-    margin-right: .5rem;
+    margin-right: .3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,6 +119,13 @@ const TaskName = styled.div`
     width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;  /* Prevent line breaks */
     word-wrap: break-word;  /* Break words to prevent white space */
+    
+    @media (max-width: 768px) {
+        font-size: .9rem;
+    }
+
+    @media (max-width: 550px) {
+        font-size: .8rem;
+    }
 `;
