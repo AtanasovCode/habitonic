@@ -328,18 +328,15 @@ const TasksContainer = styled.div`
 
     @media (max-width: 1200px) {
         padding: 2rem 1rem;
-        padding-bottom: 6rem;
     }
 
     @media (max-width: 1024px) {
         margin-left: 0;
         padding: 2rem 2.5rem;
-        padding-bottom: 6rem;
     }
 
     @media (max-width: 675px) {
-        padding: 2.5rem 0;
-        padding-bottom: 6rem;
+        padding: 2.5rem .5rem;
     }
 `;
 

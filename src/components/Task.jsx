@@ -75,20 +75,20 @@ const Container = styled.div`
     position: relative;
     border-radius: ${props => props.theme.borderRadius};
 
+    @media (max-width: 550px) {
+        padding: 1rem .5rem;
+    }
+
     ${props => props.$important && `
         background-color: ${props.theme.taskImportant};
         font-weight: 700;
     `}
 
-${props => props.$complete && `
+    ${props => props.$complete && `
         text-decoration: line-through;
         color: #a2a2a2;
         background-color: ${props.theme.taskComplete};
     `}
-
-    @media (max-width: 675px) {
-        padding: 1.5rem .5rem;
-    }
 `;
 
 const InfoContainer = styled.div`

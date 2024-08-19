@@ -67,10 +67,6 @@ const Container = styled.div`
     justify-content: center;
     background-color: ${props => props.theme.darkBackground};
     z-index: 6;
-
-    @media (max-width: 1024px) {
-        padding: 1rem 0;
-    }
 `;
 
 const Add = styled.div`
@@ -81,19 +77,6 @@ const Add = styled.div`
     justify-content: center;
     background-color: ${props => props.theme.background};
     border-radius: ${props => props.theme.borderRadius};
-
-    @media (max-width: 1200px) {
-        margin: 0 1rem;
-    }
-
-
-    @media (max-width: 1024px) {
-        margin: 0 2.5rem;
-    }
-
-    @media (max-width: 675px) {
-        margin: 0;
-    }
 `;
 
 const InputIcon = styled.div`
