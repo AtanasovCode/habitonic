@@ -32,16 +32,21 @@ const Task = ({
             key={id}
         >
             {
-                showIcons &&
-                <TaskIcons
-                    important={important}
-                    complete={complete}
-                    id={id}
-                    trashTask={trashTask}
-                    makeImportant={makeImportant}
-                    trash={trash}
-                    toggleIcons={toggleIcons}
-                />
+                showIcons && (
+                    <>
+                        <TaskIcons
+                            important={important}
+                            complete={complete}
+                            id={id}
+                            trashTask={trashTask}
+                            makeImportant={makeImportant}
+                            trash={trash}
+                            toggleIcons={toggleIcons}
+                            name={name}
+                        />
+                        <Tint onClick={() => toggleIcons()} />
+                    </>
+                )
             }
             <InfoContainer>
                 <MoreInfo onClick={() => toggleIcons()}>
@@ -72,7 +77,6 @@ const Container = styled.div`
     justify-content: space-between;
     margin-bottom: .5rem;
     transition: all .3s ease;
-    position: relative;
     border-radius: ${props => props.theme.borderRadius};
 
     @media (max-width: 550px) {
@@ -128,4 +132,26 @@ const TaskName = styled.div`
     @media (max-width: 550px) {
         font-size: .8rem;
     }
+`;
+
+const Tint = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .6);
+    z-index: 99;
+
+    animation: fade .4s ease-in-out;
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
 `;
