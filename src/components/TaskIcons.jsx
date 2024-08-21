@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {
     TrashSimple,
     Star,
-    Info,
+    PresentationChart,
     X,
 } from "@phosphor-icons/react";
 
@@ -27,7 +27,7 @@ const TaskIcons = ({
             <TaskName>
                 {name}
                 <CloseIcon onClick={() => toggleIcons()} >
-                    <X 
+                    <X
                         weight="regular"
                         size={24}
                         color="#fff"
@@ -39,25 +39,34 @@ const TaskIcons = ({
                     !complete && makeImportant(id);
                     toggleIcons();
                 }}>
-                    <IconDescription>
-                        Mark as important
-                    </IconDescription>
                     <Star
                         weight={important ? "fill" : "light"}
                         color="#fff"
                         size={24}
                     />
-                </TaskIcon>
-
-                <TaskIcon onClick={() => trashTask(id)}>
                     <IconDescription>
-                        Delete habit
+                        Mark as important
                     </IconDescription>
+                </TaskIcon>
+                <TaskIcon>
+                    <PresentationChart
+                        weight="regular"
+                        color="#fff"
+                        size={24}
+                    />
+                    <IconDescription>
+                        View stats
+                    </IconDescription>
+                </TaskIcon>
+                <TaskIcon onClick={() => trashTask(id)}>
                     <TrashSimple
                         weight={trash ? "fill" : "light"}
                         color="#fff"
                         size={24}
                     />
+                    <IconDescription>
+                        Delete habit
+                    </IconDescription>
                 </TaskIcon>
             </Icons>
         </IconsContainer>
@@ -106,6 +115,17 @@ const TaskName = styled.div`
     justify-content: center;
 `;
 
+const TaskIcon = styled.div`
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+    padding: .5rem 1rem;
+    background-color: #082f49;
+    border-radius: 16px;
+`;
+
 const Icons = styled.div`
     display: flex;
     flex-direction: column;
@@ -115,22 +135,6 @@ const IconDescription = styled.div`
     font-size: 1rem;
     margin-left: .5rem;
 `;
-
-const TaskIcon = styled.div`
-    width: 100%;
-    cursor: pointer;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-bottom: 1.5rem;
-    border: 1px solid #fff;
-`;
-
-const IconLink = styled(Link)`
-    margin: .4rem;
-`;
-
 
 const CloseIcon = styled.div`
     position: absolute;
