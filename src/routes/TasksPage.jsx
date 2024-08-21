@@ -331,17 +331,19 @@ const TasksContainer = styled.div`
     }
 
     @media (max-width: 1024px) {
-        margin-left: 0;
         padding: 2rem 2.5rem;
     }
 
-    @media (max-width: 675px) {
-        padding: 2.5rem .5rem;
+    @media (max-width: 768px) {
+        padding: 1.5rem .5rem;
+    }
+
+    @media (max-width: 550px) {
+        padding: .5rem;
     }
 `;
 
 const TaskHeading = styled.div`
-    flex: 8%;
     width: 100%;
     display: flex;
     align-items: center;

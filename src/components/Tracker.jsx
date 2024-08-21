@@ -58,16 +58,21 @@ const IconContainer = styled.div`
 
     @media (max-width: 1200px) {
         width: 2.5rem;
-        display: ${(props) => (props.$index >= 8 ? "none" : "flex")};   
+        display: ${(props) => (props.$index >= 9 ? "none" : "flex")};   
     }
 
-    @media (max-width: 800px) {
-        display: ${props => props.$index >= 6 ? "none" : "flex"};
+    @media (max-width: 1024px) {
+        width: 2.5rem;
+        display: ${(props) => (props.$index >= 10 ? "none" : "flex")};   
+    }
+
+    @media (max-width: 768px) {
+        display: ${props => props.$index >= 7 ? "none" : "flex"};
     }
 
     @media (max-width: 550px) {
         width: 2rem;
-        display: ${props => props.$index >= 4 ? "none" : "flex"};
+        display: ${props => props.$index >= 5 ? "none" : "flex"};
     }
 `;
 

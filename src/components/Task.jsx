@@ -130,7 +130,7 @@ const TaskName = styled.div`
     }
 
     @media (max-width: 550px) {
-        font-size: .8rem;
+        font-size: .75rem;
     }
 `;
 
@@ -140,7 +140,8 @@ const Tint = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, .6);
+    background-color: rgba(0, 0, 0, .4);
+    backdrop-filter: blur(6px);
     z-index: 99;
 
     animation: fade .4s ease-in-out;
