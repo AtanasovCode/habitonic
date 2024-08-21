@@ -107,6 +107,10 @@ const RemoveTasks = styled.div`
     &:hover {
         background-color: #353535;
     }
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const RemoveTasksText = styled.div`
