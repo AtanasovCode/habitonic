@@ -50,7 +50,7 @@ const AddTask = ({
                             size={26}
                         />
                         <RemoveTasksText>
-                            Remove Tasks
+                            Delete Habits
                         </RemoveTasksText>
                     </RemoveTasks>
             }
