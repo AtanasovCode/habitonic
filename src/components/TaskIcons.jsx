@@ -45,7 +45,7 @@ const TaskIcons = ({
                         size={24}
                     />
                     <IconDescription>
-                        Mark as important
+                        {important ? "Unmark as important" : "Mark as important"}
                     </IconDescription>
                 </TaskIcon>
                 <TaskIcon>
@@ -65,7 +65,7 @@ const TaskIcons = ({
                         size={24}
                     />
                     <IconDescription>
-                        Delete habit
+                        {trash ? "Restore habit" : "Delete habit"}
                     </IconDescription>
                 </TaskIcon>
             </Icons>
