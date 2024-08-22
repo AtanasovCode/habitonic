@@ -33,27 +33,23 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: .5rem 1rem;
-    margin-left: .5rem;
+    padding: .5rem 1.2rem;
     cursor: pointer;
     user-select: none;
     transition: all .3s ease;
-    margin-bottom: .4rem;
+    margin-bottom: .3rem;
 
     ${props => props.$active && `
-        background-color: ${props.theme.darkBackground};
-        border-top-left-radius: 32px;
-        border-bottom-left-radius: 32px;
-
-        @media (max-width: 768px) {
-            border-radius: 32px;
-            margin-right: .5rem;
-        }
+        background-color: ${props.theme.primary};
+        border-radius: 32px;
     `}
 `;
 
 const Icon = styled.div`
-    margin-right: 1rem;
+    margin-right: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const Name = styled.div`
