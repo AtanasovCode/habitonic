@@ -14,6 +14,7 @@ import './styles/index.css';
 //Importing routes
 import Homepage from './routes/Homepage';
 import TasksPage from './routes/TasksPage';
+import HabitStats from './routes/HabitStats';
 import ErrorPage from './components/ErrorPage';
 
 const Router = () => {
@@ -72,7 +73,19 @@ const Router = () => {
             />,
             errorElement: <ErrorPage />
         },
+        {
+            path: "/habit-stats",
+            element: <HabitStats
+                tasks={tasks}
+                setTasks={setTasks}
+            />,
+            errorElement: <ErrorPage />
+        },
     ])
+
+    useEffect(() => {
+        console.log(tasks);
+    }, [])
 
     return (
         <ThemeProvider theme={theme}>

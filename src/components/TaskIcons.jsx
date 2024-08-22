@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 
 import {
     TrashSimple,
@@ -20,6 +21,8 @@ const TaskIcons = ({
     toggleIcons,
     name,
 }) => {
+
+    const navigate = useNavigate();
 
     return (
         <IconsContainer>
@@ -52,8 +55,7 @@ const TaskIcons = ({
                     </IconDescription>
 
                 </TaskIcon>
-                <TaskIcon>
-
+                <TaskIcon onClick={() => navigate("/habit-stats")}>
                     <PresentationChart
                         weight="regular"
                         color="#fff"
