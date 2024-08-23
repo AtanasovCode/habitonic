@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useStore } from "../../useStore";
 
+import HeatMap from "../components/HeatMap";
+import HabitInfo from "../components/HabitInfo";
+
 import {
     House,
     ListChecks,
     ClipboardText,
+    SealCheck,
+    CalendarBlank,
 } from "@phosphor-icons/react";
 
 const HabitStats = ({
@@ -19,6 +24,7 @@ const HabitStats = ({
     const [streak, setStreak] = useState(0);
     const [totalComplete, setTotalComplete] = useState(0);
     const [totalTracked, setTotalTracked] = useState(0);
+    const [heatMapSize, setHeatMapSize] = useState(30);
 
     useEffect(() => {
         let currentHabit = tasks.find((task) => task.id === sessionStorage.getItem("selectedHabitID"));
@@ -127,6 +133,24 @@ const HabitStats = ({
                 </TitleIcon>
                 {currentHabit.name}
             </Title>
+            <StatsContainer>
+                <HabitInfo
+                    name="streak"
+                    value={streak}
+                    icon={<SealCheck weight="fill" color="#fff" size={32} />}
+                />
+                <HabitInfo
+                    name="total complete"
+                    value={totalComplete}
+                    icon={<ListChecks weight="fill" color="#fff" size={32} />}
+                />
+                <HabitInfo
+                    name="days tracked"
+                    value={totalTracked}
+                    icon={<CalendarBlank weight="fill" color="#fff" size={32} />}
+                />
+            </StatsContainer>
+            <HeatMap size={30} dates={currentHabit.dates} />
         </Container>
     );
 }
@@ -194,4 +218,10 @@ const Dates = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+`;
+
+const StatsContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: .5rem;
 `;
