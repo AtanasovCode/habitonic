@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { parse, isSameDay, subDays } from "date-fns";
+import { parse, isSameDay, subDays, getMonth } from "date-fns";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useStore } from "../../useStore";
@@ -27,51 +27,69 @@ const HabitStats = ({
         setCurrentHabit(currentHabit);
     }, [])
 
+    const calculateStreak = (dates) => {
+        let streakCount = 0;
+        const today = new Date();
+
+        const sortedDates = [...dates]
+            .map(item => ({
+                ...item,
+                parsedDate: parse(item.date, "dd/MM/yyyy", new Date())
+            }))
+            .sort((a, b) => b.parsedDate - a.parsedDate);
+
+        for (let i = 0; i < sortedDates.length; i++) {
+            const { parsedDate, complete } = sortedDates[i];
+
+            if (complete && (streakCount === 0 || isSameDay(parsedDate, subDays(today, streakCount)))) {
+                streakCount++;
+            } else {
+                break; // Stop streak if dates are not consecutive
+            }
+        }
+
+        return streakCount;
+    };
+
+    const calculateTotalComplete = (dates) => {
+        return dates.reduce((total, item) => item.complete ? total + 1 : total, 0);
+    };
+
+    const calculateTotalTracked = (dates) => {
+        return dates.length;
+    };
+
     useEffect(() => {
-        const getHabitStats = () => {
-            if (!currentHabit || !currentHabit.dates || currentHabit.dates.length === 0) {
-                return { streak: 0, totalComplete: 0, totalTracked: 0 };
-            }
+        if (currentHabit && currentHabit.dates && currentHabit.dates.length > 0) {
+            const streak = calculateStreak(currentHabit.dates);
+            const totalComplete = calculateTotalComplete(currentHabit.dates);
+            const totalTracked = calculateTotalTracked(currentHabit.dates);
 
-            let streakCount = 0;
-            let totalCompleteCount = 0;
-            let totalTrackedCount = currentHabit.dates.length;
-            const today = new Date();
+            setStreak(streak);
+            setTotalComplete(totalComplete);
+            setTotalTracked(totalTracked);
+        } else {
+            setStreak(0);
+            setTotalComplete(0);
+            setTotalTracked(0);
+        }
+    }, [currentHabit]);
 
-            // Sort dates in reverse order (latest first)
-            const sortedDates = [...currentHabit.dates]
-                .map(item => ({
-                    ...item,
-                    parsedDate: parse(item.date, "dd/MM/yyyy", new Date())
-                }))
-                .sort((a, b) => b.parsedDate - a.parsedDate);
+    const getMonthName = (date) => {
+        const monthIndex = getMonth(date);
+        const monthNames = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
 
-            // Loop through sorted dates to calculate stats
-            for (let i = 0; i < sortedDates.length; i++) {
-                const { parsedDate, complete } = sortedDates[i];
+        return monthNames[monthIndex];
+    };
 
-                if (complete) {
-                    totalCompleteCount++;
 
-                    // Check for streak by comparing consecutive dates
-                    if (streakCount === 0 || isSameDay(parsedDate, subDays(today, streakCount))) {
-                        streakCount++;
-                    } else {
-                        break; // Stop streak if dates are not consecutive
-                    }
-                }
-            }
-
-            setStreak(streakCount);
-            setTotalComplete(totalCompleteCount);
-            setTotalTracked(totalTrackedCount);
-        };
-
-        getHabitStats();
-    }, [currentHabit])
 
     useEffect(() => {
         console.log(`streak: ${streak}, total: ${totalComplete}, tracked: ${totalTracked}`)
+        console.log(`month: ${getMonth(new Date())}`)
     }, [totalComplete, totalTracked, streak])
 
 
