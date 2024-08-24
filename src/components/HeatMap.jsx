@@ -1,17 +1,30 @@
-import { useEffect, useState } from "react";
+import { format, parse } from "date-fns";
 import styled from "styled-components";
-import { format, subDays } from "date-fns";
+
+// Define the format of the input date string
+const INPUT_DATE_FORMAT = "dd/MM/yyyy";
 
 const HeatMap = ({ size, currentHabit }) => {
 
     const returnMap = () => {
-        return currentHabit && currentHabit.dates && currentHabit.dates.map((item, index) => (
-            <Day key={item.date} value={item.date} $complete={item.complete}>
-                <DayValue>
-                    {format(new Date(), "MMMM d, yyyy")}
-                </DayValue>
-            </Day>
-        ));
+        return currentHabit && currentHabit.dates && currentHabit.dates.map((item) => {
+            // Parse the date string according to the input format
+            const parsedDate = parse(item.date, INPUT_DATE_FORMAT, new Date());
+
+            // Check for invalid date
+            if (isNaN(parsedDate.getTime())) {
+                console.error("Invalid date:", item.date);
+                return null; // Skip rendering for invalid dates
+            }
+
+            return (
+                <Day key={item.date} value={item.date} $complete={item.complete}>
+                    <DayValue>
+                        {format(parsedDate, "MMMM d, yyyy")}
+                    </DayValue>
+                </Day>
+            );
+        });
     };
 
     return (
