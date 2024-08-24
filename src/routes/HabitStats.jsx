@@ -34,7 +34,6 @@ const HabitStats = ({
     useEffect(() => {
         let currentHabit = tasks.find((task) => task.id === sessionStorage.getItem("selectedHabitID"));
 
-        console.log(currentHabit)
         setCurrentHabit(currentHabit);
     }, [])
 
@@ -110,14 +109,6 @@ const HabitStats = ({
 
 
 
-    useEffect(() => {
-        console.log(`streak: ${streak}, total: ${totalComplete}, tracked: ${totalTracked}`)
-        console.log(`month: ${getMonth(new Date())}`)
-        console.log(`days in month: ${getDaysInMonth(new Date())}`)
-        console.log(`monthly score: ${monthlyScore}`)
-    }, [totalComplete, totalTracked, streak, monthlyScore])
-
-
     return (
         <Container>
             <FloatingNav>
@@ -178,7 +169,7 @@ const HabitStats = ({
                     />
                 </StatsWrapper>
             </StatsContainer>
-            <HeatMap size={30} dates={currentHabit.dates} />
+            <HeatMap size={30} currentHabit={currentHabit} />
         </Container>
     );
 }
