@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { parse, isSameDay, subDays, getMonth } from "date-fns";
+import { parse, isSameDay, subDays, getMonth, getDaysInMonth } from "date-fns";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useStore } from "../../useStore";
@@ -14,7 +14,9 @@ import {
     SealCheck,
     CalendarBlank,
     CalendarDots,
+    Fire,
     SealPercent,
+    Target,
 } from "@phosphor-icons/react";
 
 const HabitStats = ({
@@ -26,6 +28,7 @@ const HabitStats = ({
     const [streak, setStreak] = useState(0);
     const [totalComplete, setTotalComplete] = useState(0);
     const [totalTracked, setTotalTracked] = useState(0);
+    const [monthlyScore, setMonthlyScore] = useState(0);
     const [heatMapSize, setHeatMapSize] = useState(30);
 
     useEffect(() => {
@@ -67,19 +70,31 @@ const HabitStats = ({
         return dates.length;
     };
 
+    const calculateMonthlyScore = (dates) => {
+        let daysInMonth = getDaysInMonth(new Date());
+        let daysComplete = calculateTotalComplete(dates);
+
+        if (daysInMonth === 0) return 0;
+
+        return Math.floor((daysComplete / daysInMonth) * 100);
+    }
+
     useEffect(() => {
         if (currentHabit && currentHabit.dates && currentHabit.dates.length > 0) {
             const streak = calculateStreak(currentHabit.dates);
             const totalComplete = calculateTotalComplete(currentHabit.dates);
             const totalTracked = calculateTotalTracked(currentHabit.dates);
+            const score = calculateMonthlyScore(currentHabit.dates);
 
             setStreak(streak);
             setTotalComplete(totalComplete);
             setTotalTracked(totalTracked);
+            setMonthlyScore(score);
         } else {
             setStreak(0);
             setTotalComplete(0);
             setTotalTracked(0);
+            setMonthlyScore(0);
         }
     }, [currentHabit]);
 
@@ -98,7 +113,9 @@ const HabitStats = ({
     useEffect(() => {
         console.log(`streak: ${streak}, total: ${totalComplete}, tracked: ${totalTracked}`)
         console.log(`month: ${getMonth(new Date())}`)
-    }, [totalComplete, totalTracked, streak])
+        console.log(`days in month: ${getDaysInMonth(new Date())}`)
+        console.log(`monthly score: ${monthlyScore}`)
+    }, [totalComplete, totalTracked, streak, monthlyScore])
 
 
     return (
@@ -140,12 +157,12 @@ const HabitStats = ({
                     <HabitInfo
                         name="streak"
                         value={streak}
-                        icon={<SealCheck weight="fill" color="#fff" size={32} />}
+                        icon={<Fire weight="fill" color="#fff" size={32} />}
                     />
                     <HabitInfo
                         name="total complete"
                         value={totalComplete}
-                        icon={<ListChecks weight="fill" color="#fff" size={32} />}
+                        icon={<SealCheck weight="fill" color="#fff" size={32} />}
                     />
                 </StatsWrapper>
                 <StatsWrapper>
@@ -156,7 +173,7 @@ const HabitStats = ({
                     />
                     <HabitInfo
                         name={`${getMonthName(new Date())} score`}
-                        value={totalTracked}
+                        value={`${monthlyScore}%`}
                         icon={<SealPercent weight="fill" color="#fff" size={32} />}
                     />
                 </StatsWrapper>
