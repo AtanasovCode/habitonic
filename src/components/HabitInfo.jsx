@@ -28,7 +28,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     padding: .5rem 1rem;
-    background-color: ${props => props.theme.primary};
+    background-color: ${props => props.theme.secondary};
     color: ${props => props.theme.text};
     border-radius: 16px;
     margin: .2rem;

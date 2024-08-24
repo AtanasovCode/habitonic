@@ -26,7 +26,7 @@ const Router = () => {
         //background: "#333a36",
         homepageBG: "#1d2320",
         primary: "#0a76b8",
-        secondary: "#181430",
+        secondary: "#3a3454",
         accent: "#21aedd",
 
         //darkBackground: "#0D0106",
