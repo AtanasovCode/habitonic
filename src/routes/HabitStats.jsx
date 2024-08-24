@@ -13,6 +13,8 @@ import {
     ClipboardText,
     SealCheck,
     CalendarBlank,
+    CalendarDots,
+    SealPercent,
 } from "@phosphor-icons/react";
 
 const HabitStats = ({
@@ -84,8 +86,8 @@ const HabitStats = ({
     const getMonthName = (date) => {
         const monthIndex = getMonth(date);
         const monthNames = [
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
         ];
 
         return monthNames[monthIndex];
@@ -134,21 +136,30 @@ const HabitStats = ({
                 {currentHabit.name}
             </Title>
             <StatsContainer>
-                <HabitInfo
-                    name="streak"
-                    value={streak}
-                    icon={<SealCheck weight="fill" color="#fff" size={32} />}
-                />
-                <HabitInfo
-                    name="total complete"
-                    value={totalComplete}
-                    icon={<ListChecks weight="fill" color="#fff" size={32} />}
-                />
-                <HabitInfo
-                    name="days tracked"
-                    value={totalTracked}
-                    icon={<CalendarBlank weight="fill" color="#fff" size={32} />}
-                />
+                <StatsWrapper>
+                    <HabitInfo
+                        name="streak"
+                        value={streak}
+                        icon={<SealCheck weight="fill" color="#fff" size={32} />}
+                    />
+                    <HabitInfo
+                        name="total complete"
+                        value={totalComplete}
+                        icon={<ListChecks weight="fill" color="#fff" size={32} />}
+                    />
+                </StatsWrapper>
+                <StatsWrapper>
+                    <HabitInfo
+                        name="days tracked"
+                        value={totalTracked}
+                        icon={<CalendarDots weight="fill" color="#fff" size={32} />}
+                    />
+                    <HabitInfo
+                        name={`${getMonthName(new Date())} score`}
+                        value={totalTracked}
+                        icon={<SealPercent weight="fill" color="#fff" size={32} />}
+                    />
+                </StatsWrapper>
             </StatsContainer>
             <HeatMap size={30} dates={currentHabit.dates} />
         </Container>
@@ -221,7 +232,13 @@ const Dates = styled.div`
 `;
 
 const StatsContainer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+`;
+
+const StatsWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;

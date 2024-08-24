@@ -31,6 +31,7 @@ const Container = styled.div`
     background-color: ${props => props.theme.primary};
     color: ${props => props.theme.text};
     border-radius: 16px;
+    margin: .2rem;
 `;
 
 
