@@ -26,7 +26,7 @@ const Homepage = () => {
                         healthy and productive habits to improve your life!
                     </HomeDesc>
                     {/*Linking to the tasks page*/}
-                    <HomeBtn to="/tasks">
+                    <HomeBtn to="/habits">
                         Start Tracking
                     </HomeBtn>
                 </HomeInfoContainer>

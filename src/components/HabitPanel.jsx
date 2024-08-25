@@ -12,7 +12,7 @@ const HabitPanel = ({ title }) => {
                 </Title>
             </Wrapper>
             <Navigation>
-                <NavItem>
+                <NavItem to="/habits">
                     <IconContainer>
                         <Icon>
                             <ListChecks
@@ -24,7 +24,7 @@ const HabitPanel = ({ title }) => {
                     </IconContainer>
                     <NavName>Habits</NavName>
                 </NavItem>
-                <NavItem>
+                <NavItem to="/">
                     <IconContainer>
                         <Icon>
                             <House

@@ -66,7 +66,7 @@ const Router = () => {
             element: <Homepage />
         },
         {
-            path: "/tasks",
+            path: "/habits",
             element: <TasksPage
                 tasks={tasks}
                 setTasks={setTasks}
