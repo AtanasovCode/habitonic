@@ -102,43 +102,43 @@ const HabitStats = ({
 
     return (
         <Container>
-            <ActivityContainer>
-                <HabitPanel title={currentHabit.name} />
-            </ActivityContainer>
+            <HabitPanel title={currentHabit.name} />
             <InfoContainer>
-                <SubTitle>Overview</SubTitle>
-                <StatsContainer>
-                    <StatsWrapper>
-                        <HabitInfo
-                            name="date created"
-                            value={currentHabit.dateCreated}
-                            icon={<CalendarPlus weight="fill" color="#fff" size={32} />}
-                            flex={100}
-                        />
-                        <HabitInfo
-                            name="streak"
-                            value={streak}
-                            icon={<Fire weight="fill" color="#fff" size={32} />}
-                            flex={85}
-                        />
-                    </StatsWrapper>
-                    <StatsWrapper>
-                        <HabitInfo
-                            name="total complete"
-                            value={totalComplete}
-                            icon={<CalendarDots weight="fill" color="#fff" size={32} />}
-                            flex={85}
-                        />
-                        <HabitInfo
-                            name={`${getMonthName(new Date())} score`}
-                            value={`${monthlyScore}%`}
-                            icon={<Trophy weight="fill" color="#fff" size={32} />}
-                            flex={100}
-                        />
-                    </StatsWrapper>
-                </StatsContainer>
-                <SubTitle>Habit Activity</SubTitle>
-                <HeatMap size={30} currentHabit={currentHabit} />
+                <InfoWrapper>
+                    <SubTitle>Overview</SubTitle>
+                    <StatsContainer>
+                        <StatsWrapper>
+                            <HabitInfo
+                                name="date created"
+                                value={currentHabit.dateCreated}
+                                icon={<CalendarPlus weight="fill" color="#fff" size={32} />}
+                                flex={100}
+                            />
+                            <HabitInfo
+                                name="streak"
+                                value={streak}
+                                icon={<Fire weight="fill" color="#fff" size={32} />}
+                                flex={85}
+                            />
+                        </StatsWrapper>
+                        <StatsWrapper>
+                            <HabitInfo
+                                name="total complete"
+                                value={totalComplete}
+                                icon={<CalendarDots weight="fill" color="#fff" size={32} />}
+                                flex={85}
+                            />
+                            <HabitInfo
+                                name={`${getMonthName(new Date())} score`}
+                                value={`${monthlyScore}%`}
+                                icon={<Trophy weight="fill" color="#fff" size={32} />}
+                                flex={100}
+                            />
+                        </StatsWrapper>
+                    </StatsContainer>
+                    <SubTitle>Habit Activity</SubTitle>
+                    <HeatMap size={30} currentHabit={currentHabit} />
+                </InfoWrapper>
             </InfoContainer>
         </Container>
     );
@@ -149,34 +149,28 @@ export default HabitStats;
 const Container = styled.div`
     min-height: 100vh;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     overflow-x: hidden;
     background-color: ${props => props.theme.darkBackground};
 `;
 
-const ActivityContainer = styled.div`
-    width: 20%;
-    height: 100vh;
-`;
-
 const InfoContainer = styled.div`
     width: 100%;
-    margin-left: 2rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2.5rem 0;
+`;
 
-    padding: 2rem;
-
-    @media (max-width: 1024px) {
-        padding: 2rem;
-    }
-
-    @media (max-width: 768px) {
-        padding: 2rem 1.5rem;
-    }
-
-    @media (max-width: 550px) {
-        padding: 1rem .5rem;
-    }
+const InfoWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
 `;
 
 const SubTitle = styled.div`
@@ -196,7 +190,7 @@ const StatsContainer = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 
     @media (max-width: 768px) {
         flex-direction: column;

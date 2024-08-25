@@ -13,23 +13,27 @@ const HabitPanel = ({ title }) => {
             </Wrapper>
             <Navigation>
                 <NavItem>
-                    <NavIcon>
-                        <ListChecks
-                            weight="fill"
-                            color="#fff"
-                            size={28}
-                        />
-                    </NavIcon>
+                    <IconContainer>
+                        <Icon>
+                            <ListChecks
+                                weight="fill"
+                                color="#fff"
+                                size="100%"
+                            />
+                        </Icon>
+                    </IconContainer>
                     <NavName>Habits</NavName>
                 </NavItem>
                 <NavItem>
-                    <NavIcon>
-                        <House
-                            weight="fill"
-                            color="#fff"
-                            size={28}
-                        />
-                    </NavIcon>
+                    <IconContainer>
+                        <Icon>
+                            <House
+                                weight="fill"
+                                color="#fff"
+                                size="100%"
+                            />
+                        </Icon>
+                    </IconContainer>
                     <NavName>Home</NavName>
                 </NavItem>
             </Navigation>
@@ -40,15 +44,19 @@ const HabitPanel = ({ title }) => {
 export default HabitPanel;
 
 const Container = styled.div`
-    background-color: ${props => props.theme.secondary};
-    width: 100%;
-    height: 100%;
+    background-color: ${props => props.theme.background};
+    width: 20%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
     padding-top: 2.5rem;
+
+    @media (max-width: 768px) {
+        padding: 2rem .2rem .5rem .2rem;
+    }
 `;
 
 const Wrapper = styled.div``;
@@ -78,10 +86,37 @@ const NavItem = styled(Link)`
     justify-content: flex-start;
     margin-bottom: .5rem;
     width: 100%;
+
+    @media (max-width: 768px) {
+        width: 90%;
+        justify-content: center;
+        background-color: ${props => props.theme.background};
+        aspect-ratio: 1;
+        margin-bottom: .3rem;
+        border-radius: 50%;
+    }
+
+    @media (max-width: 550px) {
+        width: 100%;
+    }
 `;
 
-const NavIcon = styled.div`
+const IconContainer = styled.div`
     margin-right: .6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 100%;
+        margin-right: 0;
+    }
+`;
+
+const Icon = styled.div`
+    width: 30px;
+    height: 30px;
 `;
 
 const NavName = styled.div`
@@ -90,4 +125,11 @@ const NavName = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 768px) {
+        display: none;
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
 `;
