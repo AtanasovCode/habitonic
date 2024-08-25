@@ -4,9 +4,10 @@ const HabitInfo = ({
     name,
     value,
     icon,
+    flex,
 }) => {
     return (
-        <Container>
+        <Container $flex={flex}>
             <Title>
                 <Icon>
                     {icon}
@@ -32,6 +33,16 @@ const Container = styled.div`
     color: ${props => props.theme.text};
     border-radius: 16px;
     margin: .2rem;
+    flex: 1;
+
+    @media (max-width: 1024px) {
+        margin: .1rem;
+        padding: .5rem;
+    }
+
+    @media (max-width: 768px) {
+        flex: ${props => props.$flex}%;
+    }
 `;
 
 
@@ -43,6 +54,19 @@ const Title = styled.div`
     font-size: 1.2rem;
     font-weight: 500;
     text-transform: capitalize;
+
+    @media (max-width: 1024px) {
+        font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        margin-bottom: .5rem;
+    }
+
+    @media (max-width: 550px) {
+        font-size: .9rem;
+        margin-bottom: .4rem;
+    }
 `;
 
 const Icon = styled.div`
@@ -55,4 +79,12 @@ const Icon = styled.div`
 const Stat = styled.div`
     text-align: center;
     font-size: 1.2rem;
+
+    @media (max-width: 768px) {
+        font-size: 1rem;
+    }
+
+    @media (max-width: 550px) {
+        font-size: .9rem;
+    }
 `;

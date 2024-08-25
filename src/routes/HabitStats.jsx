@@ -16,7 +16,9 @@ import {
     CalendarDots,
     Fire,
     SealPercent,
+    Trophy,
     Target,
+    CalendarPlus,
 } from "@phosphor-icons/react";
 
 const HabitStats = ({
@@ -65,10 +67,6 @@ const HabitStats = ({
         return dates.reduce((total, item) => item.complete ? total + 1 : total, 0);
     };
 
-    const calculateTotalTracked = (dates) => {
-        return dates.length;
-    };
-
     const calculateMonthlyScore = (dates) => {
         let daysInMonth = getDaysInMonth(new Date());
         let daysComplete = calculateTotalComplete(dates);
@@ -82,17 +80,14 @@ const HabitStats = ({
         if (currentHabit && currentHabit.dates && currentHabit.dates.length > 0) {
             const streak = calculateStreak(currentHabit.dates);
             const totalComplete = calculateTotalComplete(currentHabit.dates);
-            const totalTracked = calculateTotalTracked(currentHabit.dates);
             const score = calculateMonthlyScore(currentHabit.dates);
 
             setStreak(streak);
             setTotalComplete(totalComplete);
-            setTotalTracked(totalTracked);
             setMonthlyScore(score);
         } else {
             setStreak(0);
             setTotalComplete(0);
-            setTotalTracked(0);
             setMonthlyScore(0);
         }
     }, [currentHabit]);
@@ -143,32 +138,38 @@ const HabitStats = ({
                 </TitleIcon>
                 {currentHabit.name}
             </Title>
+            <SubTitle>Overview</SubTitle>
             <StatsContainer>
                 <StatsWrapper>
+                    <HabitInfo
+                        name="date created"
+                        value={currentHabit.dateCreated}
+                        icon={<CalendarPlus weight="fill" color="#fff" size={32} />}
+                        flex={100}
+                    />
                     <HabitInfo
                         name="streak"
                         value={streak}
                         icon={<Fire weight="fill" color="#fff" size={32} />}
-                    />
-                    <HabitInfo
-                        name="total complete"
-                        value={totalComplete}
-                        icon={<SealCheck weight="fill" color="#fff" size={32} />}
+                        flex={85}
                     />
                 </StatsWrapper>
                 <StatsWrapper>
                     <HabitInfo
-                        name="days tracked"
-                        value={totalTracked}
+                        name="total complete"
+                        value={totalComplete}
                         icon={<CalendarDots weight="fill" color="#fff" size={32} />}
+                        flex={85}
                     />
                     <HabitInfo
                         name={`${getMonthName(new Date())} score`}
                         value={`${monthlyScore}%`}
-                        icon={<SealPercent weight="fill" color="#fff" size={32} />}
+                        icon={<Trophy weight="fill" color="#fff" size={32} />}
+                        flex={100}
                     />
                 </StatsWrapper>
             </StatsContainer>
+            <SubTitle>Habit Activity</SubTitle>
             <HeatMap size={30} currentHabit={currentHabit} />
         </Container>
     );
@@ -183,6 +184,19 @@ const Container = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     padding: 2rem 4rem;
+    overflow-x: hidden;
+
+    @media (max-width: 1024px) {
+        padding: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        padding: 2rem 1.5rem;
+    }
+
+    @media (max-width: 550px) {
+        padding: 1rem .5rem;
+    }
 `;
 
 const FloatingNav = styled.div`
@@ -221,8 +235,25 @@ const Title = styled.div`
     font-weight: 600;
     margin-bottom: 3rem;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+`;
+
+const SubTitle = styled.div`
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const TitleIcon = styled.div`
@@ -232,21 +263,21 @@ const TitleIcon = styled.div`
     margin-right: 1.25rem;
 `;
 
-const Dates = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
-
 const StatsContainer = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 
 const StatsWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 `;

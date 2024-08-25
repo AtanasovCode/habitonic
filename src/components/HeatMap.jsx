@@ -1,5 +1,6 @@
 import { format, parse } from "date-fns";
 import styled from "styled-components";
+import { formatDate } from "./Utils";
 
 // Define the format of the input date string
 const INPUT_DATE_FORMAT = "dd/MM/yyyy";
@@ -7,7 +8,7 @@ const INPUT_DATE_FORMAT = "dd/MM/yyyy";
 const HeatMap = ({ size, currentHabit }) => {
 
     const returnMap = () => {
-        return currentHabit && currentHabit.dates && currentHabit.dates.map((item) => {
+        return currentHabit && currentHabit.dates && currentHabit.dates.map((item, index) => {
             // Parse the date string according to the input format
             const parsedDate = parse(item.date, INPUT_DATE_FORMAT, new Date());
 
@@ -18,7 +19,7 @@ const HeatMap = ({ size, currentHabit }) => {
             }
 
             return (
-                <Day key={item.date} value={item.date} $complete={item.complete}>
+                <Day key={item.date} value={item.date} $complete={item.complete} $index={index}>
                     <DayValue>
                         {format(parsedDate, "MMMM d, yyyy")}
                     </DayValue>
@@ -39,23 +40,32 @@ export default HeatMap;
 // Styled components
 const Container = styled.div`
     display: grid;
-    grid-template-columns: repeat(20, 1fr); // Adjust columns as needed
+    grid-template-columns: repeat(15, 1fr); // Adjust columns as needed
     grid-gap: .2rem;
-    width: 50%;
-    max-width: 1440px;
-    margin-top: 1.5rem;
+    width: auto;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        align-items: center;
+        align-content: center;
+    }
 `;
 
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.accent : props.theme.secondary};
-    display: flex;
+    display: ${props => props.$index <= 60 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
     border-radius: 5px;
     aspect-ratio: 1;
+    padding: 1rem;
     font-size: 0.8rem;
     color: #fff;
     position: relative;
+
+    @media (max-width: 768px) {
+        padding: .5rem;
+    }
 `;
 
 const DayValue = styled.div`
