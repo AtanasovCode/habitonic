@@ -6,19 +6,14 @@ import { useStore } from "../../useStore";
 
 import HeatMap from "../components/HeatMap";
 import HabitInfo from "../components/HabitInfo";
-import HabitActivity from "../components/HabitActivity";
+import HabitPanel from "../components/HabitPanel";
 
 import {
     House,
     ListChecks,
-    ClipboardText,
-    SealCheck,
-    CalendarBlank,
     CalendarDots,
     Fire,
-    SealPercent,
     Trophy,
-    Target,
     CalendarPlus,
 } from "@phosphor-icons/react";
 
@@ -107,40 +102,8 @@ const HabitStats = ({
 
     return (
         <Container>
-            <FloatingNav>
-                <FloatingItem>
-                    <FloatingIcon>
-                        <ListChecks
-                            weight="fill"
-                            color="#8b8787"
-                            size={24}
-                        />
-                    </FloatingIcon>
-                    <FloatingName>Habits</FloatingName>
-                </FloatingItem>
-                <FloatingItem>
-                    <FloatingIcon>
-                        <House
-                            weight="fill"
-                            color="#8b8787"
-                            size={24}
-                        />
-                    </FloatingIcon>
-                    <FloatingName>Home</FloatingName>
-                </FloatingItem>
-            </FloatingNav>
             <ActivityContainer>
-                <Title>
-                    <TitleIcon>
-                        <ClipboardText
-                            size={36}
-                            color="#FFF"
-                            weight="fill"
-                        />
-                    </TitleIcon>
-                    {currentHabit.name}
-                </Title>
-                <HabitActivity />
+                <HabitPanel title={currentHabit.name} />
             </ActivityContainer>
             <InfoContainer>
                 <SubTitle>Overview</SubTitle>
@@ -188,8 +151,20 @@ const Container = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 2rem 4rem;
     overflow-x: hidden;
+    background-color: ${props => props.theme.darkBackground};
+`;
+
+const ActivityContainer = styled.div`
+    width: 20%;
+    height: 100vh;
+`;
+
+const InfoContainer = styled.div`
+    width: 100%;
+    margin-left: 2rem;
+
+    padding: 2rem;
 
     @media (max-width: 1024px) {
         padding: 2rem;
@@ -204,64 +179,6 @@ const Container = styled.div`
     }
 `;
 
-const FloatingNav = styled.div`
-    position: fixed;
-    bottom: 2%;
-    left: 1%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-`;
-
-const FloatingItem = styled(Link)`
-    text-decoration: none;
-    cursor: pointer;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    margin-bottom: .5rem;
-`;
-
-const FloatingIcon = styled.div`
-    margin-right: .6rem;
-`;
-
-const FloatingName = styled.div`
-    font-size: .9rem;
-    color: #8b8787;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-
-const ActivityContainer = styled.div`
-    flex: 36%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-right: 4rem;
-`;
-
-const InfoContainer = styled.div`
-    flex: 100%;
-`;
-
-const Title = styled.div`
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-
-    @media (max-width: 768px) {
-        width: 100%;
-    }
-`;
-
 const SubTitle = styled.div`
     font-size: 1.4rem;
     margin-bottom: 1rem;
@@ -272,13 +189,6 @@ const SubTitle = styled.div`
     @media (max-width: 768px) {
         width: 100%;
     }
-`;
-
-const TitleIcon = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 1.25rem;
 `;
 
 const StatsContainer = styled.div`

@@ -40,9 +40,9 @@ export default HeatMap;
 // Styled components
 const Container = styled.div`
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
+    grid-template-columns: repeat(40, 1fr);
     grid-gap: .2rem;
-    width: auto;
+    width: 100%;
 
     @media (max-width: 768px) {
         width: 100%;
@@ -58,12 +58,12 @@ const Container = styled.div`
 
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.accent : props.theme.secondary};
-    display: ${props => props.$index <= 60 ? "flex" : "none"};
+    display: ${props => props.$index <= 120 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
     border-radius: 5px;
     aspect-ratio: 1;
-    padding: 1rem;
+    padding: .5rem;
     font-size: 0.8rem;
     color: #fff;
     position: relative;
