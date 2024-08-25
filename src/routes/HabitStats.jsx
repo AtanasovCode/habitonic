@@ -6,6 +6,7 @@ import { useStore } from "../../useStore";
 
 import HeatMap from "../components/HeatMap";
 import HabitInfo from "../components/HabitInfo";
+import HabitActivity from "../components/HabitActivity";
 
 import {
     House,
@@ -128,49 +129,54 @@ const HabitStats = ({
                     <FloatingName>Home</FloatingName>
                 </FloatingItem>
             </FloatingNav>
-            <Title>
-                <TitleIcon>
-                    <ClipboardText
-                        size={36}
-                        color="#FFF"
-                        weight="fill"
-                    />
-                </TitleIcon>
-                {currentHabit.name}
-            </Title>
-            <SubTitle>Overview</SubTitle>
-            <StatsContainer>
-                <StatsWrapper>
-                    <HabitInfo
-                        name="date created"
-                        value={currentHabit.dateCreated}
-                        icon={<CalendarPlus weight="fill" color="#fff" size={32} />}
-                        flex={100}
-                    />
-                    <HabitInfo
-                        name="streak"
-                        value={streak}
-                        icon={<Fire weight="fill" color="#fff" size={32} />}
-                        flex={85}
-                    />
-                </StatsWrapper>
-                <StatsWrapper>
-                    <HabitInfo
-                        name="total complete"
-                        value={totalComplete}
-                        icon={<CalendarDots weight="fill" color="#fff" size={32} />}
-                        flex={85}
-                    />
-                    <HabitInfo
-                        name={`${getMonthName(new Date())} score`}
-                        value={`${monthlyScore}%`}
-                        icon={<Trophy weight="fill" color="#fff" size={32} />}
-                        flex={100}
-                    />
-                </StatsWrapper>
-            </StatsContainer>
-            <SubTitle>Habit Activity</SubTitle>
-            <HeatMap size={30} currentHabit={currentHabit} />
+            <ActivityContainer>
+                <Title>
+                    <TitleIcon>
+                        <ClipboardText
+                            size={36}
+                            color="#FFF"
+                            weight="fill"
+                        />
+                    </TitleIcon>
+                    {currentHabit.name}
+                </Title>
+                <HabitActivity />
+            </ActivityContainer>
+            <InfoContainer>
+                <SubTitle>Overview</SubTitle>
+                <StatsContainer>
+                    <StatsWrapper>
+                        <HabitInfo
+                            name="date created"
+                            value={currentHabit.dateCreated}
+                            icon={<CalendarPlus weight="fill" color="#fff" size={32} />}
+                            flex={100}
+                        />
+                        <HabitInfo
+                            name="streak"
+                            value={streak}
+                            icon={<Fire weight="fill" color="#fff" size={32} />}
+                            flex={85}
+                        />
+                    </StatsWrapper>
+                    <StatsWrapper>
+                        <HabitInfo
+                            name="total complete"
+                            value={totalComplete}
+                            icon={<CalendarDots weight="fill" color="#fff" size={32} />}
+                            flex={85}
+                        />
+                        <HabitInfo
+                            name={`${getMonthName(new Date())} score`}
+                            value={`${monthlyScore}%`}
+                            icon={<Trophy weight="fill" color="#fff" size={32} />}
+                            flex={100}
+                        />
+                    </StatsWrapper>
+                </StatsContainer>
+                <SubTitle>Habit Activity</SubTitle>
+                <HeatMap size={30} currentHabit={currentHabit} />
+            </InfoContainer>
         </Container>
     );
 }
@@ -180,7 +186,6 @@ export default HabitStats;
 const Container = styled.div`
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     padding: 2rem 4rem;
@@ -228,6 +233,19 @@ const FloatingName = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+`;
+
+const ActivityContainer = styled.div`
+    flex: 36%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4rem;
+`;
+
+const InfoContainer = styled.div`
+    flex: 100%;
 `;
 
 const Title = styled.div`

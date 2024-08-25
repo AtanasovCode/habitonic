@@ -40,7 +40,7 @@ export default HeatMap;
 // Styled components
 const Container = styled.div`
     display: grid;
-    grid-template-columns: repeat(15, 1fr); // Adjust columns as needed
+    grid-template-columns: repeat(20, 1fr);
     grid-gap: .2rem;
     width: auto;
 
@@ -48,6 +48,11 @@ const Container = styled.div`
         width: 100%;
         align-items: center;
         align-content: center;
+    }
+
+    @media (max-width: 550px) {
+        grid-template-columns: repeat(15, 1fr);
+
     }
 `;
 
