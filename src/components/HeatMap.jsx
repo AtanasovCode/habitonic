@@ -115,6 +115,7 @@ const Day = styled.div`
     font-size: 0.8rem;
     color: #fff;
     position: relative;
+    cursor: pointer;
 
     @media (max-width: 768px) {
         padding: .5rem;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { parse, isSameDay, subDays, getMonth, getDaysInMonth } from "date-fns";
+import { parse, isSameDay, subDays, getMonth, getDaysInMonth, isSameMonth } from "date-fns";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useStore } from "../../useStore";
@@ -16,6 +16,8 @@ import {
     Trophy,
     CalendarPlus,
 } from "@phosphor-icons/react";
+
+const INPUT_DATE_FORMAT = "dd/MM/yyyy";
 
 const HabitStats = ({
     tasks,
@@ -64,13 +66,21 @@ const HabitStats = ({
     };
 
     const calculateMonthlyScore = (dates) => {
-        let daysInMonth = getDaysInMonth(new Date());
-        let daysComplete = calculateTotalComplete(dates);
+        const currentDate = new Date();
+        const daysInMonth = getDaysInMonth(currentDate);
+
+        // Filter dates for only those completed in the current month
+        const datesThisMonth = dates.filter(item => {
+            const parsedDate = parse(item.date, INPUT_DATE_FORMAT, new Date());
+            return item.complete && isSameMonth(parsedDate, currentDate);
+        });
+
+        const daysCompleteThisMonth = datesThisMonth.length;
 
         if (daysInMonth === 0) return 0;
 
-        return Math.floor((daysComplete / daysInMonth) * 100);
-    }
+        return Math.floor((daysCompleteThisMonth / daysInMonth) * 100);
+    };
 
     useEffect(() => {
         if (currentHabit && currentHabit.dates && currentHabit.dates.length > 0) {
@@ -137,9 +147,9 @@ const HabitStats = ({
                         </StatsWrapper>
                     </StatsContainer>
                     <SubTitle>Habit Activity</SubTitle>
-                    <HeatMap 
-                        currentHabit={currentHabit} 
-                        setCurrentHabit={setCurrentHabit} 
+                    <HeatMap
+                        currentHabit={currentHabit}
+                        setCurrentHabit={setCurrentHabit}
                         tasks={tasks}
                         setTasks={setTasks}
                     />
