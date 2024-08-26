@@ -1,11 +1,48 @@
 import { format, parse } from "date-fns";
 import styled from "styled-components";
 import { formatDate } from "./Utils";
+import { useEffect } from "react";
 
 // Define the format of the input date string
 const INPUT_DATE_FORMAT = "dd/MM/yyyy";
 
-const HeatMap = ({ size, currentHabit }) => {
+const HeatMap = ({
+    currentHabit,
+    setCurrentHabit,
+    tasks,
+    setTasks,
+}) => {
+
+    const handleMarkComplete = (date) => {
+        const updatedDates = currentHabit?.dates.map((item) => {
+            if (item.date === date) {
+                return { ...item, complete: !item.complete };
+            }
+            return item; // Always return the item if the date doesn't match
+        });
+
+        // Update current habit
+        setCurrentHabit((prevHabit) => ({
+            ...prevHabit,
+            dates: updatedDates
+        }));
+    };
+
+
+    useEffect(() => {
+        // Find the habit in the tasks array by its unique identifier (e.g., id)
+        const updatedTasks = tasks.map(task => {
+            if (task.id === currentHabit.id) {
+                return { ...task, dates: currentHabit.dates }; // Update the dates of the matching habit
+            }
+            return task; // Keep other tasks unchanged
+        });
+
+        // Update the tasks state with the new tasks array
+        setTasks(updatedTasks);
+    }, [currentHabit]);
+
+
 
     const returnMap = () => {
         return currentHabit && currentHabit.dates && currentHabit.dates.map((item, index) => {
@@ -19,7 +56,13 @@ const HeatMap = ({ size, currentHabit }) => {
             }
 
             return (
-                <Day key={item.date} value={item.date} $complete={item.complete} $index={index}>
+                <Day
+                    key={item.date}
+                    value={item.date}
+                    $complete={item.complete}
+                    $index={index}
+                    onClick={() => handleMarkComplete(item.date)}
+                >
                     <DayValue>
                         {format(parsedDate, "MMMM d, yyyy")}
                     </DayValue>

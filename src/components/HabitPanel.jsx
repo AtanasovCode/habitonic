@@ -84,7 +84,7 @@ const NavItem = styled(Link)`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: .5rem;
+    margin-bottom: 1rem;
     width: 100%;
 
     @media (max-width: 768px) {
@@ -102,7 +102,7 @@ const NavItem = styled(Link)`
 `;
 
 const IconContainer = styled.div`
-    margin-right: .6rem;
+    margin-right: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,16 +120,9 @@ const Icon = styled.div`
 `;
 
 const NavName = styled.div`
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: ${props => props.theme.text};
     display: flex;
     align-items: center;
     justify-content: center;
-
-    @media (max-width: 768px) {
-        display: none;
-        width: 0;
-        height: 0;
-        visibility: hidden;
-    }
 `;

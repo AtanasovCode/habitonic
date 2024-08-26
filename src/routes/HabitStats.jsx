@@ -137,7 +137,12 @@ const HabitStats = ({
                         </StatsWrapper>
                     </StatsContainer>
                     <SubTitle>Habit Activity</SubTitle>
-                    <HeatMap size={30} currentHabit={currentHabit} />
+                    <HeatMap 
+                        currentHabit={currentHabit} 
+                        setCurrentHabit={setCurrentHabit} 
+                        tasks={tasks}
+                        setTasks={setTasks}
+                    />
                 </InfoWrapper>
             </InfoContainer>
         </Container>
@@ -174,14 +179,15 @@ const InfoWrapper = styled.div`
 `;
 
 const SubTitle = styled.div`
-    font-size: 1.4rem;
+    width: 100%;
+    font-size: 2.2rem;
+    font-weight: 700;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     @media (max-width: 768px) {
-        width: 100%;
     }
 `;
 

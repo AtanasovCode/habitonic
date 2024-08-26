@@ -21,7 +21,8 @@ const Router = () => {
 
     const theme = {
         text: "#faf3f3",
-        background: "#090a1f",
+        background: "#0f112e",
+        // in use -> background: "#090a1f",
         //background: "#251A74",
         //background: "#333a36",
         homepageBG: "#1d2320",
