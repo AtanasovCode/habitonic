@@ -7,6 +7,7 @@ import { useStore } from "../../useStore";
 import HeatMap from "../components/HeatMap";
 import HabitInfo from "../components/HabitInfo";
 import HabitPanel from "../components/HabitPanel";
+import BestStreak from "../components/BestStreak";
 
 import {
     House,
@@ -26,6 +27,7 @@ const HabitStats = ({
 
     const [currentHabit, setCurrentHabit] = useState({});
     const [streak, setStreak] = useState(0);
+    const [bestStreak, setBestStreak] = useState();
     const [totalComplete, setTotalComplete] = useState(0);
     const [totalTracked, setTotalTracked] = useState(0);
     const [monthlyScore, setMonthlyScore] = useState(0);
@@ -96,6 +98,8 @@ const HabitStats = ({
             setTotalComplete(0);
             setMonthlyScore(0);
         }
+
+        console.log(currentHabit);
     }, [currentHabit]);
 
     const getMonthName = (date) => {
@@ -146,7 +150,13 @@ const HabitStats = ({
                             />
                         </StatsWrapper>
                     </StatsContainer>
-                    <SubTitle>Habit Activity</SubTitle>
+                    <BestStreak currentHabit={currentHabit} />
+                    <SubTitle>
+                        Habit Activity
+                    </SubTitle>
+                    <Explanation>
+                        (click on a date to mark/unmark it as complete)
+                    </Explanation>
                     <HeatMap
                         currentHabit={currentHabit}
                         setCurrentHabit={setCurrentHabit}
@@ -192,13 +202,23 @@ const SubTitle = styled.div`
     width: 100%;
     font-size: 2.2rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: .2rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 
     @media (max-width: 768px) {
     }
+`;
+
+const Explanation = styled.div`
+    width: 100%;
+    font-size: 1rem;
+    color: darkgray;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
 `;
 
 const StatsContainer = styled.div`

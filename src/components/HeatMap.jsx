@@ -105,17 +105,20 @@ const Container = styled.div`
 `;
 
 const Day = styled.div`
-    background-color: ${props => props.$complete ? props.theme.primary : "#332f2f"};
+    background-color: ${props => props.$complete ? "#564ee0" : "#332f2f"};
     display: ${props => props.$index < 120 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 3px;
+    //border-radius: 50%;
     aspect-ratio: 1;
     padding: .5rem;
     font-size: 0.8rem;
     color: #fff;
     position: relative;
     cursor: pointer;
+
+    transition: background-color .25s ease-in-out;
 
     @media (max-width: 768px) {
         padding: .5rem;
@@ -126,7 +129,7 @@ const DayValue = styled.div`
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    top: -150%;
+    top: -200%;
     left: 50%;
     transform: translateX(-50%);
     background-color: ${props => props.theme.background};
