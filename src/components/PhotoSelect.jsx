@@ -27,47 +27,50 @@ import {
     Golf,
     Fire,
     Racquet,
+    X,
 } from "@phosphor-icons/react";
 
 const PhotoSelect = ({ setIcon, togglePhotoSelect }) => {
 
     const icons = [
         // Fitness Icons
-        <Barbell weight="regular" color="#ccc" size="100%" />,
-        <PersonSimpleBike weight="fill" color="#ccc" size="100%" />,
-        <PersonSimpleRun weight="fill" color="#ccc" size="100%" />,
-        <PersonSimpleHike weight="fill" color="#ccc" size="100%" />,
-        <PersonSimpleSwim weight="fill" color="#ccc" size="100%" />,
-        <PersonSimpleTaiChi weight="fill" color="#ccc" size="100%" />,
+        <Barbell weight="fill" color="#eee" size="100%" />,
+        <PersonSimpleBike weight="fill" color="#eee" size="100%" />,
+        <PersonSimpleRun weight="fill" color="#eee" size="100%" />,
+        <PersonSimpleHike weight="fill" color="#eee" size="100%" />,
+        <PersonSimpleSwim weight="fill" color="#eee" size="100%" />,
+        <PersonSimpleTaiChi weight="fill" color="#eee" size="100%" />,
         // Hobbies Icons
-        <GameController weight="fill" color="#ccc" size="100%" />,
-        <Checkerboard weight="regular" color="#ccc" size="100%" />,
-        <ChefHat weight="fill" color="#ccc" size="100%" />,
-        <CookingPot weight="fill" color="#ccc" size="100%" />,
-        <Sailboat weight="fill" color="#ccc" size="100%" />,
+        <GameController weight="fill" color="#eee" size="100%" />,
+        <Checkerboard weight="regular" color="#eee" size="100%" />,
+        <ChefHat weight="fill" color="#eee" size="100%" />,
+        <CookingPot weight="fill" color="#eee" size="100%" />,
+        <Sailboat weight="fill" color="#eee" size="100%" />,
         //Sports
-        <SoccerBall weight="regular" color="#ccc" size="100%" />,
-        <Football weight="fill" color="#ccc" size="100%" />,
-        <Basketball weight="fill" color="#ccc" size="100%" />,
-        <Golf weight="fill" color="#ccc" size="100%" />,
-        <Racquet weight="fill" color="#ccc" size="100%" />,
+        <SoccerBall weight="regular" color="#eee" size="100%" />,
+        <Football weight="fill" color="#eee" size="100%" />,
+        <Basketball weight="fill" color="#eee" size="100%" />,
+        <Golf weight="fill" color="#eee" size="100%" />,
+        <Racquet weight="fill" color="#eee" size="100%" />,
         // Learning Icons
-        <Books weight="fill" color="#ccc" size="100%" />,
-        <BookOpenText weight="fill" color="#ccc" size="100%" />,
-        <Code weight="fill" color="#ccc" size="100%" />,
+        <Books weight="fill" color="#eee" size="100%" />,
+        <BookOpenText weight="fill" color="#eee" size="100%" />,
+        <Code weight="fill" color="#eee" size="100%" />,
         // Achievement Icons
-        <ShootingStar weight="fill" color="#ccc" size="100%" />,
-        <RocketLaunch weight="fill" color="#ccc" size="100%" />,
-        <Rocket weight="fill" color="#ccc" size="100%" />,
-        <Fire weight="fill" color="#ccc" size="100%" />,
-        <Alarm weight="fill" color="#ccc" size="100%" />,
-        <ShoppingBag weight="fill" color="#ccc" size="100%" />,
+        <ShootingStar weight="fill" color="#eee" size="100%" />,
+        <RocketLaunch weight="fill" color="#eee" size="100%" />,
+        <Fire weight="fill" color="#eee" size="100%" />,
+        <Alarm weight="fill" color="#eee" size="100%" />,
+        <ShoppingBag weight="fill" color="#eee" size="100%" />,
     ];
 
 
     return (
         <Container>
             <Title>Select Habit Icon</Title>
+            <CloseIcon onClick={() => togglePhotoSelect()}>
+                <X size={26} weight="regular" color="#FFF" />
+            </CloseIcon>
             <SelectContainer>
                 {
                     icons.map((item, index) => {
@@ -92,10 +95,11 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     color: ${props => props.theme.text};
     z-index: 9999;
-    width: 50%;
+    width: 40%;
+    border-radius: 32px;
 
     animation: fade .4s ease-in-out;
 
@@ -120,12 +124,25 @@ const Title = styled.div`
 const SelectContainer = styled.div`
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-gap: 1rem;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 `;
 
 const Item = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+`;
+
+const CloseIcon = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    cursor: pointer;
 `;
