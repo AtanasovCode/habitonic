@@ -7,11 +7,12 @@ const HabitPhoto = ({
     togglePhotoSelect,
     currentHabit,
 }) => {
+    
     return (
         <Container $background={background} onClick={() => togglePhotoSelect()}>
             <Icon>
                 {
-                    icon !== null ?
+                    icon ?
                         icon
                         :
                         <Placeholder size="100%" weight="fill" color="#FFF" />

@@ -9,8 +9,8 @@ const BestStreak = ({ currentHabit }) => {
     const calculateBestStreak = (dates) => {
         let streakCount = 0;
         let bestStreakCount = 0;
-        let bestStreak = { start: null, end: null };
-        let currentStreak = { start: null, end: null };
+        let bestStreak = { start: null, end: null, count: 0 };
+        let currentStreak = { start: null, end: null, count: 0 };
 
         const sortedDates = [...dates]
             .map(item => ({
@@ -29,6 +29,7 @@ const BestStreak = ({ currentHabit }) => {
 
                 streakCount++;
                 currentStreak.end = parsedDate;
+                currentStreak.count = streakCount;
 
                 // Check if the next day continues the streak
                 if (i + 1 < sortedDates.length) {
@@ -68,6 +69,7 @@ const BestStreak = ({ currentHabit }) => {
     };
 
 
+
     useEffect(() => {
         if (currentHabit && currentHabit.dates && currentHabit.dates.length > 0) {
             let bestStreak = calculateBestStreak(currentHabit.dates)
@@ -81,11 +83,23 @@ const BestStreak = ({ currentHabit }) => {
 
     }, [currentHabit])
 
+    const getCount = (count) => {
+        switch (count) {
+            case 0:
+                return 0.1;
+            case 1 || 2 || 3:
+                return 0.4
+            case 4 || 5 || 6:
+                return 0.6;
+            
+        }
+    }
+
     return (
         <Container>
             <Title>Best Streak</Title>
             <Name>{bestStreak?.end}</Name>
-            <Progress></Progress>
+            <Progress $count={getCount(bestStreak.count)}></Progress>
             <Name>{bestStreak?.start}</Name>
         </Container>
     );

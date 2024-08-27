@@ -25,18 +25,6 @@ const PhotoSelect = ({
         togglePhotoSelect();
     }
 
-    useEffect(() => {
-        console.log(`currentHabit.icon: ${currentHabit.icon}`)
-        const updatedTasks = tasks.map((task) => {
-            if (task.id === currentHabit.id) {
-                return { ...task, icon: currentHabit.icon };
-            }
-            return task; 
-        });
-
-        setTasks(updatedTasks);
-    }, [currentHabit]);
-
 
     return (
         <Container>
