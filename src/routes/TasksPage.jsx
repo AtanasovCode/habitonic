@@ -112,6 +112,7 @@ const TasksPage = ({
                 dateCreated: format(new Date(), "dd/MM/yyyy"),
                 trash: false,
                 dates: dates,
+                icon: null,
             };
 
             const updatedTasks = [...tasks, newTask];

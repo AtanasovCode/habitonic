@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { iconMap } from "./Utils";
 
 import {
     House,
     ListChecks,
-    Barbell,
 } from "@phosphor-icons/react";
 import HabitPhoto from "./HabitPhoto";
 
-const HabitPanel = ({ title, togglePhotoSelect }) => {
+const HabitPanel = ({ title, togglePhotoSelect, currentHabit }) => {
     return (
         <Container>
             <Wrapper>
                 <HabitPhoto
                     background="#7654ef"
-                    icon={<Barbell weight="fill" color="#fff" size="100%" />}
+                    icon={iconMap[currentHabit?.icon]}
                     togglePhotoSelect={togglePhotoSelect}
                 />
                 <Title>

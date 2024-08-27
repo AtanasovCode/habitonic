@@ -101,7 +101,6 @@ const HabitStats = ({
             setMonthlyScore(0);
         }
 
-        console.log(currentHabit);
     }, [currentHabit]);
 
     const getMonthName = (date) => {
@@ -118,6 +117,18 @@ const HabitStats = ({
         setShowPhotoSelect(!showPhotoSelect);
     }
 
+    useEffect(() => {
+        console.log(`currentHabit.icon: ${currentHabit.icon}`)
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === currentHabit.id) {
+                return { ...task, icon: currentHabit.icon };
+            }
+            return task;
+        });
+
+        setTasks(updatedTasks);
+    }, [currentHabit]);
+
 
 
     return (
@@ -128,11 +139,18 @@ const HabitStats = ({
                     <Tint onClick={() => togglePhotoSelect()} />
                     <PhotoSelect
                         togglePhotoSelect={togglePhotoSelect}
-                        showPhotoSelect={showPhotoSelect}
+                        currentHabit={currentHabit}
+                        setCurrentHabit={setCurrentHabit}
+                        tasks={tasks}
+                        setTasks={setTasks}
                     />
                 </>
             }
-            <HabitPanel title={currentHabit.name} togglePhotoSelect={togglePhotoSelect} />
+            <HabitPanel
+                title={currentHabit.name}
+                togglePhotoSelect={togglePhotoSelect}
+                currentHabit={currentHabit}
+            />
             <InfoContainer>
                 <InfoWrapper>
                     <SubTitle>Overview</SubTitle>

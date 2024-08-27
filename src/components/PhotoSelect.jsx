@@ -1,68 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { iconMap } from "./Utils";
 
 import {
-    Barbell,
-    ShootingStar,
-    PersonSimpleBike,
-    PersonSimpleRun,
-    PersonSimpleHike,
-    PersonSimpleSwim,
-    PersonSimpleTaiChi,
-    Code,
-    GameController,
-    Checkerboard,
-    ChefHat,
-    CookingPot,
-    ShoppingBag,
-    Sailboat,
-    Rocket,
-    RocketLaunch,
-    Alarm,
-    Books,
-    BookOpenText,
-    Basketball,
-    Football,
-    SoccerBall,
-    Golf,
-    Fire,
-    Racquet,
     X,
 } from "@phosphor-icons/react";
 
-const PhotoSelect = ({ setIcon, togglePhotoSelect }) => {
+const PhotoSelect = ({
+    tasks,
+    setTasks,
+    currentHabit,
+    setCurrentHabit,
+    togglePhotoSelect,
+}) => {
 
-    const icons = [
-        // Fitness Icons
-        <Barbell weight="fill" color="#eee" size="100%" />,
-        <PersonSimpleBike weight="fill" color="#eee" size="100%" />,
-        <PersonSimpleRun weight="fill" color="#eee" size="100%" />,
-        <PersonSimpleHike weight="fill" color="#eee" size="100%" />,
-        <PersonSimpleSwim weight="fill" color="#eee" size="100%" />,
-        <PersonSimpleTaiChi weight="fill" color="#eee" size="100%" />,
-        // Hobbies Icons
-        <GameController weight="fill" color="#eee" size="100%" />,
-        <Checkerboard weight="regular" color="#eee" size="100%" />,
-        <ChefHat weight="fill" color="#eee" size="100%" />,
-        <CookingPot weight="fill" color="#eee" size="100%" />,
-        <Sailboat weight="fill" color="#eee" size="100%" />,
-        //Sports
-        <SoccerBall weight="regular" color="#eee" size="100%" />,
-        <Football weight="fill" color="#eee" size="100%" />,
-        <Basketball weight="fill" color="#eee" size="100%" />,
-        <Golf weight="fill" color="#eee" size="100%" />,
-        <Racquet weight="fill" color="#eee" size="100%" />,
-        // Learning Icons
-        <Books weight="fill" color="#eee" size="100%" />,
-        <BookOpenText weight="fill" color="#eee" size="100%" />,
-        <Code weight="fill" color="#eee" size="100%" />,
-        // Achievement Icons
-        <ShootingStar weight="fill" color="#eee" size="100%" />,
-        <RocketLaunch weight="fill" color="#eee" size="100%" />,
-        <Fire weight="fill" color="#eee" size="100%" />,
-        <Alarm weight="fill" color="#eee" size="100%" />,
-        <ShoppingBag weight="fill" color="#eee" size="100%" />,
-    ];
+    const changeHabitPhoto = (icon) => {
+        const updatedIcon = icon;
+
+        setCurrentHabit((prevHabit) => ({
+            ...prevHabit,
+            icon: updatedIcon,
+        }));
+        console.log("icon updated");
+        togglePhotoSelect();
+    }
+
+    useEffect(() => {
+        console.log(`currentHabit.icon: ${currentHabit.icon}`)
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === currentHabit.id) {
+                return { ...task, icon: currentHabit.icon };
+            }
+            return task; 
+        });
+
+        setTasks(updatedTasks);
+    }, [currentHabit]);
 
 
     return (
@@ -73,15 +46,14 @@ const PhotoSelect = ({ setIcon, togglePhotoSelect }) => {
             </CloseIcon>
             <SelectContainer>
                 {
-                    icons.map((item, index) => {
-                        return (
-                            <Item key={index}>
-                                {item}
-                            </Item>
-                        )
-                    })
+                    Object.entries(iconMap).map(([key, IconComponent], index) => (
+                        <Item key={index} onClick={() => changeHabitPhoto(key)}>
+                            {IconComponent}
+                        </Item>
+                    ))
                 }
             </SelectContainer>
+
         </Container>
     );
 }
@@ -157,6 +129,7 @@ const Item = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 `;
 
 const CloseIcon = styled.div`

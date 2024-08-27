@@ -1,14 +1,21 @@
 import styled from "styled-components";
+import { Placeholder } from "@phosphor-icons/react";
 
 const HabitPhoto = ({
     icon,
     background,
     togglePhotoSelect,
+    currentHabit,
 }) => {
     return (
         <Container $background={background} onClick={() => togglePhotoSelect()}>
             <Icon>
-                {icon}
+                {
+                    icon !== null ?
+                        icon
+                        :
+                        <Placeholder size="100%" weight="fill" color="#FFF" />
+                }
             </Icon>
         </Container>
     );
