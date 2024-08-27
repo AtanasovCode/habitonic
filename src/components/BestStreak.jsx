@@ -84,23 +84,50 @@ const BestStreak = ({ currentHabit }) => {
     }, [currentHabit])
 
     const getCount = (count) => {
-        switch (count) {
-            case 0:
-                return 0.1;
-            case 1 || 2 || 3:
-                return 0.4
-            case 4 || 5 || 6:
-                return 0.6;
-            
+        if (count === 0) {
+            return 0;
+        } else if (count === 1) {
+            return 0.01;
+        } else if (count === 2 || count === 3) {
+            return 0.1;
+        } else if (count >= 4 && count <= 7) {
+            return 0.2;
+        } else if (count >= 7 && count <= 10) {
+            return 0.3;
+        } else if (count >= 11 && count <= 15) {
+            return 0.4;
+        } else if (count >= 16 && count <= 20) {
+            return 0.5;
+        } else if (count >= 21 && count <= 25) {
+            return 0.6;
+        } else if (count >= 26 && count <= 30) {
+            return 0.7;
+        } else if (count >= 31 && count <= 35) {
+            return 0.8;
+        } else if(count >=36 && count <= 40) {
+            return 0.9;
+        } else if(count >= 40) {
+            return 1;
+        } else {
+            return 1; // Default value if no conditions are met
         }
-    }
+    };
+
+
 
     return (
         <Container>
             <Title>Best Streak</Title>
-            <Name>{bestStreak?.end}</Name>
-            <Progress $count={getCount(bestStreak.count)}></Progress>
-            <Name>{bestStreak?.start}</Name>
+            {
+                bestStreak.count > 0 ?
+                    <>
+                        <Name>{bestStreak?.end}</Name>
+                        <Progress $flexValue={getCount(bestStreak.count)}></Progress>
+                        <Name>{bestStreak?.start}</Name>
+                    </>
+                    :
+                    <Explanation>No streaks found</Explanation>
+            }
         </Container>
     );
 }
@@ -131,7 +158,8 @@ const Progress = styled.div`
     background-color: ${props => props.theme.primary};
     margin: 0 .3rem;
     border-radius: 32px;
-    flex: 1;
+    flex: ${props => props.$flexValue};
+    transition: all .4s ease-in-out;
 
     animation: slide .6s ease-in-out 1;
 
@@ -141,7 +169,13 @@ const Progress = styled.div`
         }
 
         100% {
-            flex: 1;
+            flex: ${props => props.$flexValue};
         }
     }
+`;
+
+const Explanation = styled.div`
+    text-align: center;
+    color: darkgray;
+    font-size: .9rem;
 `;
