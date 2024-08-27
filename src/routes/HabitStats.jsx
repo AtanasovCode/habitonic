@@ -8,6 +8,7 @@ import HeatMap from "../components/HeatMap";
 import HabitInfo from "../components/HabitInfo";
 import HabitPanel from "../components/HabitPanel";
 import BestStreak from "../components/BestStreak";
+import PhotoSelect from "../components/PhotoSelect";
 
 import {
     House,
@@ -32,6 +33,7 @@ const HabitStats = ({
     const [totalTracked, setTotalTracked] = useState(0);
     const [monthlyScore, setMonthlyScore] = useState(0);
     const [heatMapSize, setHeatMapSize] = useState(30);
+    const [showPhotoSelect, setShowPhotoSelect] = useState(false);
 
     useEffect(() => {
         let currentHabit = tasks.find((task) => task.id === sessionStorage.getItem("selectedHabitID"));
@@ -112,11 +114,25 @@ const HabitStats = ({
         return monthNames[monthIndex];
     };
 
+    const togglePhotoSelect = () => {
+        setShowPhotoSelect(!showPhotoSelect);
+    }
+
 
 
     return (
         <Container>
-            <HabitPanel title={currentHabit.name} />
+            {
+                showPhotoSelect &&
+                <>
+                    <Tint onClick={() => togglePhotoSelect()} />
+                    <PhotoSelect
+                        togglePhotoSelect={togglePhotoSelect}
+                        showPhotoSelect={showPhotoSelect}
+                    />
+                </>
+            }
+            <HabitPanel title={currentHabit.name} togglePhotoSelect={togglePhotoSelect} />
             <InfoContainer>
                 <InfoWrapper>
                     <SubTitle>Overview</SubTitle>
@@ -178,6 +194,29 @@ const Container = styled.div`
     justify-content: center;
     overflow-x: hidden;
     background-color: ${props => props.theme.darkBackground};
+`;
+
+const Tint = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    backdrop-filter: blur(5px);
+
+    animation: fade .4s ease-in-out;
+
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
 `;
 
 const InfoContainer = styled.div`

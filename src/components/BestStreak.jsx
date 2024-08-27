@@ -102,7 +102,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-right: 1rem;
 `;

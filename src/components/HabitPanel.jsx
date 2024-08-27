@@ -1,12 +1,22 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { House, ListChecks } from "@phosphor-icons/react";
+import {
+    House,
+    ListChecks,
+    Barbell,
+} from "@phosphor-icons/react";
+import HabitPhoto from "./HabitPhoto";
 
-const HabitPanel = ({ title }) => {
+const HabitPanel = ({ title, togglePhotoSelect }) => {
     return (
         <Container>
             <Wrapper>
+                <HabitPhoto
+                    background="#7654ef"
+                    icon={<Barbell weight="fill" color="#fff" size="100%" />}
+                    togglePhotoSelect={togglePhotoSelect}
+                />
                 <Title>
                     {title}
                 </Title>
@@ -59,7 +69,13 @@ const Container = styled.div`
     }
 `;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
 
 const Title = styled.div`
     width: 100%;
@@ -67,7 +83,8 @@ const Title = styled.div`
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
+    margin-top: 1rem;
 `;
 
 const Navigation = styled.div`
