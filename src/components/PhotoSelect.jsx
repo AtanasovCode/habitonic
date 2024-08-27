@@ -112,23 +112,45 @@ const Container = styled.div`
             opacity: 1;
         }
     }
+
+    @media (max-width: 1200px) {
+        width: 50%;
+    }
+
+    @media (max-width: 1024px) {
+        width: 60%;
+    }
+
+    @media (max-width: 768px) {
+        width: 70%;
+        padding: 1rem;
+    }
+
+    @media (max-width: 550px) {
+        width: 95%;
+    }
 `;
 
 const Title = styled.div`
     text-align: center;
     margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
 `;
 
 const SelectContainer = styled.div`
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 8%);
     grid-gap: 1rem;
     align-content: center;
     align-items: center;
     justify-content: center;
+
+    
+    @media (max-width: 550px) {
+        grid-template-columns: repeat(6, 10%);
+    }
 `;
 
 const Item = styled.div`
@@ -142,7 +164,7 @@ const CloseIcon = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 3%;
+    top: 5%;
     right: 5%;
     cursor: pointer;
 `;
