@@ -40,7 +40,7 @@ const HeatMap = ({
 
         // Update the tasks state with the new tasks array
         setTasks(updatedTasks);
-    }, [currentHabit]);
+    }, [currentHabit.dates]);
 
 
 

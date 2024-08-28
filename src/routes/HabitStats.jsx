@@ -118,17 +118,16 @@ const HabitStats = ({
     }
 
     useEffect(() => {
-        console.log(`currentHabit.icon: ${currentHabit.icon}`)
-        const updatedTasks = tasks.map((task) => {
-            if (task.id === currentHabit.id) {
-                return { ...task, icon: currentHabit.icon };
-            }
-            return task;
-        });
-
-        setTasks(updatedTasks);
-    }, [currentHabit]);
-
+        if (currentHabit?.icon && tasks.some(task => task.id === currentHabit.id && task.icon !== currentHabit.icon)) {
+            const updatedTasks = tasks.map((task) => {
+                if (task.id === currentHabit.id) {
+                    return { ...task, icon: currentHabit.icon };
+                }
+                return task;
+            });
+            setTasks(updatedTasks);
+        }
+    }, [currentHabit, tasks, setTasks]);
 
 
     return (

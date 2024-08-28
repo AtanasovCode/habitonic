@@ -80,7 +80,6 @@ const BestStreak = ({ currentHabit }) => {
             return;
         }
 
-
     }, [currentHabit])
 
     const getCount = (count) => {
