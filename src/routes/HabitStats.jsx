@@ -11,12 +11,11 @@ import BestStreak from "../components/BestStreak";
 import PhotoSelect from "../components/PhotoSelect";
 
 import {
-    House,
-    ListChecks,
     CalendarDots,
     Fire,
     Trophy,
     CalendarPlus,
+    List,
 } from "@phosphor-icons/react";
 
 const INPUT_DATE_FORMAT = "dd/MM/yyyy";
@@ -28,6 +27,7 @@ const HabitStats = ({
 
     const [currentHabit, setCurrentHabit] = useState({});
     const [streak, setStreak] = useState(0);
+    const [showPanel, setShowPanel] = useState(false);
     const [bestStreak, setBestStreak] = useState();
     const [totalComplete, setTotalComplete] = useState(0);
     const [totalTracked, setTotalTracked] = useState(0);
@@ -40,6 +40,10 @@ const HabitStats = ({
 
         setCurrentHabit(currentHabit);
     }, [])
+
+    const togglePanel = () => {
+        setShowPanel(!showPanel);
+    }
 
     const calculateStreak = (dates) => {
         let streakCount = 0;
@@ -149,10 +153,14 @@ const HabitStats = ({
                 title={currentHabit.name}
                 togglePhotoSelect={togglePhotoSelect}
                 currentHabit={currentHabit}
+                showPanel={showPanel}
+                togglePanel={togglePanel}
             />
             <InfoContainer>
                 <InfoWrapper>
-                    <SubTitle>Overview</SubTitle>
+                    <SubTitle>
+                        Overview
+                    </SubTitle>
                     <StatsContainer>
                         <StatsWrapper>
                             <HabitInfo
@@ -211,6 +219,10 @@ const Container = styled.div`
     justify-content: center;
     overflow-x: hidden;
     background-color: ${props => props.theme.darkBackground};
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+    }
 `;
 
 const Tint = styled.div`
@@ -243,6 +255,10 @@ const InfoContainer = styled.div`
     align-items: flex-start;
     justify-content: center;
     padding: 2.5rem 0;
+
+    @media (max-width: 1024px) {
+        padding-top: 2rem;
+    }
 `;
 
 const InfoWrapper = styled.div`
@@ -252,6 +268,10 @@ const InfoWrapper = styled.div`
     justify-content: center;
     width: 80%;
     height: 100%;
+
+    @media (max-width: 1300px) {
+        width: 95%;
+    }
 `;
 
 const SubTitle = styled.div`
@@ -294,4 +314,16 @@ const StatsWrapper = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
+`;
+
+const MobilePhotoView = styled.div`
+    display: none;
+    visibility: hidden;
+
+    @media (max-width: 1024px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
 `;

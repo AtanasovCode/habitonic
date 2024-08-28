@@ -5,12 +5,19 @@ import { iconMap } from "./Utils";
 import {
     House,
     ListChecks,
+    X,
 } from "@phosphor-icons/react";
 import HabitPhoto from "./HabitPhoto";
 
-const HabitPanel = ({ title, togglePhotoSelect, currentHabit }) => {
+const HabitPanel = ({ 
+    title, 
+    togglePhotoSelect, 
+    currentHabit,
+    togglePanel,
+    showPanel,
+}) => {
     return (
-        <Container>
+        <Container $active={showPanel}>
             <Wrapper>
                 <HabitPhoto
                     background="#7654ef"
@@ -64,8 +71,24 @@ const Container = styled.div`
     padding: 1rem;
     padding-top: 2.5rem;
 
+    @media (max-width: 1024px) {
+        width: 100%;
+        height: auto;
+        background-color: ${props => props.theme.darkBackground};
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem;
+        padding-bottom: 0;
+        margin-bottom: .5rem;
+    }
+
     @media (max-width: 768px) {
-        padding: 2rem .2rem .5rem .2rem;
+        padding: 1.5rem;
+    }
+
+    @media (max-width: 550px) {
+        padding: 1rem;
     }
 `;
 
@@ -75,6 +98,12 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 1024px) {
+        width: auto;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
 `;
 
 const Title = styled.div`
@@ -85,6 +114,16 @@ const Title = styled.div`
     font-size: 1.5rem;
     font-weight: 600;
     margin-top: 1rem;
+
+    @media (max-width: 1024px) {
+        margin: 0;
+        margin-left: 1rem;
+        width: auto;
+    }
+
+    @media (max-width: 550px) {
+        font-size: 1rem;
+    }
 `;
 
 const Navigation = styled.div`
@@ -93,6 +132,13 @@ const Navigation = styled.div`
     align-items: center;
     justify-content: flex-start;
     width: 100%;
+
+    @media (max-width: 1024px) {
+        width: auto;
+        height: 100%;
+        flex-direction: row;
+        justify-content: center;
+    }
 `;
 
 const NavItem = styled(Link)`
@@ -104,17 +150,12 @@ const NavItem = styled(Link)`
     margin-bottom: 1rem;
     width: 100%;
 
-    @media (max-width: 768px) {
-        width: 90%;
-        justify-content: center;
-        background-color: ${props => props.theme.background};
-        aspect-ratio: 1;
-        margin-bottom: .3rem;
-        border-radius: 50%;
+    @media (max-width: 1024px) {
+        margin: 0 .5rem;
     }
 
     @media (max-width: 550px) {
-        width: 100%;
+        margin: 0 .25rem;
     }
 `;
 
@@ -124,9 +165,7 @@ const IconContainer = styled.div`
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 768px) {
-        width: 100%;
-        height: 100%;
+    @media (max-width: 1024px) {
         margin-right: 0;
     }
 `;
@@ -134,6 +173,11 @@ const IconContainer = styled.div`
 const Icon = styled.div`
     width: 30px;
     height: 30px;
+
+    @media (max-width: 550px) {
+        width: 24px;
+        height: 24px;
+    }
 `;
 
 const NavName = styled.div`
@@ -142,4 +186,11 @@ const NavName = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 1024px) {
+        visibility: hidden;
+        display: none;
+        width: 0;
+        height: 0;
+    }
 `;

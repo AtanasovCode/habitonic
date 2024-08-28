@@ -53,6 +53,19 @@ const Container = styled.div`
         border: 1px solid #ccc;
         backdrop-filter: blur(5px);
     }
+
+    @media (max-width: 1024px) {
+        width: 30%;
+        min-width: 65px;
+    }
+
+    @media (max-width: 768px) {
+        width: 20%;
+    }
+
+    @media (max-width: 550px) {
+        width: 10%;
+    }
 `;
 
 const Icon = styled.div`

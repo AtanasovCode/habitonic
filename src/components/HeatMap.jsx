@@ -122,6 +122,11 @@ const Day = styled.div`
 
     @media (max-width: 768px) {
         padding: .5rem;
+        display: ${props => props.$index < 90 ? "flex" : "none"};
+    }
+
+    @media (max-width: 550px) {
+        display: ${props => props.$index < 60 ? "flex" : "none"};
     }
 `;
 

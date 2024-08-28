@@ -55,6 +55,10 @@ const Title = styled.div`
     font-weight: 500;
     text-transform: capitalize;
 
+    @media (max-width: 1300px) {
+        font-size: 1.1rem;
+    }
+
     @media (max-width: 1024px) {
         font-size: 1rem;
     }
