@@ -50,6 +50,9 @@ export default PhotoSelect;
 
 const Container = styled.div`
     position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     background-color: ${props => props.theme.background};
     padding: 1rem 2rem;
     display: flex;
@@ -79,6 +82,7 @@ const Container = styled.div`
 
     @media (max-width: 1024px) {
         width: 60%;
+        //position: absolute;
     }
 
     @media (max-width: 768px) {
