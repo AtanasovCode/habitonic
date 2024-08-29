@@ -145,11 +145,20 @@ const Title = styled.div`
     font-size: 1.2rem;
     font-weight: 600;
     margin-right: 1rem;
+
+    @media (max-width: 550px) {
+        margin-rigth: .4rem;
+        font-size: 1rem;
+    }
 `;
 
 const Name = styled.div`
     font-size: .9rem;
     color: ${props => props.theme.text};
+
+    @media (max-width: 550px) {
+        font-size: .8rem;
+    }
 `;
 
 const Progress = styled.div`
@@ -170,6 +179,10 @@ const Progress = styled.div`
         100% {
             flex: ${props => props.$flexValue};
         }
+    }
+
+    @media (max-width: 550px) {
+        padding: .4rem;
     }
 `;
 

@@ -263,6 +263,10 @@ const InfoContainer = styled.div`
     @media (max-width: 1024px) {
         padding-top: 2rem;
     }
+
+    @media (max-width: 550px) {
+        padding: 1rem;
+    }
 `;
 
 const InfoWrapper = styled.div`
