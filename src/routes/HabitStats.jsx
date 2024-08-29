@@ -135,7 +135,7 @@ const HabitStats = ({
 
 
     return (
-        <Container>
+        <Container $showPhotoSelect={showPhotoSelect}>
             {
                 showPhotoSelect &&
                 <>
@@ -222,6 +222,10 @@ const Container = styled.div`
 
     @media (max-width: 1024px) {
         flex-direction: column;
+
+        ${props => props.$showPhotoSelect && `
+            height: 100dvh;
+        `}
     }
 `;
 
