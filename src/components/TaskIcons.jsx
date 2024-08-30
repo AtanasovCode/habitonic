@@ -55,7 +55,10 @@ const TaskIcons = ({
                     </IconDescription>
 
                 </TaskIcon>
-                <TaskIcon onClick={() => navigate("/habit-stats")}>
+                <TaskIcon onClick={() => {
+                    sessionStorage.setItem("selectedHabitID", id)
+                    navigate("/habit-stats")
+                }}>
                     <PresentationChart
                         weight="regular"
                         color="#fff"

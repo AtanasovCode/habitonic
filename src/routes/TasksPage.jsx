@@ -52,33 +52,45 @@ const TasksPage = ({
 
     useEffect(() => {
         setTasks(prevTasks => {
-            return prevTasks.map((task) => {
+            const updatedTasks = prevTasks.map((task) => {
                 const latest = task.dates ? task.dates[0]?.date : undefined;
                 if (latest) {
-                    const latestDate = new Date(latest);
+                    const latestDate = parse(latest, "dd/MM/yyyy", new Date()); // parse to ensure correct format
+                    const current = new Date();
+
+                    //console.log("Latest Date:", latestDate);
+                    //console.log("Current Date:", current);
+
                     if (!isNaN(latestDate)) {
-                        const current = new Date();
                         const daysDifference = differenceInDays(current, latestDate);
 
                         if (daysDifference > 0) {
-                            // Calculate the missing dates for the last 5 days
+                            // Calculate missing dates
                             const missingDates = Array.from({ length: daysDifference }, (_, index) => {
                                 const date = subDays(current, index);
                                 return { date: format(date, "dd/MM/yyyy"), complete: false };
                             });
 
-                            task.dates = [...missingDates, ...(task.dates)];
+                            //console.log("Missing Dates Calculated:", missingDates);
+
+                            // Update task's dates and log the new dates array
+                            const updatedTask = {
+                                ...task,
+                                dates: [...missingDates, ...task.dates],
+                            };
+
+                            //console.log("Updated Task Dates:", updatedTask.dates);
+                            return updatedTask;
                         }
                     }
                 }
                 return task;
             });
+
+            //console.log("Final Updated Tasks with New Dates:", updatedTasks);
+            return [...updatedTasks]; // Ensuring a new array reference is returned
         });
     }, []);
-
-
-
-
 
     //when function is called it adds the task to the tasks array
     const handleAddTask = () => {
@@ -151,10 +163,6 @@ const TasksPage = ({
 
         setTasks(updatedTasks);
     };
-
-
-
-
 
     //function to run when the user clicks to mark a task as complete
     const completeTask = (id) => {

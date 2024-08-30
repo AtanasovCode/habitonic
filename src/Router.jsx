@@ -83,10 +83,6 @@ const Router = () => {
         },
     ])
 
-    useEffect(() => {
-        console.log(tasks);
-    }, [])
-
     return (
         <ThemeProvider theme={theme}>
             <div className="global-container">
