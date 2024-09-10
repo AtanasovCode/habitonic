@@ -1,7 +1,6 @@
-import { format, parse } from "date-fns";
+import { format, parse, getMonth } from "date-fns";
 import styled from "styled-components";
-import { formatDate } from "./Utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // Define the format of the input date string
 const INPUT_DATE_FORMAT = "dd/MM/yyyy";
@@ -12,14 +11,14 @@ const HeatMap = ({
     tasks,
     setTasks,
 }) => {
+    const [monthStartPositions, setMonthStartPositions] = useState([]);
 
     const handleMarkComplete = (date) => {
-        console.log(date);
         const updatedDates = currentHabit?.dates.map((item) => {
             if (item.date === date) {
                 return { ...item, complete: !item.complete };
             }
-            return item; // Always return the item if the date doesn't match
+            return item;
         });
 
         // Update current habit
@@ -29,21 +28,33 @@ const HeatMap = ({
         }));
     };
 
-
     useEffect(() => {
-        // Find the habit in the tasks array by its unique identifier (e.g., id)
         const updatedTasks = tasks.map(task => {
             if (task.id === currentHabit.id) {
-                return { ...task, dates: currentHabit.dates }; // Update the dates of the matching habit
+                return { ...task, dates: currentHabit.dates };
             }
-            return task; // Keep other tasks unchanged
+            return task;
         });
 
-        // Update the tasks state with the new tasks array
         setTasks(updatedTasks);
+
+        if (currentHabit && currentHabit.dates) {
+            const monthPositions = [];
+            let lastMonth = null;
+
+            currentHabit.dates.forEach((item, index) => {
+                const parsedDate = parse(item.date, INPUT_DATE_FORMAT, new Date());
+                const currentMonth = getMonth(parsedDate);
+
+                if (currentMonth !== lastMonth) {
+                    monthPositions.push({ month: format(parsedDate, "MMMM"), position: index });
+                    lastMonth = currentMonth;
+                }
+            });
+
+            setMonthStartPositions(monthPositions);
+        }
     }, [currentHabit.dates]);
-
-
 
     const returnMap = () => {
         return currentHabit && currentHabit.dates && currentHabit.dates.map((item, index) => {
@@ -54,9 +65,8 @@ const HeatMap = ({
                 return null;
             }
 
-            // New row and column calculations for vertical layout
-            const row = Math.floor(index / 5);  // Now based on 5 rows
-            const col = index % 5;              // Now based on 5 columns
+            const row = Math.floor(index / 5);
+            const col = index % 5;
 
             return (
                 <Day
@@ -65,8 +75,8 @@ const HeatMap = ({
                     $index={index}
                     $complete={item.complete}
                     style={{
-                        gridRow: col + 1,   // Set row, +1 to avoid zero-indexing
-                        gridColumn: row + 1 // Set column, +1 to avoid zero-indexing
+                        gridRow: col + 1,
+                        gridColumn: row + 1
                     }}
                     onClick={() => handleMarkComplete(item.date)}
                 >
@@ -78,18 +88,30 @@ const HeatMap = ({
         });
     };
 
-
-
     return (
-        <Container>
-            {returnMap()}
-        </Container>
+        <>
+            <MonthContainer>
+                {monthStartPositions.map(({ month, position }) => (
+                    <MonthLabel
+                        key={month}
+                        style={{
+                            gridColumn: Math.floor(position / 5) + 1, // Align to the correct column
+                            gridRow: 1
+                        }}
+                    >
+                        {month}
+                    </MonthLabel>
+                ))}
+            </MonthContainer>
+            <Container>
+                {returnMap()}
+            </Container>
+        </>
     );
 };
 
 export default HeatMap;
 
-// Styled components
 const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(52, 1fr);
@@ -103,13 +125,24 @@ const Container = styled.div`
     }
 `;
 
+const MonthContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(52, 1fr); // 52 columns for each date
+    grid-gap: .2rem;
+    margin-bottom: .5rem;
+`;
+
+const MonthLabel = styled.div`
+    font-size: 0.9rem;
+    text-align: center;
+`;
+
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.dateComplete : props.theme.dateNotComplete};
     display: ${props => props.$index < 260 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
     border-radius: 1px;
-    //border-radius: 50%;
     aspect-ratio: 1;
     font-size: 0.8rem;
     color: #fff;
