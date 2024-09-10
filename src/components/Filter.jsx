@@ -40,8 +40,7 @@ const Container = styled.div`
     margin-bottom: .3rem;
 
     ${props => props.$active && `
-        background-color: ${props.theme.primary};
-        border-radius: 32px;
+        background-color: ${props.theme.taskImportant};
     `}
 `;
 

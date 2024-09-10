@@ -154,7 +154,7 @@ const TaskIcon = styled.div`
     justify-content: flex-start;
     margin-bottom: 1rem;
     padding: .5rem 1rem;
-    background-color: #082f49;
+    background-color: ${props => props.theme.secondary};
     border-radius: 16px;
 `;
 

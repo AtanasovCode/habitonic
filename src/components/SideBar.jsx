@@ -92,7 +92,7 @@ const SideBar = ({
 export default SideBar;
 
 const Container = styled.div`
-    background-color: ${props => props.theme.background};
+    background-color: ${props => props.theme.secondary};
     color: ${props => props.theme.text};
     z-index: 10;
     height: 100vh;

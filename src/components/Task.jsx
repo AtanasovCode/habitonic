@@ -70,7 +70,7 @@ export default Task;
 const Container = styled.div`
     width: 100%;
     padding: 1rem;
-    background-color: ${props => props.theme.background};
+    background-color: ${props => props.theme.secondary};
     color: ${props => props.theme.text};
     display: flex;
     align-items: center;

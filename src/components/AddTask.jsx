@@ -65,8 +65,9 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${props => props.theme.darkBackground};
+    background-color: ${props => props.theme.background};
     z-index: 6;
+    padding: .6rem 0;
 `;
 
 const Add = styled.div`
@@ -75,7 +76,7 @@ const Add = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${props => props.theme.background};
+    background-color: ${props => props.theme.secondary};
     border-radius: ${props => props.theme.borderRadius};
 `;
 
@@ -88,9 +89,18 @@ const InputTask = styled.input`
     background-color: transparent;
     color: ${props => props.theme.text};
     border: none;
-    font-size: 16px;
+    font-size: 1rem;
     width: 100%;
     outline: none;
+
+    &::placeholder {
+        color: #c0bbbb;
+        opacity: 1; /* Firefox */
+    }
+
+    &::-ms-input-placeholder { /* Edge 12 -18 */
+        color: #c0bbbb;
+    }
 `;
 
 const RemoveTasks = styled.div`
@@ -101,7 +111,7 @@ const RemoveTasks = styled.div`
     justify-content: center;
     padding: 1rem;
     cursor: pointer;
-    background-color: ${props => props.theme.background};
+    background-color: ${props => props.theme.secondary};
     color: ${props => props.theme.text};
 
     &:hover {

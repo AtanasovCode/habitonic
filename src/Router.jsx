@@ -24,14 +24,14 @@ const Router = () => {
         background: "#0f112e",
         homepageBG: "#1d2320",
         primary: "#0a76b8",
-        secondary: "#423b67",
+        secondary: "#3a345b",
         //accent: "#21aedd",
         accent: "#95d3e8",
 
         //darkBackground: "#0D0106",
         darkBackground: "#000000",
         taskBackground: "#050404",
-        taskImportant: "#585f8690",
+        taskImportant: "#5f6fcf90",
         taskComplete: "#2f2f2f",
 
         dateComplete: "#95d3e8",

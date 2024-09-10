@@ -99,7 +99,7 @@ const TasksPage = ({
                 const date = new Date();
                 date.setDate(date.getDate() - index);
                 const formattedDate = format(date, "dd/MM/yyyy");
-                return { date: formattedDate, complete: false };
+                return { date: formattedDate, complete: true };
             });
 
             const newTask = {
@@ -331,8 +331,9 @@ const TasksContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-color: ${props => props.theme.darkBackground};
+    background-color: ${props => props.theme.background};
     padding: 2rem 3rem;
+    padding-bottom: 0;
     position: relative;
 
     @media (max-width: 1200px) {

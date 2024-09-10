@@ -17,7 +17,7 @@ const Tracker = ({
                     }}>
                         <IconWrapper type="check">
                             <Check
-                                weight="regular"
+                                weight="bold"
                                 color="#fff"
                                 size="100%"
                             />
