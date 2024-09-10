@@ -95,7 +95,7 @@ const TasksPage = ({
     //when function is called it adds the task to the tasks array
     const handleAddTask = () => {
         if (name) {
-            const dates = Array.from({ length: 120 }, (_, index) => {
+            const dates = Array.from({ length: 260 }, (_, index) => {
                 const date = new Date();
                 date.setDate(date.getDate() - index);
                 const formattedDate = format(date, "dd/MM/yyyy");

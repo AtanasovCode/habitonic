@@ -22,14 +22,11 @@ const Router = () => {
     const theme = {
         text: "#faf3f3",
         background: "#0f112e",
-        // in use -> background: "#090a1f",
-        //background: "#251A74",
-        //background: "#333a36",
         homepageBG: "#1d2320",
         primary: "#0a76b8",
-        //secondary: "#3a3454",
         secondary: "#423b67",
-        accent: "#21aedd",
+        //accent: "#21aedd",
+        accent: "#95d3e8",
 
         //darkBackground: "#0D0106",
         darkBackground: "#000000",

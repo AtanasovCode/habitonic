@@ -119,11 +119,11 @@ const BestStreak = ({ currentHabit }) => {
             <Title>Best Streak</Title>
             {
                 bestStreak.count > 0 ?
-                    <>
+                    <StreakWrapper>
                         <Name>{bestStreak?.start}</Name>
                         <Progress $flexValue={getCount(bestStreak.count)}></Progress>
                         <Name>{bestStreak?.end}</Name>
-                    </>
+                    </StreakWrapper>
                     :
                     <Explanation>No streaks found</Explanation>
             }
@@ -135,8 +135,9 @@ export default BestStreak;
 
 const Container = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     width: 100%;
     margin-bottom: 2rem;
 `;
@@ -144,12 +145,19 @@ const Container = styled.div`
 const Title = styled.div`
     font-size: 1.4rem;
     font-weight: 600;
-    margin-right: 1rem;
+    margin-bottom: 1rem;
 
     @media (max-width: 550px) {
         margin-rigth: .4rem;
         font-size: 1rem;
     }
+`;
+
+const StreakWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 `;
 
 const Name = styled.div`
@@ -163,7 +171,7 @@ const Name = styled.div`
 
 const Progress = styled.div`
     padding: .6rem;
-    background-color: ${props => props.theme.primary};
+    background-color: ${props => props.theme.accent};
     margin: 0 .3rem;
     border-radius: 32px;
     flex: ${props => props.$flexValue};

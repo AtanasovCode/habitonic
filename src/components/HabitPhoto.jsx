@@ -25,7 +25,7 @@ const HabitPhoto = ({
 export default HabitPhoto;
 
 const Container = styled.div`
-    width: 65%;
+    width: 100%;
     min-width: 100px;
     aspect-ratio: 1;
     border-radius: 50%;
@@ -33,7 +33,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: ${props => props.theme.primary};
+    background-color: ${props => props.theme.secondary};
     transition: all .3s ease-in-out;
 
     &:hover::before {

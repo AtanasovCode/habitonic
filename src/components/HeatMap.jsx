@@ -83,40 +83,30 @@ export default HeatMap;
 // Styled components
 const Container = styled.div`
     display: grid;
-    grid-template-columns: repeat(30, 1fr);
+    grid-template-columns: repeat(52, 1fr);
     grid-gap: .2rem;
     width: 100%;
-
-    @media (max-width: 1024px) {
-        grid-template-columns: repeat(30, 1fr);
-    }
 
     @media (max-width: 768px) {
         width: 100%;
         align-items: center;
         align-content: center;
-        grid-template-columns: repeat(20, 1fr);
-    }
-
-    @media (max-width: 550px) {
-        grid-template-columns: repeat(15, 1fr);
-
     }
 `;
 
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.dateComplete : props.theme.dateNotComplete};
-    display: ${props => props.$index < 120 ? "flex" : "none"};
+    display: ${props => props.$index < 260 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
     border-radius: 1px;
     //border-radius: 50%;
     aspect-ratio: 1;
-    padding: .5rem;
     font-size: 0.8rem;
     color: #fff;
     position: relative;
     cursor: pointer;
+    min-width: 1rem;
 
     transition: background-color .25s ease-in-out;
 
@@ -133,6 +123,7 @@ const Day = styled.div`
 const DayValue = styled.div`
     visibility: hidden;
     opacity: 0;
+    display: none;
     position: absolute;
     top: -200%;
     left: 50%;
@@ -149,5 +140,6 @@ const DayValue = styled.div`
     ${Day}:hover & {
         visibility: visible;
         opacity: 1;
+        display: inline-block;
     }
 `;
