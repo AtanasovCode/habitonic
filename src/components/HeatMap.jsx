@@ -1,6 +1,6 @@
 import { format, parse, getMonth } from "date-fns";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useLayoutEffect } from "react";
 
 // Define the format of the input date string
 const INPUT_DATE_FORMAT = "dd/MM/yyyy";
@@ -11,7 +11,16 @@ const HeatMap = ({
     tasks,
     setTasks,
 }) => {
+
+    const mapRef = useRef(null);
+
     const [monthStartPositions, setMonthStartPositions] = useState([]);
+    const [width, setWidth] = useState(0);
+
+    useLayoutEffect(() => {
+        setWidth(mapRef.current.offsetWidth);
+        console.log(`width: ${mapRef.current.offsetWidth}px`);
+    }, [])
 
     const handleMarkComplete = (date) => {
         const updatedDates = currentHabit?.dates.map((item) => {
@@ -89,7 +98,7 @@ const HeatMap = ({
     };
 
     return (
-        <>
+        <FullContainer ref={mapRef} $width={width}>
             <MonthContainer>
                 {monthStartPositions.map(({ month, position }) => (
                     <MonthLabel
@@ -106,28 +115,35 @@ const HeatMap = ({
             <Container>
                 {returnMap()}
             </Container>
-        </>
+        </FullContainer>
     );
 };
 
 export default HeatMap;
+
+const FullContainer = styled.div`
+    width: 100%;
+    overflow-x: auto;
+    min-width: ${props => props.$width > 0 && props.$width >= 1024 ? "auto" : "1024px"};
+`;
 
 const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(52, 1fr);
     grid-gap: .2rem;
     width: 100%;
+    min-width: ${props => props.$width > 0 && props.$width >= 1024 ? "auto" : "1024px"};
 
     @media (max-width: 768px) {
-        width: 100%;
         align-items: center;
         align-content: center;
     }
 `;
 
 const MonthContainer = styled.div`
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(52, 1fr); // 52 columns for each date
+    grid-template-columns: repeat(52, 1fr);
     grid-gap: .2rem;
     margin-bottom: .5rem;
 `;
@@ -139,7 +155,6 @@ const MonthLabel = styled.div`
 
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.dateComplete : props.theme.dateNotComplete};
-    display: ${props => props.$index < 364 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
     border-radius: 1px;
@@ -148,18 +163,8 @@ const Day = styled.div`
     color: #fff;
     position: relative;
     cursor: pointer;
-    min-width: 1rem;
 
     transition: background-color .25s ease-in-out;
-
-    @media (max-width: 768px) {
-        padding: .5rem;
-        display: ${props => props.$index < 90 ? "flex" : "none"};
-    }
-
-    @media (max-width: 550px) {
-        display: ${props => props.$index < 60 ? "flex" : "none"};
-    }
 `;
 
 const DayValue = styled.div`
@@ -175,7 +180,7 @@ const DayValue = styled.div`
     padding: .5rem 1rem;
     border-radius: 16px;
     white-space: nowrap;
-    z-index: 999;
+    z-index: -1;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     font-size: 1rem;
 
@@ -183,5 +188,6 @@ const DayValue = styled.div`
         visibility: visible;
         opacity: 1;
         display: inline-block;
+        z-index: 999;
     }
 `;
