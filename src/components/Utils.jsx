@@ -41,7 +41,7 @@ export const formatDate = (date) => {
 // Map of string identifiers to the actual React icon components
 export const iconMap = {
     // Fitness Icons
-    barbell: <Barbell weight="fill" color="#eee" size="100%" />,
+    barbell: <Barbell weight="regular" color="#eee" size="100%" />,
     personSimpleBike: <PersonSimpleBike weight="fill" color="#eee" size="100%" />,
     personSimpleRun: <PersonSimpleRun weight="fill" color="#eee" size="100%" />,
     personSimpleHike: <PersonSimpleHike weight="fill" color="#eee" size="100%" />,

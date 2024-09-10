@@ -7,9 +7,6 @@ import {
 } from "@phosphor-icons/react";
 
 const PhotoSelect = ({
-    tasks,
-    setTasks,
-    currentHabit,
     setCurrentHabit,
     togglePhotoSelect,
 }) => {

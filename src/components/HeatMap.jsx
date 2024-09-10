@@ -65,8 +65,8 @@ const HeatMap = ({
                 return null;
             }
 
-            const row = Math.floor(index / 5);
-            const col = index % 5;
+            const row = Math.floor(index / 7);
+            const col = index % 7;
 
             return (
                 <Day
@@ -139,7 +139,7 @@ const MonthLabel = styled.div`
 
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.dateComplete : props.theme.dateNotComplete};
-    display: ${props => props.$index < 260 ? "flex" : "none"};
+    display: ${props => props.$index < 364 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
     border-radius: 1px;
