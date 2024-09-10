@@ -158,9 +158,9 @@ const HabitStats = ({
             />
             <InfoContainer>
                 <InfoWrapper>
-                    <SubTitle>
+                    <Title>
                         Overview
-                    </SubTitle>
+                    </Title>
                     <StatsContainer>
                         <StatsWrapper>
                             <HabitInfo
@@ -218,7 +218,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
-    background-color: ${props => props.theme.darkBackground};
+    background-color: ${props => props.theme.background};
 
     @media (max-width: 1024px) {
         flex-direction: column;
@@ -274,7 +274,7 @@ const InfoWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 85%;
     height: 100%;
 
     @media (max-width: 1300px) {
@@ -282,23 +282,26 @@ const InfoWrapper = styled.div`
     }
 `;
 
-const SubTitle = styled.div`
+const Title = styled.div`
     width: 100%;
     font-size: 2.2rem;
     font-weight: 700;
-    margin-bottom: .2rem;
+    margin-bottom: 3rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+`;
 
-    @media (max-width: 768px) {
-    }
+const SubTitle = styled(Title)`
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottoM: .2rem;
 `;
 
 const Explanation = styled.div`
     width: 100%;
     font-size: 1rem;
-    color: darkgray;
+    color: #c1b9b9;
     display: flex;
     align-items: center;
     justify-content: flex-start;

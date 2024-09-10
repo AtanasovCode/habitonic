@@ -27,7 +27,8 @@ const Router = () => {
         //background: "#333a36",
         homepageBG: "#1d2320",
         primary: "#0a76b8",
-        secondary: "#3a3454",
+        //secondary: "#3a3454",
+        secondary: "#423b67",
         accent: "#21aedd",
 
         //darkBackground: "#0D0106",
@@ -35,6 +36,9 @@ const Router = () => {
         taskBackground: "#050404",
         taskImportant: "#585f8690",
         taskComplete: "#2f2f2f",
+
+        dateComplete: "#95d3e8",
+        dateNotComplete: "#4a4242",
 
         borderRadius: "20px",
     }

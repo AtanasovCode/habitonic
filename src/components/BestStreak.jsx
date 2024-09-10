@@ -103,9 +103,9 @@ const BestStreak = ({ currentHabit }) => {
             return 0.7;
         } else if (count >= 31 && count <= 35) {
             return 0.8;
-        } else if(count >=36 && count <= 40) {
+        } else if (count >= 36 && count <= 40) {
             return 0.9;
-        } else if(count >= 40) {
+        } else if (count >= 40) {
             return 1;
         } else {
             return 1; // Default value if no conditions are met
@@ -120,9 +120,9 @@ const BestStreak = ({ currentHabit }) => {
             {
                 bestStreak.count > 0 ?
                     <>
-                        <Name>{bestStreak?.end}</Name>
-                        <Progress $flexValue={getCount(bestStreak.count)}></Progress>
                         <Name>{bestStreak?.start}</Name>
+                        <Progress $flexValue={getCount(bestStreak.count)}></Progress>
+                        <Name>{bestStreak?.end}</Name>
                     </>
                     :
                     <Explanation>No streaks found</Explanation>
@@ -142,7 +142,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 600;
     margin-right: 1rem;
 

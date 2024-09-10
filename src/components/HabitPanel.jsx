@@ -62,7 +62,7 @@ export default HabitPanel;
 
 const Container = styled.div`
     background-color: ${props => props.theme.background};
-    width: 20%;
+    width: 30%;
     height: 100vh;
     display: flex;
     flex-direction: column;
