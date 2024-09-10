@@ -14,6 +14,7 @@ const HeatMap = ({
 }) => {
 
     const handleMarkComplete = (date) => {
+        console.log(date);
         const updatedDates = currentHabit?.dates.map((item) => {
             if (item.date === date) {
                 return { ...item, complete: !item.complete };
@@ -46,21 +47,27 @@ const HeatMap = ({
 
     const returnMap = () => {
         return currentHabit && currentHabit.dates && currentHabit.dates.map((item, index) => {
-            // Parse the date string according to the input format
             const parsedDate = parse(item.date, INPUT_DATE_FORMAT, new Date());
 
-            // Check for invalid date
             if (isNaN(parsedDate.getTime())) {
                 console.error("Invalid date:", item.date);
-                return null; // Skip rendering for invalid dates
+                return null;
             }
+
+            // New row and column calculations for vertical layout
+            const row = Math.floor(index / 5);  // Now based on 5 rows
+            const col = index % 5;              // Now based on 5 columns
 
             return (
                 <Day
                     key={item.date}
                     value={item.date}
-                    $complete={item.complete}
                     $index={index}
+                    $complete={item.complete}
+                    style={{
+                        gridRow: col + 1,   // Set row, +1 to avoid zero-indexing
+                        gridColumn: row + 1 // Set column, +1 to avoid zero-indexing
+                    }}
                     onClick={() => handleMarkComplete(item.date)}
                 >
                     <DayValue>
@@ -70,6 +77,8 @@ const HeatMap = ({
             );
         });
     };
+
+
 
     return (
         <Container>

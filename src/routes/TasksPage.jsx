@@ -99,7 +99,7 @@ const TasksPage = ({
                 const date = new Date();
                 date.setDate(date.getDate() - index);
                 const formattedDate = format(date, "dd/MM/yyyy");
-                return { date: formattedDate, complete: true };
+                return { date: formattedDate, complete: false };
             });
 
             const newTask = {
