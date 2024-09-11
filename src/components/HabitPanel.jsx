@@ -71,10 +71,13 @@ const Container = styled.div`
     padding: 1rem;
     padding-top: 2.5rem;
 
+    @media (max-width: 1300px) {
+        width: 30%;
+    }
+
     @media (max-width: 1024px) {
         width: 100%;
         height: auto;
-        background-color: ${props => props.theme.darkBackground};
         flex-direction: row;
         align-items: center;
         justify-content: space-between;

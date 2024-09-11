@@ -1,6 +1,6 @@
 import { format, parse, getMonth } from "date-fns";
 import styled from "styled-components";
-import { useEffect, useState, useRef, useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 
 // Define the format of the input date string
 const INPUT_DATE_FORMAT = "dd/MM/yyyy";
@@ -12,15 +12,7 @@ const HeatMap = ({
     setTasks,
 }) => {
 
-    const mapRef = useRef(null);
-
     const [monthStartPositions, setMonthStartPositions] = useState([]);
-    const [width, setWidth] = useState(0);
-
-    useLayoutEffect(() => {
-        setWidth(mapRef.current.offsetWidth);
-        console.log(`width: ${mapRef.current.offsetWidth}px`);
-    }, [])
 
     const handleMarkComplete = (date) => {
         const updatedDates = currentHabit?.dates.map((item) => {
@@ -56,7 +48,7 @@ const HeatMap = ({
                 const currentMonth = getMonth(parsedDate);
 
                 if (currentMonth !== lastMonth) {
-                    monthPositions.push({ month: format(parsedDate, "MMMM"), position: index });
+                    monthPositions.push({ month: format(parsedDate, "MMM"), position: index });
                     lastMonth = currentMonth;
                 }
             });
@@ -90,7 +82,7 @@ const HeatMap = ({
                     onClick={() => handleMarkComplete(item.date)}
                 >
                     <DayValue>
-                        {format(parsedDate, "MMMM d, yyyy")}
+                        {format(parsedDate, "MMM d, yyyy")}
                     </DayValue>
                 </Day>
             );
@@ -98,11 +90,11 @@ const HeatMap = ({
     };
 
     return (
-        <FullContainer ref={mapRef} $width={width}>
+        <FullContainer>
             <MonthContainer>
                 {monthStartPositions.map(({ month, position }) => (
                     <MonthLabel
-                        key={month}
+                        key={position}
                         style={{
                             gridColumn: Math.floor(position / 5) + 1, // Align to the correct column
                             gridRow: 1
@@ -124,7 +116,6 @@ export default HeatMap;
 const FullContainer = styled.div`
     width: 100%;
     overflow-x: auto;
-    min-width: ${props => props.$width > 0 && props.$width >= 1024 ? "auto" : "1024px"};
 `;
 
 const Container = styled.div`
@@ -132,7 +123,6 @@ const Container = styled.div`
     grid-template-columns: repeat(52, 1fr);
     grid-gap: .2rem;
     width: 100%;
-    min-width: ${props => props.$width > 0 && props.$width >= 1024 ? "auto" : "1024px"};
 
     @media (max-width: 768px) {
         align-items: center;
@@ -170,24 +160,22 @@ const Day = styled.div`
 const DayValue = styled.div`
     visibility: hidden;
     opacity: 0;
-    display: none;
     position: absolute;
     top: -200%;
     left: 50%;
     transform: translateX(-50%);
     background-color: ${props => props.theme.background};
     color: ${props => props.theme.text};
-    padding: .5rem 1rem;
-    border-radius: 16px;
     white-space: nowrap;
     z-index: -1;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     font-size: 1rem;
+    padding: .5rem;
+    border-radius: 8px;
 
     ${Day}:hover & {
         visibility: visible;
         opacity: 1;
-        display: inline-block;
-        z-index: 999;
+        z-index: 9999;
     }
 `;
