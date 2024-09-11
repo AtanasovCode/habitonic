@@ -15,6 +15,7 @@ const HeatMap = ({
     const [monthStartPositions, setMonthStartPositions] = useState([]);
 
     const handleMarkComplete = (date) => {
+        console.log(`date: ${date}`);
         const updatedDates = currentHabit?.dates.map((item) => {
             if (item.date === date) {
                 return { ...item, complete: !item.complete };
@@ -79,7 +80,10 @@ const HeatMap = ({
                         gridRow: col + 1,
                         gridColumn: row + 1
                     }}
-                    onClick={() => handleMarkComplete(item.date)}
+                    onClick={() => {
+                        console.log(index)
+                        handleMarkComplete(item.date)
+                    }}
                 >
                     <DayValue>
                         {format(parsedDate, "MMM d, yyyy")}
@@ -148,6 +152,7 @@ const MonthLabel = styled.div`
 
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.dateComplete : props.theme.dateNotComplete};
+    display: ${props => props.$index < 364 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
     border-radius: 1px;
@@ -156,8 +161,11 @@ const Day = styled.div`
     color: #fff;
     position: relative;
     cursor: pointer;
-
     transition: background-color .25s ease-in-out;
+
+    @media (max-width: 1024px) {
+        min-width: .9rem;
+    }
 `;
 
 const DayValue = styled.div`
