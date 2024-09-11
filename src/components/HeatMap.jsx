@@ -49,7 +49,7 @@ const HeatMap = ({
                 const currentMonth = getMonth(parsedDate);
 
                 if (currentMonth !== lastMonth) {
-                    monthPositions.push({ month: format(parsedDate, "MMM"), position: index });
+                    monthPositions.push({ month: format(parsedDate, "MMM"), position: index + 20 });
                     lastMonth = currentMonth;
                 }
             });
@@ -61,6 +61,7 @@ const HeatMap = ({
     const returnMap = () => {
         return currentHabit && currentHabit.dates && currentHabit.dates.map((item, index) => {
             const parsedDate = parse(item.date, INPUT_DATE_FORMAT, new Date());
+            let month = getMonth(parsedDate);
 
             if (isNaN(parsedDate.getTime())) {
                 console.error("Invalid date:", item.date);
@@ -75,6 +76,7 @@ const HeatMap = ({
                     key={item.date}
                     value={item.date}
                     $index={index}
+                    $month={month}
                     $complete={item.complete}
                     style={{
                         gridRow: col + 1,
@@ -100,7 +102,7 @@ const HeatMap = ({
                     <MonthLabel
                         key={position}
                         style={{
-                            gridColumn: Math.floor(position / 5) + 1, // Align to the correct column
+                            gridColumn: Math.floor(position / 7) + 1, // Align to the correct column
                             gridRow: 1
                         }}
                     >
@@ -152,6 +154,12 @@ const MonthLabel = styled.div`
 
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.dateComplete : props.theme.dateNotComplete};
+    background-color: ${props => {
+        if (props.$month === 3) return "#ff0000";
+        if (props.$month === 4) return "#0000ff";
+        if (props.$month === 5) return "#00ff00";
+        return props.theme.dateNotComplete;
+    }};
     display: ${props => props.$index < 364 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
@@ -173,7 +181,7 @@ const DayValue = styled.div`
     opacity: 0;
     display: none;
     position: absolute;
-    top: -250%;
+    top: -350%;
     left: 50%;
     transform: translateX(-50%);
     background-color: ${props => props.theme.background};
