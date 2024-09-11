@@ -72,10 +72,6 @@ const Container = styled.div`
     padding-top: 2.5rem;
 
     @media (max-width: 1300px) {
-        width: 30%;
-    }
-
-    @media (max-width: 1024px) {
         width: 100%;
         height: auto;
         flex-direction: row;
@@ -102,7 +98,7 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1300px) {
         width: auto;
         flex-direction: row;
         justify-content: flex-start;
@@ -118,7 +114,7 @@ const Title = styled.div`
     font-weight: 600;
     margin-top: 1rem;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1300px) {
         margin: 0;
         margin-left: 1rem;
         width: auto;
@@ -136,7 +132,7 @@ const Navigation = styled.div`
     justify-content: flex-start;
     width: 100%;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1300px) {
         width: auto;
         height: 100%;
         flex-direction: row;
@@ -153,7 +149,7 @@ const NavItem = styled(Link)`
     margin-bottom: 1rem;
     width: 100%;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1300px) {
         margin: 0 .5rem;
     }
 
@@ -168,7 +164,7 @@ const IconContainer = styled.div`
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1300px) {
         margin-right: 0;
     }
 `;
@@ -190,7 +186,7 @@ const NavName = styled.div`
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1300px) {
         visibility: hidden;
         display: none;
         width: 0;

@@ -26,7 +26,7 @@ export default HabitPhoto;
 
 const Container = styled.div`
     width: 100%;
-    min-width: 100px;
+    min-width: 125px;
     aspect-ratio: 1;
     border-radius: 50%;
     display: flex;
@@ -54,7 +54,7 @@ const Container = styled.div`
         backdrop-filter: blur(5px);
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1300px) {
         width: 30%;
         min-width: 65px;
     }

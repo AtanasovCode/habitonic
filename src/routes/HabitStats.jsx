@@ -220,7 +220,7 @@ const Container = styled.div`
     overflow-x: hidden;
     background-color: ${props => props.theme.background};
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1300px) {
         flex-direction: column;
 
         ${props => props.$showPhotoSelect && `

@@ -94,6 +94,9 @@ const HeatMap = ({
                     <DayValue>
                         {format(parsedDate, "MMM d, yyyy")}
                     </DayValue>
+                    <MobileDate $complete={item.complete}>
+                        {format(parsedDate, "d")}
+                    </MobileDate>
                 </Day>
             );
         });
@@ -129,7 +132,7 @@ const FullContainer = styled.div`
     grid-template-columns: repeat(1, 1fr);
     grid-gap: .2rem;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1300px) {
         overflow-x: auto;
     }
 `;
@@ -162,29 +165,17 @@ const MonthLabel = styled.div`
 
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.dateComplete : props.theme.dateNotComplete};
-    background-color: ${props => {
-        if (props.$month === 2) return "white";
-        if (props.$month === 3) return "red";
-        if (props.$month === 4) return "blue";
-        if (props.$month === 5) return "lime";
-        if (props.$month === 6) return "orange";
-        if (props.$month === 7) return "green";
-        if (props.$month === 8) return "magenta";
-        return props.theme.dateNotComplete;
-    }};
     display: ${props => props.$index < 364 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
-    border-radius: 1px;
+    border-radius: 2px;
     aspect-ratio: 1;
-    font-size: 0.8rem;
-    color: #fff;
     position: relative;
     cursor: pointer;
     transition: background-color .25s ease-in-out;
 
-    @media (max-width: 1024px) {
-        min-width: 1rem;
+    @media (max-width: 1300px) {
+        min-width: 1.1rem;
     }
 `;
 
@@ -212,11 +203,26 @@ const DayValue = styled.div`
         z-index: 999;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1300px) {
             ${Day}:hover & {
                 display: none;
                 visibility: hidden;
                 opacity: 0;
             }
+    }
+`;
+
+const MobileDate = styled.div`
+    display: none;
+    
+
+    @media (max-width: 1300px) {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .6rem;
+        color: ${props => props.$complete ? "#000" : "#AAA"};
     }
 `;
