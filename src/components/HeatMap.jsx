@@ -115,7 +115,10 @@ export default HeatMap;
 
 const FullContainer = styled.div`
     width: 100%;
-    overflow-x: auto;
+
+    @media (max-width: 1024px) {
+        overflow-x: auto;
+    }
 `;
 
 const Container = styled.div`
@@ -160,8 +163,9 @@ const Day = styled.div`
 const DayValue = styled.div`
     visibility: hidden;
     opacity: 0;
+    display: none;
     position: absolute;
-    top: -200%;
+    top: -250%;
     left: 50%;
     transform: translateX(-50%);
     background-color: ${props => props.theme.background};
@@ -174,8 +178,17 @@ const DayValue = styled.div`
     border-radius: 8px;
 
     ${Day}:hover & {
+        display: inline-block;
         visibility: visible;
         opacity: 1;
-        z-index: 9999;
+        z-index: 999;
+    }
+
+    @media (max-width: 1024px) {
+            ${Day}:hover & {
+                display: none;
+                visibility: hidden;
+                opacity: 0;
+            }
     }
 `;

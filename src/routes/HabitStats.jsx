@@ -280,6 +280,10 @@ const InfoWrapper = styled.div`
     @media (max-width: 1300px) {
         width: 95%;
     }
+
+    @media (max-width: 768px) {
+        width: 97%;
+    }
 `;
 
 const Title = styled.div`
