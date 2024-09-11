@@ -48,8 +48,12 @@ const HeatMap = ({
                 const parsedDate = parse(item.date, INPUT_DATE_FORMAT, new Date());
                 const currentMonth = getMonth(parsedDate);
 
+                //values used to make sure the alignment of the current year month and the last year month are correct
+                const parsedMonth = format(parsedDate, "MMM, yyyy");
+                const currentParsedMonth = format(new Date(), "MMM, yyyy");
+
                 if (currentMonth !== lastMonth) {
-                    monthPositions.push({ month: format(parsedDate, "MMM"), position: index + 20 });
+                    monthPositions.push({ month: format(parsedDate, "MMM"), position: parsedMonth === currentParsedMonth ? index : index + 20 });
                     lastMonth = currentMonth;
                 }
             });
@@ -145,6 +149,10 @@ const MonthContainer = styled.div`
     grid-template-columns: repeat(52, 1fr);
     grid-gap: .2rem;
     margin-bottom: .5rem;
+
+    @media (max-width: 1024px) {
+        overflow-x: auto;
+    }
 `;
 
 const MonthLabel = styled.div`
@@ -155,9 +163,13 @@ const MonthLabel = styled.div`
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.dateComplete : props.theme.dateNotComplete};
     background-color: ${props => {
-        if (props.$month === 3) return "#ff0000";
-        if (props.$month === 4) return "#0000ff";
-        if (props.$month === 5) return "#00ff00";
+        if (props.$month === 4) return "orange";
+        if (props.$month === 3) return "yellow";
+        if (props.$month === 2) return "magenta";
+        if (props.$month === 5) return "#ff0000";
+        if (props.$month === 6) return "#0000ff";
+        if (props.$month === 7) return "#00ff00";
+        if (props.$month === 8) return "black";
         return props.theme.dateNotComplete;
     }};
     display: ${props => props.$index < 364 ? "flex" : "none"};
