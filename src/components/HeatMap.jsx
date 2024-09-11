@@ -125,6 +125,9 @@ export default HeatMap;
 
 const FullContainer = styled.div`
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: .2rem;
 
     @media (max-width: 1024px) {
         overflow-x: auto;
@@ -132,10 +135,11 @@ const FullContainer = styled.div`
 `;
 
 const Container = styled.div`
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(52, 1fr);
     grid-gap: .2rem;
-    width: 100%;
+    padding-bottom: .5rem;
 
     @media (max-width: 768px) {
         align-items: center;
@@ -149,10 +153,6 @@ const MonthContainer = styled.div`
     grid-template-columns: repeat(52, 1fr);
     grid-gap: .2rem;
     margin-bottom: .5rem;
-
-    @media (max-width: 1024px) {
-        overflow-x: auto;
-    }
 `;
 
 const MonthLabel = styled.div`
@@ -163,13 +163,13 @@ const MonthLabel = styled.div`
 const Day = styled.div`
     background-color: ${props => props.$complete ? props.theme.dateComplete : props.theme.dateNotComplete};
     background-color: ${props => {
-        if (props.$month === 4) return "orange";
-        if (props.$month === 3) return "yellow";
-        if (props.$month === 2) return "magenta";
-        if (props.$month === 5) return "#ff0000";
-        if (props.$month === 6) return "#0000ff";
-        if (props.$month === 7) return "#00ff00";
-        if (props.$month === 8) return "black";
+        if (props.$month === 2) return "white";
+        if (props.$month === 3) return "red";
+        if (props.$month === 4) return "blue";
+        if (props.$month === 5) return "lime";
+        if (props.$month === 6) return "orange";
+        if (props.$month === 7) return "green";
+        if (props.$month === 8) return "magenta";
         return props.theme.dateNotComplete;
     }};
     display: ${props => props.$index < 364 ? "flex" : "none"};
@@ -184,7 +184,7 @@ const Day = styled.div`
     transition: background-color .25s ease-in-out;
 
     @media (max-width: 1024px) {
-        min-width: .9rem;
+        min-width: 1rem;
     }
 `;
 
