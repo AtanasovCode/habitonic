@@ -321,6 +321,10 @@ const Container = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     min-height: 100vh;
+
+    @media (max-width: 1024px) {
+        min-height: 100dvh;
+    }
 `;
 
 const TasksContainer = styled.div`
