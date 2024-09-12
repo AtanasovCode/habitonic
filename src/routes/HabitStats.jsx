@@ -227,6 +227,10 @@ const Container = styled.div`
             height: 100dvh;
         `}
     }
+
+    @media (max-width: 1024px) {
+        min-height: 100dvh;
+    }
 `;
 
 const Tint = styled.div`

@@ -346,6 +346,7 @@ const TasksContainer = styled.div`
 
     @media (max-width: 1024px) {
         padding: 2rem 2.5rem;
+        height: 100dvh;
     }
 
     @media (max-width: 768px) {
