@@ -29,7 +29,7 @@ const HabitPanel = ({
                 </Title>
             </Wrapper>
             <Navigation>
-                <NavItem to="/habits">
+                <NavItem to="/">
                     <IconContainer>
                         <Icon>
                             <ListChecks
@@ -40,18 +40,6 @@ const HabitPanel = ({
                         </Icon>
                     </IconContainer>
                     <NavName>Habits</NavName>
-                </NavItem>
-                <NavItem to="/">
-                    <IconContainer>
-                        <Icon>
-                            <House
-                                weight="fill"
-                                color="#fff"
-                                size="100%"
-                            />
-                        </Icon>
-                    </IconContainer>
-                    <NavName>Home</NavName>
                 </NavItem>
             </Navigation>
         </Container>

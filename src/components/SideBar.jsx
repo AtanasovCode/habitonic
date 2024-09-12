@@ -73,18 +73,6 @@ const SideBar = ({
                     filterName="trash"
                 />
             </Filters>
-            <Links>
-                <BackLink to="/">
-                    <House
-                        color="#FFF"
-                        weight="regular"
-                        size={23}
-                    />
-                    <BackText>
-                        Home
-                    </BackText>
-                </BackLink>
-            </Links>
         </Container>
     );
 }

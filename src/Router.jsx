@@ -65,10 +65,6 @@ const Router = () => {
     const router = createBrowserRouter([
         {
             path: "/",
-            element: <Homepage />
-        },
-        {
-            path: "/habits",
             element: <TasksPage
                 tasks={tasks}
                 setTasks={setTasks}

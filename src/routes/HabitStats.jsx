@@ -196,7 +196,7 @@ const HabitStats = ({
                         Habit Activity
                     </SubTitle>
                     <Explanation>
-                        (click on a date to mark/unmark it as complete)
+                        (click on a date to mark / unmark it as complete)
                     </Explanation>
                     <HeatMap
                         currentHabit={currentHabit}
@@ -310,6 +310,14 @@ const Explanation = styled.div`
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+        font-size: .9rem;
+    }
+
+    @media (max-width: 550px) {
+        font-size: .8rem;
+    }
 `;
 
 const StatsContainer = styled.div`

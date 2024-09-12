@@ -168,14 +168,14 @@ const Day = styled.div`
     display: ${props => props.$index < 364 ? "flex" : "none"};
     align-items: center;
     justify-content: center;
-    border-radius: 2px;
+    border-radius: 3px;
     aspect-ratio: 1;
     position: relative;
     cursor: pointer;
     transition: background-color .25s ease-in-out;
 
     @media (max-width: 1300px) {
-        min-width: 1.1rem;
+        min-width: 1.3rem;
     }
 `;
 
