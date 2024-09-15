@@ -30,3 +30,24 @@ Check out your habit stats to see how well you are doing with your new habit. He
 
 ## View your habit's activity over the past year
 ![](./src/assets/screenshots/Activity.png)
+
+## Key Features
+
+- Create or delete habits.
+- Persistent date, never lose your progress.
+- Mark habits as complete.
+- See the last 10 dates of your habit on the main page or the full year in the stats page.
+- Mark habits as important to move them to the top and give them special styling.
+- Sort through your habits based on 5 different filters.
+- See detailed habit statistics to see your progress with each new habit.
+- Get monthly scores based on your activity with the habit that month.
+- Add custom photos for each habit.
+- Mark dates as complete far beyond the habit creation date with the complex activity tracker.
+
+## Built with
+
+- React.js
+- styled-components
+- phosphor-icons
+- react-router-dom
+- date-fns
