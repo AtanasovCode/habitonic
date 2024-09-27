@@ -104,9 +104,8 @@ const Wrapper = styled.div`
     justify-content: center;
 
     @media (max-width: 1300px) {
-        width: auto;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-between;
     }
 `;
 
@@ -115,6 +114,11 @@ const PhotoWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 1300px) {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
 `;
 
 const Title = styled.div`
@@ -144,6 +148,13 @@ const InfoWrapper = styled.div`
     align-items: flex-start;
     justify-content: center;
     width: 100%;
+
+    @media (max-width: 1300px) {
+        width: auto;
+        align-items: center;
+        flex-direction: row;
+        margin-top: 0;
+    }
 `;
 
 const InfoItem = styled.div`
@@ -152,20 +163,38 @@ const InfoItem = styled.div`
     justify-content: center;
     margin-bottom: 1.2rem;
     cursor: pointer;
+
+    @media (max-width: 1300px) {
+        margin-bottom: 0;
+    }
 `;
 
 const InfoIcon = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     margin-right: 1rem;
+
+    @media (max-width: 1300px) {
+        margin-right: 0;
+    }
+
+    @media (max-width: 550px) {
+        width: 28px;
+        height: 28px;
+    }
 `;
 
 const InfoText = styled.div`
     font-size: 1.1rem;
     color: ${props => props.theme.text};
+
+    @media (max-width: 1300px) {
+        display: none;
+        visibility: hidden;
+    }
 `;
 
 const Navigation = styled.div`
@@ -213,12 +242,12 @@ const IconContainer = styled.div`
 `;
 
 const Icon = styled.div`
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
 
     @media (max-width: 550px) {
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
     }
 `;
 
