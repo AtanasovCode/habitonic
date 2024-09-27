@@ -12,7 +12,6 @@ import {
 import './styles/index.css';
 
 //Importing routes
-import Homepage from './routes/Homepage';
 import TasksPage from './routes/TasksPage';
 import HabitStats from './routes/HabitStats';
 import ErrorPage from './components/ErrorPage';

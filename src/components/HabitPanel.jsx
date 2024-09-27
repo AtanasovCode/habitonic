@@ -6,12 +6,13 @@ import {
     House,
     ListChecks,
     X,
+    Star,
 } from "@phosphor-icons/react";
 import HabitPhoto from "./HabitPhoto";
 
-const HabitPanel = ({ 
-    title, 
-    togglePhotoSelect, 
+const HabitPanel = ({
+    title,
+    togglePhotoSelect,
     currentHabit,
     togglePanel,
     showPanel,
@@ -19,14 +20,30 @@ const HabitPanel = ({
     return (
         <Container $active={showPanel}>
             <Wrapper>
-                <HabitPhoto
-                    background="#7654ef"
-                    icon={iconMap[currentHabit?.icon]}
-                    togglePhotoSelect={togglePhotoSelect}
-                />
-                <Title>
-                    {title}
-                </Title>
+                <PhotoWrapper>
+                    <HabitPhoto
+                        background="#7654ef"
+                        icon={iconMap[currentHabit?.icon]}
+                        togglePhotoSelect={togglePhotoSelect}
+                    />
+                    <Title>
+                        {title}
+                    </Title>
+                </PhotoWrapper>
+                <InfoWrapper>
+                    <InfoItem>
+                        <InfoIcon>
+                            <Star
+                                size="100%"
+                                weight={currentHabit.important ? "fill" : "thin"}
+                                color="#FFF"
+                            />
+                        </InfoIcon>
+                        <InfoText>
+                            {currentHabit.important ? "Important" : "Not Important"}
+                        </InfoText>
+                    </InfoItem>
+                </InfoWrapper>
             </Wrapper>
             <Navigation>
                 <NavItem to="/">
@@ -93,6 +110,13 @@ const Wrapper = styled.div`
     }
 `;
 
+const PhotoWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
 const Title = styled.div`
     width: 100%;
     display: flex;
@@ -111,6 +135,37 @@ const Title = styled.div`
     @media (max-width: 550px) {
         font-size: 1rem;
     }
+`;
+
+const InfoWrapper = styled.div`
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+`;
+
+const InfoItem = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    cursor: pointer;
+`;
+
+const InfoIcon = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 1rem;
+`;
+
+const InfoText = styled.div`
+    font-size: 1.1rem;
+    color: ${props => props.theme.text};
 `;
 
 const Navigation = styled.div`
