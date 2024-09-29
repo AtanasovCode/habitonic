@@ -45,11 +45,13 @@ const TaskIcons = ({
                     toggleIcons();
                 }}>
 
-                    <Star
-                        weight={important ? "fill" : "light"}
-                        color="#fff"
-                        size={24}
-                    />
+                    <IconWrapper>
+                        <Star
+                            weight={important ? "fill" : "light"}
+                            color="#fff"
+                            size={24}
+                        />
+                    </IconWrapper>
                     <IconDescription>
                         {important ? "Unmark as important" : "Mark as important"}
                     </IconDescription>
@@ -59,11 +61,13 @@ const TaskIcons = ({
                     sessionStorage.setItem("selectedHabitID", id)
                     navigate("/habit-stats")
                 }}>
-                    <PresentationChart
-                        weight="regular"
-                        color="#fff"
-                        size={24}
-                    />
+                    <IconWrapper>
+                        <PresentationChart
+                            weight="regular"
+                            color="#fff"
+                            size={24}
+                        />
+                    </IconWrapper>
                     <IconDescription>
                         View stats
                     </IconDescription>
@@ -71,11 +75,13 @@ const TaskIcons = ({
                 </TaskIcon>
                 <TaskIcon onClick={() => trashTask(id)}>
 
-                    <TrashSimple
-                        weight={trash ? "fill" : "light"}
-                        color="#fff"
-                        size={24}
-                    />
+                    <IconWrapper>
+                        <TrashSimple
+                            weight={trash ? "fill" : "light"}
+                            color="#fff"
+                            size={24}
+                        />
+                    </IconWrapper>
                     <IconDescription>
                         {trash ? "Restore habit" : "Delete habit"}
                     </IconDescription>
@@ -93,15 +99,15 @@ const IconsContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${props => props.theme.background};
-    padding: 1rem;
+    background-color: ${props => props.theme.secondary};
+    padding: 1.5rem;
     position: fixed;
     top: 50%;
     left: 50%;
     z-index: 9999;
     transform: translateX(-50%) translateY(-50%);
     border-radius: 16px;
-    width: 30%;
+    width: 25%;
     min-width: 300px;
 
     animation: fade .4s ease-in-out;
@@ -136,7 +142,7 @@ const TaskName = styled.div`
     font-size: 1.4rem;
     font-weight: 500;
     color: ${props => props.theme.text};
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,30 +151,40 @@ const TaskName = styled.div`
 const Icons = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 `;
 
 const TaskIcon = styled.div`
     cursor: pointer;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 1rem;
-    padding: .5rem 1rem;
-    background-color: ${props => props.theme.secondary};
+    justify-content: center;
+    margin-bottom: .5rem;
+    padding: 1.2rem .5rem;
+    background-color: ${props => props.theme.background};
     border-radius: 16px;
+    position: relative;
+`;
+
+const IconWrapper = styled.div`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5%;
 `;
 
 const IconDescription = styled.div`
     font-size: 1rem;
-    margin-left: .5rem;
+    margin-left: 2rem;
 `;
 
 const CloseContainer = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 1.5rem;
+    position: absolute;
+    right: 5%;
+    top: 5%;
 `;
 
 const CloseIcon = styled.div`
