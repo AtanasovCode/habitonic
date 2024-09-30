@@ -25,7 +25,8 @@ const Router = () => {
         primary: "#0a76b8",
         secondary: "#3a345b",
         //accent: "#21aedd",
-        accent: "#95d3e8",
+        //accent: "#95d3e8",
+        accent: "#89bcec",
 
         //darkBackground: "#0D0106",
         darkBackground: "#000000",
@@ -33,20 +34,10 @@ const Router = () => {
         taskImportant: "#5f6fcf90",
         taskComplete: "#2f2f2f",
 
-        dateComplete: "#95d3e8",
+        dateComplete: "#89bcec",
         dateNotComplete: "#4a4242",
 
         borderRadius: "20px",
-    }
-
-    const testTheme = {
-        text: "#faf3f3",
-        background: "#251A74",
-        primary: "#9091e0",
-        secondary: "#a34eff",
-        accent: "#1e4467",
-
-        borderRadius: "16px",
     }
 
     //array of objects that contains all of the user created tasks

@@ -6,12 +6,13 @@ import {
     House,
     ListChecks,
     X,
+    Star,
 } from "@phosphor-icons/react";
 import HabitPhoto from "./HabitPhoto";
 
-const HabitPanel = ({ 
-    title, 
-    togglePhotoSelect, 
+const HabitPanel = ({
+    title,
+    togglePhotoSelect,
     currentHabit,
     togglePanel,
     showPanel,
@@ -19,14 +20,30 @@ const HabitPanel = ({
     return (
         <Container $active={showPanel}>
             <Wrapper>
-                <HabitPhoto
-                    background="#7654ef"
-                    icon={iconMap[currentHabit?.icon]}
-                    togglePhotoSelect={togglePhotoSelect}
-                />
-                <Title>
-                    {title}
-                </Title>
+                <PhotoWrapper>
+                    <HabitPhoto
+                        background="#7654ef"
+                        icon={iconMap[currentHabit?.icon]}
+                        togglePhotoSelect={togglePhotoSelect}
+                    />
+                    <Title>
+                        {title}
+                    </Title>
+                </PhotoWrapper>
+                <InfoWrapper>
+                    <InfoItem>
+                        <InfoIcon>
+                            <Star
+                                size="100%"
+                                weight={currentHabit.important ? "fill" : "thin"}
+                                color="#FFF"
+                            />
+                        </InfoIcon>
+                        <InfoText>
+                            {currentHabit.important ? "Important" : "Regular"}
+                        </InfoText>
+                    </InfoItem>
+                </InfoWrapper>
             </Wrapper>
             <Navigation>
                 <NavItem to="/">
@@ -87,7 +104,18 @@ const Wrapper = styled.div`
     justify-content: center;
 
     @media (max-width: 1300px) {
-        width: auto;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+`;
+
+const PhotoWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 1300px) {
         flex-direction: row;
         justify-content: flex-start;
     }
@@ -110,6 +138,61 @@ const Title = styled.div`
 
     @media (max-width: 550px) {
         font-size: 1rem;
+    }
+`;
+
+const InfoWrapper = styled.div`
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+
+    @media (max-width: 1300px) {
+        width: auto;
+        align-items: center;
+        flex-direction: row;
+        margin-top: 0;
+    }
+`;
+
+const InfoItem = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+
+    @media (max-width: 1300px) {
+        margin-bottom: 0;
+    }
+`;
+
+const InfoIcon = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 1rem;
+
+    @media (max-width: 1300px) {
+        margin-right: 0;
+    }
+
+    @media (max-width: 550px) {
+        width: 28px;
+        height: 28px;
+    }
+`;
+
+const InfoText = styled.div`
+    font-size: 1.1rem;
+    color: ${props => props.theme.text};
+
+    @media (max-width: 1300px) {
+        display: none;
+        visibility: hidden;
     }
 `;
 
@@ -158,12 +241,12 @@ const IconContainer = styled.div`
 `;
 
 const Icon = styled.div`
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
 
     @media (max-width: 550px) {
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
     }
 `;
 
