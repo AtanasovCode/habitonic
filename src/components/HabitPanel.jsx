@@ -40,7 +40,7 @@ const HabitPanel = ({
                             />
                         </InfoIcon>
                         <InfoText>
-                            {currentHabit.important ? "Important" : "Not Important"}
+                            {currentHabit.important ? "Important" : "Regular"}
                         </InfoText>
                     </InfoItem>
                 </InfoWrapper>
@@ -162,7 +162,6 @@ const InfoItem = styled.div`
     align-items: center;
     justify-content: center;
     margin-bottom: 1.2rem;
-    cursor: pointer;
 
     @media (max-width: 1300px) {
         margin-bottom: 0;
